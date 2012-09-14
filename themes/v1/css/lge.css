@@ -1,0 +1,321 @@
+@charset "utf-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+* {
+	font-family:LG Display_Eng_Kor, LG Display;
+	margin : 0px 0 0 0px;
+}
+
+body{
+	margin: 0px;
+}
+
+/* title area */
+
+#titleArea {
+	width: 1280px;
+	height: 129px;
+	background-color: #ffffff;
+}
+
+#wrapper {
+	background-color: #ffffff;
+	position: relative;
+	border: 1px solid #aaaaaa;
+	width: 1280px;
+	height: 592px;
+}
+
+#mainContent {
+	border-right: 1px solid #aaaaaa;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width:580px;
+	height: 592px;
+}
+
+#imageMosaic{
+	background-color: #dddddd;
+	position: absolute;
+	left:580px;
+	top: 0px;
+	width: 700px;
+	height: 592px;
+}
+
+/* tab area */
+
+.tabArea #tabArea {
+	width: 1280px;
+	height: 46px;
+	border: 0;
+}
+
+
+/* key help area */
+
+#key_tv_bg {
+display: none;
+position: absolute;
+top: 627px;
+width: 1280px;
+height: 93px;
+background-image: url('..image/keyhelp/KEYHELP_BG.png');
+}
+
+/* version info */
+
+#versionInfo {
+	position: absolute;
+	left:1000px;
+	top: 20px;
+	font-size: 12px;
+}
+
+
+/*version info
+#versionInfo { 
+	font-size: 15pt; 
+	color: #0077AA; 
+	position: absolute; 
+	width: 200px; 
+	height: 19px; 
+	top: 10px ; 
+	left: 900px; 
+} */
+
+/*play*/
+.btnStyle {
+	position: absolute; 
+	width: 242px; 
+	height: 59px; 
+/*	line-height : 48px;*/
+	background-image : url('../image/play/PHOTO_BTN_NORMAL.png');
+	font-size: 28px;
+	color: rgb(255,255,255);
+}
+
+.btnImgStyle {
+	margin-top: 15px;
+	height: 29px;
+	width: 31px;
+	vertical-align: middle;
+}
+
+.btnFocusStyle {
+	position: absolute; 
+	top : 632px;
+	left : 45px;
+	width: 242px; 
+	height: 59px; 
+	background-image : url('../image/play/PHOTO_BTN_FOCUS.png');
+	font-size: 28px;
+	color: rgb(255,255,255);
+}
+
+.backMenuStyle {
+	position: absolute; 
+	width: 134px;
+	height: 59px; 
+	left: 1101px; 
+	top: 40px; 
+	background : url('../image/play/PHOTO_BTN_EXIT_NORMAL.png');
+}
+
+.controlDivStyle {
+	position: absolute; 
+	top: 575px; 
+	height: 145px; 
+	left: 0px; 
+	width: 1280px; 
+}
+
+.arrowStyle {
+	position: absolute;  
+	width: 107px; 
+	height: 107px; 
+}
+
+.uploaderStyle {
+	position: absolute; 
+	top: 12px; 
+	left: 99px; 
+	height:24px; 
+	font-size: 30px; 
+	line-height:30px; 
+	vertical-align: bottom;
+	color: rgb(255,255,255);
+}
+
+.tabArea {
+	width:1280px; 
+	height:46px; 
+	background-image:url(../image/title/TITLE_TAB_BG_BLACK.png); 
+	background-repeat: repeat-x;	
+}
+
+.titlelogo {
+	font-size: 40px;
+	color: #9d9d9d;
+}
+
+/* tab menu home */
+.focusedGrayFirst {	 
+	height:46px; 
+	color: rgb(250,250,250);	 
+	text-align:center; 
+	font-size: 30px;	
+	width: 264px; 
+	background-image:url(../image/common/TAB_FOCUS_L.png);	
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.selectedMenuFirst {	 
+	height:46px; 
+	color: rgb(250,250,250);	 
+	text-align:center; 
+	font-size: 30px;	
+	width: 264px; 
+	height:46px; 
+	background-image:url(../image/common/TAB_SELECTED_L.png);	
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+
+.tabGrayMiddle {	 
+	height:46px; 
+	width: 245px; 
+	color: rgb(52,52,52);	 
+	text-align:center; 
+	font-size: 30px;		
+}
+
+.tabGray {	 
+	height:46px; 
+	width: 281px; 
+	color: rgb(52,52,52);	 
+	text-align:center; 
+	font-size: 30px;		
+}
+
+.keyhelp {
+	position: absolute; 
+	font-size: 26px; 
+	color: rgb(182,182,182);	
+	vertical-align: middle;
+	margin-left: 20px;
+	top:640px;
+	width: 191px;
+	height: 56px;
+	text-align: center;
+	background-image:url(../image/keyhelp/KEYHELP_NORMAL.png);
+}
+
+
+.imgStyle {
+	width: 92px;
+	height: 92px;
+	background-image: url(../image/common/PHOTO_LIST_NORAML.png);
+}
+
+.imgArrowPartL {
+	width: 74px;
+	height: 102px;
+	background-position: left top;
+}
+
+.imgArrowPartR {
+	width: 74px;
+	height: 102px;
+	background-position: right top;
+}
+
+.imgSpace {
+	width: 10px;
+}
+
+.mediumNormalGray {
+	font-size: 26px;
+	color: rgb(157,157,157);
+}
+
+.thumbnailArrImg{	
+	background-repeat: no-repeat;
+	width: 54px; height: 54px; 
+	position: absolute;
+	z-index: 3000; 	
+}
+
+.scrollTextStyle {
+	font-size: 20px;
+	color: rgb(161,161,181);
+}
+
+.keyhelp2{
+	background-image: url(../image/keyhelp/KEYHELP_NORMAL.png);
+	background-repeat: no-repeat;
+	/*vertical-align: top; */
+	font-size: 23px;	
+	width: 191px;
+	height: 56px;
+	color: rgb(181,181,181);
+	vertical-align: top;
+}
+
+/* Image Mosaic Images */
+#image_1-1{
+	position: absolute;left:178px;top:30px;width:70px;height:59px;
+}
+
+#image_1-2{
+	position: absolute;left:254px;top:30px;width:170px;height:119px;
+}
+
+#image_1-3{
+	position: absolute;left:434px;top:84px;width:100px;height:69px;
+}
+
+#image_2-1{
+	position: absolute;left:40px;top:89px;width:208px;height:119px;
+}
+
+#image_2-2{
+	position: absolute;left:254px;top:158px;width:158px;height:89px;
+}
+
+#image_2-3{
+	position: absolute;left:416px;top:228px;width:158px;height:109px;
+}
+
+.imgClass{
+ width: 102px;
+ height: 102px;
+ vertical-align: top;
+}
+
+.disabledmosaicImage{
+	background: #ddd;
+	border:2px solid #fff;
+}
+
+.mosaicImage{
+	border:2px solid #fff;
+	background: #ddd;
+}
+
+.activeImage{
+	background: #e5e5e5;
+	border:4px solid #76caef;
+}
+
+div.mosaicImage:hover{
+	background: #e5e5e5;
+	border:5px solid #76caef;
+	z-index: 33;
+}
+

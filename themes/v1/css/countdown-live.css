@@ -1,0 +1,71 @@
+#counter{
+color:white;font-family: BentonSansBold;padding-top:17px;position:absolute;top:465px;float:left;margin-left:20px;width:580px;z-index:13000;
+}
+br { clear: both; }
+.cntSeparator {
+font-size: 4px;
+margin: 10px 7px;
+color: #000;
+}
+.desc { margin: 7px 3px; }
+.desc div {
+float: left;
+width: 10px;
+font-family: BentonSansBold;
+margin-right: 15px;
+font-size: 16px;
+font-weight: bold;
+color: #fff;
+}
+.countdown_row{
+clear:both;
+width:100%;
+text-align: center;
+}
+.countdown_rtl {
+direction: rtl;
+}
+.countdown_holding span {
+color: #888;
+}
+.countdown_row {
+clear: both;
+width: 50%;
+padding: 0px 2px;
+text-align: center;
+}
+.countdown_show1 .countdown_section {
+width: 98%;
+}
+.countdown_show2 .countdown_section {
+width: 48%;
+}
+.countdown_show3 .countdown_section {
+width: 32.5%;
+}
+.countdown_show4 .countdown_section {
+width: 24.5%;
+}
+.countdown_show5 .countdown_section {
+width: 19.5%;
+}
+.countdown_show6 .countdown_section {
+width: 16.25%;
+}
+.countdown_show7 .countdown_section {
+width: 14%;
+}
+.countdown_section {
+display: block;
+float: left;
+font-size: 105%;
+text-transform: uppercase;
+text-align: center;
+}
+.countdown_amount {
+font-size: 80px;
+}
+.countdown_descr {
+display: block;
+width: 100%;
+}

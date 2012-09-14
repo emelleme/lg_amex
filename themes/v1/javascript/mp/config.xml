@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+	<flashplayer>../mp/player.swf</flashplayer>
+  <file>testing_1_900@50102</file>
+
+  <streamer>rtmp://cp128604.live.edgefcs.net/live</streamer>
+  <controlbar>none</controlbar>
+  <backcolor>333333</backcolor>
+  <volume>40</volume>
+  <width>640</width>
+  <height>640</height>
+  <logo><hide>true</hide></logo>
+</config>

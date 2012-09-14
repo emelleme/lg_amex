@@ -1,0 +1,206 @@
+@charset "utf-8";
+* {
+	padding: 0;
+	margin: 0;
+}
+* {
+	font-family:LG Display;
+	
+}
+
+/*version info*/
+#versionInfo { 
+	font-size: 15pt; 
+	color: #0077AA; 
+	position: absolute; 
+	width: 200px; 
+	height: 19px; 
+	top: 10px ; 
+	left: 900px; 
+}
+
+/*play*/
+.btnStyle {
+	position: absolute; 
+	width: 242px; 
+	height: 59px; 
+/*	line-height : 48px;*/
+	background-image : url('../image/play/PHOTO_BTN_NORMAL.png');
+	font-size: 28px;
+	color: rgb(255,255,255);
+}
+
+.btnImgStyle {
+	margin-top: 15px;
+	height: 29px;
+	width: 31px;
+	vertical-align: middle;
+}
+
+.btnFocusStyle {
+	position: absolute; 
+	top : 632px;
+	left : 45px;
+	width: 242px; 
+	height: 59px; 
+	background-image : url('../image/play/PHOTO_BTN_FOCUS.png');
+	font-size: 28px;
+	color: rgb(255,255,255);
+}
+
+.backMenuStyle {
+	position: absolute; 
+	width: 134px;
+	height: 59px; 
+	left: 1101px; 
+	top: 40px; 
+	background : url('../image/play/PHOTO_BTN_EXIT_NORMAL.png');
+}
+
+.controlDivStyle {
+	position: absolute; 
+	top: 575px; 
+	height: 145px; 
+	left: 0px; 
+	width: 1280px; 
+}
+
+.arrowStyle {
+	position: absolute;  
+	width: 107px; 
+	height: 107px; 
+}
+
+.uploaderStyle {
+	position: absolute; 
+	top: 12px; 
+	left: 99px; 
+	height:24px; 
+	font-size: 30px; 
+	line-height:30px; 
+	vertical-align: bottom;
+	color: rgb(255,255,255);
+}
+
+.tabArea {
+	width:1280px; 
+	height:46px; 
+	background-image:url(../image/title/TITLE_TAB_BG_BLACK.png); 
+	background-repeat: repeat-x;	
+}
+
+.titlelogo {
+	font-size: 45px;
+	color: #9d9d9d;
+}
+
+/* tab menu home */
+.focusedGrayFirst {	 
+	height:46px; 
+	color: rgb(250,250,250);	 
+	text-align:center; 
+	font-size: 30px;	
+	width: 264px; 
+	background-image:url(../image/common/TAB_FOCUS_L.png);	
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.selectedMenuFirst {	 
+	height:46px; 
+	color: rgb(250,250,250);	 
+	text-align:center; 
+	font-size: 30px;	
+	width: 264px; 
+	height:46px; 
+	background-image:url(../image/common/TAB_SELECTED_L.png);	
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+
+.tabGrayMiddle {	 
+	height:46px; 
+	width: 245px; 
+	color: rgb(52,52,52);	 
+	text-align:center; 
+	font-size: 30px;		
+}
+
+.tabGray {	 
+	height:46px; 
+	width: 281px; 
+	color: rgb(52,52,52);	 
+	text-align:center; 
+	font-size: 30px;		
+}
+
+.keyhelp {
+	position: absolute; 
+	font-size: 26px; 
+	color: rgb(182,182,182);	
+	vertical-align: middle;
+	margin-left: 20px;
+	top:640px;
+	width: 191px;
+	height: 56px;
+	text-align: center;
+	background-image:url(../image/keyhelp/KEYHELP_NORMAL.png);
+}
+
+
+.imgStyle {
+	width: 92px;
+	height: 92px;
+	background-image: url(../image/common/PHOTO_LIST_NORAML.png);
+}
+
+.imgArrowPartL {
+	width: 74px;
+	height: 102px;
+	background-position: left top;
+}
+
+.imgArrowPartR {
+	width: 74px;
+	height: 102px;
+	background-position: right top;
+}
+
+.imgSpace {
+	width: 10px;
+}
+
+.mediumNormalGray {
+	font-size: 26px;
+	color: rgb(157,157,157);
+}
+
+.thumbnailArrImg{	
+	background-repeat: no-repeat;
+	width: 54px; height: 54px; 
+	position: absolute;
+	z-index: 3000; 	
+}
+
+.scrollTextStyle {
+	font-size: 20px;
+	color: rgb(161,161,181);
+}
+
+.keyhelp2{
+	background-image: url(../image/keyhelp/KEYHELP_NORMAL.png);
+	background-repeat: no-repeat;
+	/*vertical-align: top; */
+	font-size: 23px;	
+	width: 191px;
+	height: 56px;
+	color: rgb(181,181,181);
+	vertical-align: top;
+}
+
+.imgClass{
+ width: 102px;
+ height: 102px;
+ vertical-align: top;
+}

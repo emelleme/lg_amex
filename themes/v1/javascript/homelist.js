@@ -1,0 +1,378 @@
+
+var dataCount = sampleArray.length;
+var fCnt = 0;
+
+function homeInit() {
+	displayImages(0);
+	if (dataCount > DISPLAY_COUNT) {
+		displayArrowImages(0, "true");
+	}
+	
+	fCnt = Math.ceil(dataCount / 3);
+	setTdElementText("homeScrollText", "1/"+fCnt);
+
+	getUserAgent();
+
+	setTdElementText("versionInfo", versionStr);
+}
+
+function displayArrowImages(pageNo, right) {
+	
+	if (right == "true") {
+		//displayRightArrowImages(pageNo);
+	} else {
+		//displayLeftArrowImages(pageNo);
+	}
+}
+
+function displayRightArrowImages(pageNo) {
+	var count = DISPLAY_COUNT * (pageNo+1);
+
+	for (i = 0; i < 3; i++) {
+		if (count < dataCount) {
+			document.getElementById('img'+i+'12').innerHTML = "<img src='"+ sampleArray[count].thumbUrl+
+			"' style='width: 88px; height: 88px; margin: 2px; ' onclick='moveThumbList(true);'" +
+			"  ></img>";
+		} else {
+			document.getElementById('img'+i+'12').innerHTML = '';
+		}
+		count++;
+	}
+	setRightArrowVisible(true);
+}
+
+function displayLeftArrowImages(pageNo) {
+	var count = DISPLAY_COUNT * (pageNo) -3;
+	for (i = 0; i < 3; i++) {
+		if (count < dataCount) {
+			document.getElementById('img'+i+'0').innerHTML = "<img src='"+ sampleArray[count].thumbUrl+
+			"' style='width: 88px; height: 88px; margin: 2px;' align='right'" +
+			" onclick='moveThumbList(false);'></img>";
+		}
+		count++;
+	}
+	setLeftArrowVisible(true);
+}
+
+function moveThumbList(right) {
+	clickArr(right);
+	moveScrollByKey(pageNo * 9);
+}
+
+function keyDown(event) {
+	//alert(event.keyCode);
+	switch (event.keyCode) {
+		case VK_LEFT:
+		{
+			//if (curLevel != level.MENU) {
+			if (curLevel != level.MENU && curLevel != level.BOTTOM_BUTTON) {
+				if (curIndex > 1 ) {
+					zoomOut();
+					zoomIn(--curIndex, curLevel);
+				} else if (curIndex == 1 && pageNo > 0) {
+					moveThumbList(false);
+					zoomOut();
+					curIndex = 11;
+					zoomIn(curIndex, curLevel);
+				} 
+				moveScrollByKey(Math.ceil(pageNo * DISPLAY_COUNT / 3) + new Number(curIndex) -1);
+			}
+			break;
+		}
+		case VK_RIGHT:
+		{
+			//if (curLevel != level.MENU) {
+			if (curLevel != level.MENU && curLevel != level.BOTTOM_BUTTON) {
+				if ( curIndex == 11 && pageNo * DISPLAY_COUNT + curIndex * 3 + curLevel <= dataCount) {
+					moveThumbList(true);
+					zoomOut();
+					curIndex = 1;
+					zoomIn(curIndex, curLevel);
+				} else if (pageNo * DISPLAY_COUNT + curIndex * 3 + curLevel <= dataCount){
+					zoomOut();
+					zoomIn(++curIndex, curLevel);
+				}
+				moveScrollByKey(Math.ceil(pageNo * DISPLAY_COUNT / 3) + new Number(curIndex) -1);
+			}
+			break;
+		}
+		case VK_DOWN:
+		{
+			//lert("pageNo : " + pageNo + "\nDISPLAY_COUNT : " + DISPLAY_COUNT + "\ncurIndex : " + curIndex + "\ncurLevel : " + curLevel + "\ndataCount : " + dataCount);
+			//lert("some cal : " + pageNo * DISPLAY_COUNT + (curIndex - 1) * 3 + curLevel + "\ndataCount : " + dataCount);
+			//added as ux change
+			if(curLevel == level.BOTTOM_BUTTON){
+				//do nothing
+			}else if(curLevel == level.IMG_3){
+				curLevel = level.BOTTOM_BUTTON;
+			  changeFocus(VK_DOWN);
+			}else if (pageNo * DISPLAY_COUNT + (curIndex - 1) * 3 + curLevel < dataCount) {
+				curLevel = curLevel == level.IMG_3 ? level.IMG_3 : curLevel+1;
+			  changeFocus(VK_DOWN);
+			}
+			break;
+		}
+		case VK_UP:
+		{
+			curLevel = curLevel == level.MENU ? level.MENU : curLevel-1;
+			changeFocus(VK_UP);
+			break;
+		}
+		case VK_ENTER:
+		{
+			//added as ux change
+			if(curLevel == level.BOTTOM_BUTTON){
+			  if(window.NetCastBack){window.NetCastBack();}
+			}
+			else if (curLevel != level.MENU) {
+				viewOrgImage();
+			} else {
+				var playIndex = -1;
+				if (curFocus == 'play_now') {
+					playIndex = 0;
+				} else {
+					playIndex = curIndex; 
+				}
+				if (playIndex != -1) {
+					viewOrgImage(playIndex);
+				}
+			}
+			break;
+		}
+		case VK_INFO:		
+			window.location.reload();		
+			break;
+
+		case VK_0:		
+			window.location.reload();		
+			break;
+		//add
+		case VK_BACK:
+		  if(window.NetCastBack){window.NetCastBack();}
+		break;
+	}
+}
+
+function changeFocus(dir) {
+	switch (dir) {
+		case VK_DOWN :
+		{
+			//added as ux change
+			//img3 -> BOTTOM_BUTTON
+			if(curLevel == level.BOTTOM_BUTTON){
+				zoomOut();
+				bottomButtonFocus(true);
+			}
+			// home -> img1
+			else if (curLevel == level.IMG_1) {
+				document.getElementById('menu0').className = 'selectedMenuFirst';
+	  		// zoomin
+  			zoomIn(curIndex, curLevel);
+			} else {
+				zoomOut();
+		  	// zoomin
+			  zoomIn(curIndex, curLevel);
+			}
+			//zoomin
+			//zoomIn(curIndex, curLevel);
+			break;
+		}
+		case VK_UP :
+		{
+			zoomOut();
+			//added as ux change
+			if(curLevel == level.IMG_3){
+				bottomButtonFocus(false);
+				zoomIn(curIndex, curLevel);
+			}
+			// img1 -> home
+			else if (curLevel == level.MENU) {
+				document.getElementById('menu0').className = 'focusedGrayFirst';
+			} else {
+				// zoomin
+				zoomIn(curIndex, curLevel);
+			}
+			break;
+		}
+	}
+}
+
+function clickArr(right) {
+	if (right) {
+
+		pageNo++;
+		if (dataCount > (pageNo+1) * DISPLAY_COUNT) {
+			document.getElementById('rightArr').style.visibility = 'visible';
+			displayArrowImages(pageNo, "true");
+		} else {
+			setRightArrowVisible(false);
+		}
+		displayArrowImages(pageNo, "false");
+		setLeftArrowVisible(true);
+	} else {
+		pageNo--;
+		if (pageNo == 0) {
+			setLeftArrowVisible(false);
+		} else {
+			setLeftArrowVisible(true);
+			displayArrowImages(pageNo, "false");
+		}
+		displayArrowImages(pageNo, "true");
+		setRightArrowVisible(true);
+	}
+	displayImages(pageNo);
+}
+
+function setRightArrowVisible(visible) {
+	setElementVisibility('rightArr', visible);
+	setElementVisibility('rightArrMask', visible);
+	setElementVisibility('img012', visible);
+	setElementVisibility('img112', visible);
+	setElementVisibility('img212', visible);
+}
+
+function setLeftArrowVisible(visible) {
+	setElementVisibility('leftArr', visible);
+	setElementVisibility('leftArrMask', visible);
+	setElementVisibility('img00', visible);
+	setElementVisibility('img10', visible);
+	setElementVisibility('img20', visible);
+}
+
+function displayImages(pageNo){
+	var count = pageNo * DISPLAY_COUNT;
+	for (i = 1; i < 12; i++) {
+		for (j = 0; j < 3; j++) {
+			if (count < dataCount) {
+				//document.getElementById('img'+j+i).style.visibility = 'visible';
+				//document.getElementById('img'+j+i).innerHTML = "<img src='"+ sampleArray[count].thumbUrl+ 
+				//"' style='width: 88px; height: 88px; margin: 2px;'></img>";
+			} else {
+				document.getElementById('img'+j+i).style.visibility = 'hidden';
+			}
+			count++;
+		}
+	}
+}
+
+function menuFocused(menuNo) {
+	document.getElementById('menu0').className = 'focusedGrayFirst';
+	curLevel = level.MENU;
+	zoomOut();
+  bottomButtonFocus(false);	
+}
+
+function menuOutFocus(menuNo, pageFrom) {
+	if (menuNo == menu.HOME) {
+		if (pageFrom == menu.HOME) {
+			document.getElementById('menu0').className = 'selectedMenuFirst';
+		} 
+	} 
+}
+
+function moveScrollByClick(event) {
+	var scrollImgLeft = parseInt(event.clientX) - 90;
+	if(scrollImgLeft < 0 ) {
+		scrollImgLeft = 0;
+	} else if ( scrollImgLeft > 1100 ) {
+		scrollImgLeft = 1100;
+	} 
+	var tempScrollTop = 0;
+	var inter = Math.round( 1100 / (new Number(fCnt)-1));
+	var relIdx = Math.round( scrollImgLeft/inter );
+	var scrollLeft = inter*relIdx;
+	
+	document.getElementById("homeScroll").style.left = scrollLeft + "px";
+
+	relIdx++;
+	setTdElementText("homeScrollText", relIdx+"/"+fCnt);
+	relIdx--;
+	var newPageNo =  Math.floor(relIdx / 11);
+	var newCurIndex = relIdx % 9;
+	if(pageNo == newPageNo) {
+		//do nothing
+	} else if(newPageNo>pageNo) {
+		clickArr(true);
+		moveScrollByKey(Math.ceil(PageNo * DISPLAY_COUNT / 3) + new Number(newCurIndex));
+	} else if(newPageNo<pageNo) {
+		clickArr(false);
+		moveScrollByKey(Math.ceil(PageNo * DISPLAY_COUNT / 3) + new Number(newCurIndex));
+	}
+}
+
+function moveScrollByKey(idx) {
+	var inter = Math.round( 1100 / (new Number(fCnt)-1));
+	var scrollLeft = inter*idx;
+	document.getElementById("homeScroll").style.left = scrollLeft + "px";
+	idx++;
+	setTdElementText("homeScrollText", idx+"/"+fCnt);
+}
+
+/**
+ * scroll control 
+ */
+
+function processScroll(event, action) {
+	switch(action) {
+		case "over" :
+			setImgSrc("homeScrollImg", "../image/common/LAND_SCROLL_BAR_FOCUS.png" );
+			break;
+		case "out" :
+			setImgSrc("homeScrollImg", "../image/common/LAND_SCROLL_BAR.png" );
+			break;
+		case "down" :
+		case "click" :
+			processScrollDown(event);
+			break;
+		default :
+			break;
+	}
+}
+
+
+var scrollX = 0;
+
+function processScrollDown(event) {
+	var e = document.getElementById("homeScroll");
+	scrollX = event.clientX - e.offsetLeft;
+	addEvent(document, "mousemove", processScrollDrag);
+	addEvent(document, "mouseup", processScrollUp);
+}
+
+function processScrollUp(event) {
+	moveScrollByClick(event);
+	removeEvent(document, "mousemove", processScrollDrag);
+	removeEvent(document, "mouseup", processScrollUp);
+}
+
+function processScrollDrag(event) {
+	var e = document.getElementById("homeScroll");
+	var left = event.clientX - scrollX;
+	if( left < 0 ) { 
+		left = 0;
+	} else if( left > 1100 ){
+		left = 1100;
+	}
+    e.style.left = left + "px"; 
+}
+
+function movePage(menuNo) {
+	//alert(page);
+	var page;
+	if (menuNo == menu.HOME) {
+		page = "homelist.html";
+	}
+	location.href = page;
+}
+
+function bottomButtonFocus(isFocused){
+	if(isFocused){
+		//lert("bottomButtonFocus : focus");
+		zoomOut();
+    document.getElementById('menu0').className = 'selectedMenuFirst';
+    document.getElementById("xButton").style.background = "url(../image/keyhelp/KEYHELP_X_FOCUS.png)";
+	}else{
+		//lert("bottomButtonFocus : normal");
+	  document.getElementById("xButton").style.background = "url(../image/keyhelp/KEYHELP_X_NORMAL.png)";
+	}
+}
