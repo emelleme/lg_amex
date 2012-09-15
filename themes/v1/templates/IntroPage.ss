@@ -11,6 +11,8 @@
 <% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/intro.js) %>
+<% require javascript(themes/v1/javascript/analytics.js) %>
+<meta name="google-site-verification" content="C5i8kgshiNCGmuMN7fkFliW6MyzP0lbBGAiKgsSF1PE" />
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 <!-- App Wrapper: 1280px x 720 (full application size) -->

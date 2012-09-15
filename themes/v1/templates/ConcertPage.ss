@@ -15,6 +15,7 @@
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/mosaic.js) %>
 <% require javascript(themes/v1/javascript/countdown-mosaic.js) %>
+<% require javascript(themes/v1/javascript/analytics.js) %>
 
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">

@@ -53,16 +53,16 @@
 							<div id="benefit_2-1" class="hidden">
 								<div class="benefit-title">
 									<!--<img alt="Welcome In." src="assets/images/puchaseprotection.png"/>-->
-									<h2>Member Experiences</h2>
+									<h2>UNSTAGED Concert Series</h2>
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/puchaseprotection_bodycopy.png"/>-->
-									<h4>From groundbreaking digital experiences to advance tickets to in demand shows, Cardmembers can enjoy some of the hottest events in sports, music, theater and more.</h4>
+									<h4>Experience American Express UNSTAGED, a series of live-streamed music events, all from the best seat in the house—your house.</h4>
 								</div>
 								<div id="twitter_2-1" class="blue-box">
 									<div class="twitter-text">
 							<!--<img alt="Welcome In." src="assets/images/entertainmentaccess_tweet.png"/>-->
-									<p style="text-align:center; font-size:28px; padding-top:7px"><img alt="Welcome In." src="assets/images/killerslogo.png" width="280"  style="padding-top: 7px; padding-bottom: 7px"/><br/>LIVE FROM <b>NEW YORK!</b></p>
+									<p style="text-align:center; font-size:28px; padding-top:7px"><img alt="Welcome In." src="assets/images/killerslogo.png" width="280"  style="padding-top: 7px; padding-bottom: 7px"/><br/>LIVE FROM <b>NEW YORK</b></p>
 									<div id="counter" style="color:white;font-size:20px;text-align:center;float:left;margin-left:90px;width:290px">
 									</div>
 

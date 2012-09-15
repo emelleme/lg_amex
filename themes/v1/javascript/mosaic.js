@@ -439,13 +439,14 @@ function keyDown(event) {
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
-						if(IMAGE_MATRIX[CUR_ROW-2][CUR_COL] == '6-3'){
+						
+							CUR_ROW = Number(spl[0]);
+							CUR_COL = Number(spl[1]);
+							if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == '6-3'){
 							PREV_COL = CUR_COL;
 							PREV_ROW = CUR_ROW;
 							console.log('PREV_ROW')
 						}else{
-							CUR_ROW = Number(spl[0]);
-							CUR_COL = Number(spl[1]);
 							PREV_COL = CUR_COL;
 							PREV_ROW = CUR_ROW;
 						}

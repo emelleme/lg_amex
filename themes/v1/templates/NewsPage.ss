@@ -11,6 +11,7 @@
 <% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/news.js) %>
+<% require javascript(themes/v1/javascript/analytics.js) %>
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 	<!-- App Wrapper: 1280px x 720 (full application size) -->
@@ -19,7 +20,7 @@
 			<!-- header area (1024 x 80)-->
 			<section  style="padding-left:128px;" id="header-new" class="row">
 				<div id="header-title" class="span6">
-					<h1>News &amp; Offers</h1>
+					<h1>News &amp; Offers.</h1>
 					<h3>Check back often to see what’s new.</h3>
 				</div>
 
