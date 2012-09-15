@@ -9,6 +9,6 @@ $(document).ready(function() {
     'logo.position': 'bottom-right',
     'image': '../images/killersscreengrab.jpg'
 });*/
-	var liftoffTime = new Date(2012, 12-4, 18)
+	var liftoffTime = new Date(2012, 12-4, 18,18)
      $('#counter').countdown({until: liftoffTime});
 });
