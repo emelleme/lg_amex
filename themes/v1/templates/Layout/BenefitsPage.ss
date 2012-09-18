@@ -35,7 +35,7 @@
 									</div>
 									<div class="benefit-description">
 										<!--<img alt="Welcome In." src="assets/images/membershiprewardspoints_bodycopy.png"/>-->
-										<h4>From the finer things to the minor things, Membership Rewards points connect you to 500 brands you love.</h4>
+										<h4>From the finer things to the minor things,<br>Membership Rewards points connect you to 500 brands you love.</h4>
 									</div>
 									<div id="twitter_1-2" class="blue-box">
 										<div class="twitter-text">
@@ -57,7 +57,7 @@
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/puchaseprotection_bodycopy.png"/>-->
-									<h4>Experience American Express UNSTAGED, a series of live-streamed music events, all from the best seat in the house—your house.</h4>
+									<h4>Experience American Express<br>UNSTAGED, a series of live-streamed<br>music events, all from the best seat in<br>the house—your house.</h4>
 								</div>
 								<div id="twitter_2-1" class="blue-box">
 									<div class="twitter-text">
@@ -99,7 +99,7 @@
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/extendedwarranty_bodycopy.png"/>--> 
-									<h4>Can mirror manufacturers’ warranties for covered products purchased with your Card account, for up to one additional year.</h4>
+									<h4>Can mirror manufacturers’ warranties<br>for covered products purchased with<br>your Card account, for up to one<br>additional year.</h4>
 								</div>
 								<div id="twitter_3-2" class="blue-box">
 									<div class="twitter-text" >
@@ -122,7 +122,7 @@
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/roadsideassistance_bodycopy.png"/>-->
-									<h4>With round-the-clock Roadside<br/>Assistance from towing to fixing a flat, car troubles could become just a little bump in the road.</h4>
+									<h4>With round-the-clock Roadside<br/>Assistance from towing to fixing a flat,<br>car troubles could become just a little<br>bump in the road.</h4>
 								</div>
 								<div id="twitter_3-3" class="blue-box">
 									<div class="twitter-text">
@@ -143,7 +143,7 @@
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/globalassist_bodycopy.png"/>-->
-									<h4>Discover Prepaid Cards that come with Membership benefits built in, like access to Purchase Protection<sup>1</sup> and the convenience of ATM use.</h4>
+									<h4>Discover Prepaid Cards that come with<br>Membership benefits built in, like<br>access to Purchase Protection<sup>1</sup> and the<br>convenience of ATM use.</h4>
 								</div>
 								<div id="twitter_4-1" class="blue-box">
 									<div class="twitter-text">
@@ -184,7 +184,7 @@
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/puchaseprotection_bodycopy.png"/>-->
-									<h4>The 24-hour Global Assist Hotline helps with those unexpected travel issues, from replacing a lost passport to finding a doctor.</h4>
+									<h4>The 24-hour Global Assist Hotline<br>helps with those unexpected travel<br>issues, from replacing a lost<br>passport to finding a doctor.</h4>
 								</div>
 								<div id="twitter_5-2" class="blue-box">
 									<div class="twitter-text">
@@ -194,7 +194,7 @@
 								</div>
 
 								<div class="legalcopy">
-									<p><sup>1</sup> While the Global Assist Hotline coordination and assistance services are offered at no additional charge from American Express, Cardmembers are responsible for the costs charged by third-party service providers. Call <br/>1-800-333-AMEX for full terms and conditions.</p>
+									<p><sup>1</sup> While the Global Assist Hotline coordination and assistance services are offered at no additional charge from American Express, Cardmembers are responsible for the costs charged by third-party service providers. Call 1-800-333-AMEX for full terms and conditions.</p>
 								</div>
 							</div>
 						</div>
@@ -207,7 +207,7 @@
 								</div>
 								<div class="benefit-description">
 									<!--<img alt="Welcome In." src="assets/images/cardsync_bodycopy.png"/>-->
-									<h4>Get exclusive offers through Facebook, foursquare and Twitter for couponless savings you’ll love.</h4>
+									<h4>Get exclusive offers through Facebook,<br>foursquare and Twitter for couponless<br>savings you’ll love.</h4>
 								</div>
 								<div id="twitter_5-3" class="blue-box">
 									<div class="twitter-text">
@@ -273,6 +273,7 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 			</section>

@@ -482,7 +482,7 @@ function keyDown(event) {
 		}
 		case VK_BACK:
 		{
-		  window.history.back();
+		  window.lication = 'lg/';
 		break;
 		}
 	}
