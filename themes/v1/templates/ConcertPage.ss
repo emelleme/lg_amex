@@ -10,12 +10,11 @@
 <% require javascript(http://code.jquery.com/jquery-1.7.2.js) %>
 <% require javascript(themes/v1/javascript/swfobject/swfobject.js) %>
 <% require javascript(themes/v1/javascript/keycode.js) %>
-<% require javascript(themes/v1/javascript/jquery.countdown.js) %>
+<% require javascript(themes/v1/javascript/mp/jwplayer.js) %>
 <% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/mosaic.js) %>
-<% require javascript(themes/v1/javascript/countdown-mosaic.js) %>
-<% require javascript(themes/v1/javascript/analytics.js) %>
+<% require javascript(themes/v1/javascript/play.js) %>
 
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
@@ -43,18 +42,9 @@ $('.backbtn').on('click',function(e){
 			<span class="controls"><a id="closeVideo" href="#">BACK</a></span></span>
 			<div id="mediaspace">
 				<div id="ytapiplayer">
-				You need Flash player 8+ and JavaScript enabled to view this video.
+				
 				</div>
-				<script type="text/javascript">
-				var params = { allowScriptAccess: "always" };
-				var atts = { id: "ytapiplayer" };
-				swfobject.embedSWF("http://www.youtube.com/apiplayer?enablejsapi=1&version=3",
-					"ytapiplayer", "960", "540", "8", null, null, params, atts);
-				function onYouTubePlayerReady(playerId) {
-  					ytplayer = document.getElementById("ytapiplayer");
-					ytplayer.loadVideoById('J71ur0UpUXE');
-				}
-				</script>
+				
   			</div>
   			<div id="moreVideo">
 	  			<h2><strong>GO TO</strong></h2>

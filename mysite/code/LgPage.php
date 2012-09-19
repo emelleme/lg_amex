@@ -42,7 +42,8 @@ class LgPage_Controller extends Page_Controller
 	}
 	
 	public function benefits($arguments){
-		return $this->renderWith('BenefitsPage');
+		return $this->renderWith(array('ConcertPage','BenefitsPage'));
+	
 	}
 	
 	public function cards($arguments){
@@ -54,7 +55,8 @@ class LgPage_Controller extends Page_Controller
 	}
 	
 	public function live($arguments){
-		return $this->renderWith('LiveVideoPage');
+		return $this->renderWith(array('ConcertPage','BenefitsPage'));
+	
 	}
 	
 	public function terms($arguments){

@@ -143,7 +143,7 @@ width: 960px;
 height: 540px
 background: white;
 position: relative;
-margin: 2% auto;
+margin: 1% auto;
 padding: 30px 60px 30px 60px;
 border-radius: 2px;
 box-shadow: 0 3px 20px rgba(0,0,0,0.9);
@@ -361,6 +361,7 @@ color: #999;
 	margin-top: 25px;
 	margin-left: 30px;
 }
+
 .legalcopy{
 	width: 400px;
 	position: absolute;
@@ -727,7 +728,7 @@ display: none;
 	height: 154px;
 	left: 53px;
 	top:85px;
-	background-image: url('../images/mosaic-2-1_active.jpg');
+	background-image: url('../images/mosaic-2-1_active-during.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
