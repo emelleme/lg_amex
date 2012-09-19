@@ -20,9 +20,9 @@
 	<!-- App Wrapper: 1280px x 720 (full application size) -->
 	<div class="fullscrn" id="beforeImage">
 		<div>
-		<div id="counter"></div>
+		
 		</div>
-		<img src="assets/images/c2-pro.jpg" alt="Watch Live September 18th!">
+		<img src="assets/images/AfterConcertBanner.jpg" alt="Missed The Killers?">
 		<div class="closescrn"><a class="backbtn" href="#">BACK</a></div>
 	</div>
 </body>

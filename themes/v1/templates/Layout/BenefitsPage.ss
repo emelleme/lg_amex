@@ -62,8 +62,8 @@
 								<div id="twitter_2-1" class="blue-box">
 									<div class="twitter-text">
 							<!--<img alt="Welcome In." src="assets/images/entertainmentaccess_tweet.png"/>-->
-									<p style="text-align:center; font-size:28px; padding-top:7px"><img alt="Welcome In." src="assets/images/killerslogo.png" width="280"  style="padding-top: 7px; padding-bottom: 7px"/><br/>LIVE FROM <b>NEW YORK</b></p>
-									<div id="counter" style="color:white;font-size:20px;text-align:center;float:left;margin-left:90px;width:290px">
+									<p style="text-align:center; font-size:28px; padding-top:7px"><img alt="Welcome In." src="assets/images/missed-killers-live.jpg" width="420"  style="padding-top: 7px; padding-bottom: 7px"/><br/>Check back often to get access to more UNSTAGED events.</p>
+									
 									</div>
 
 									</div>
