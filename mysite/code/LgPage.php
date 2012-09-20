@@ -42,7 +42,7 @@ class LgPage_Controller extends Page_Controller
 	}
 	
 	public function benefits($arguments){
-		return $this->renderWith(array('ConcertPage','BenefitsPage'));
+		return $this->renderWith('BenefitsPage');
 	
 	}
 	
@@ -55,7 +55,7 @@ class LgPage_Controller extends Page_Controller
 	}
 	
 	public function live($arguments){
-		return $this->renderWith(array('ConcertPage','BenefitsPage'));
+		return $this->renderWith('LiveVideoPage');
 	
 	}
 	
