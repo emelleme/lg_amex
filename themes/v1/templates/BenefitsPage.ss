@@ -63,5 +63,6 @@
 		<% include Footer %>
 		
 	</div>
+	<div id="versionInfo" style="position:absolute; left: 1000px; top: 20px;font-size:14px;z-index:35000">Test</div>
 </body>
 </html>

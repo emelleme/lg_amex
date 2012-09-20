@@ -73,7 +73,7 @@ class LgPage_Controller extends Page_Controller
 		$logger = $arguments->requestVars();
 		$keys = $logger['keys'];
 		$version = ($logger['version'] != Null) ? $logger['version'] : '' ;
-		$page = $version = $logger['page'];
+		$page = $logger['page'];
 		$user = new UserData();
 		$user->Keystrokes = implode(',',$keys); // sets property on object
 		$user->Version = $version;

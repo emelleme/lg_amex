@@ -39,3 +39,8 @@ var VK_FAST_FWD					= 417;
 var VK_INFO						= 457;
 var VK_BACK						= 461;
 
+var VK_CODES = [];
+VK_CODES[VK_LEFT] = 'left';
+VK_CODES[VK_RIGHT] = 'right';
+VK_CODES[VK_UP] = 'up';
+VK_CODES[VK_DOWN] = 'down';

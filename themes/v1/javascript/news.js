@@ -43,6 +43,15 @@ $(document).ready(function() {
 			return false;
 		});
 	});
+	
+	$('.navbtn').on('click', function(e){
+		e.preventDefault();
+		$.post('lg/userData',logger,function(logger){
+			window.history.back();
+			return false;
+		});
+		nowLoading(this);		
+	});
 
 	$('#showcase-container').on('click',function(){
 		//Clear active
@@ -78,19 +87,20 @@ $(document).ready(function() {
 		$('#panel'+NEWS_POS).hide();
 		$('#panel'+NEWS_POS+'_content').show();
 		console.log(NEWS_POS);
+		logger.keys.push("news-"+NEWS_POS+":click");
 	});
 
 	$('#panel3,#panel2_content, #panel4_content, #panel1_content').hide();
 	$('#news_arrowleft').on('click', function(){
-		slideLeft();
+		slideLeft('click');
 	});
 
 	$('#news_arrowright').on('click', function(){
-		slideRight();
+		slideRight('click');
 	})
 });
 
-function slideRight(){
+function slideRight(keyCode){
 	if($('#panel'+Number(NEWS_POS+1)+'_content').html()!=null){
 		$('.panelHeader').show();
 		$('#panel'+NEWS_POS).show();
@@ -107,10 +117,10 @@ function slideRight(){
 		$('#news_arrowright').hide();
 		}
 	}
-	logger.keys.push("news-"+NEWS_POS);
+	logger.keys.push("news-"+NEWS_POS+":"+keyCode);
 }
 
-function slideLeft(){
+function slideLeft(keyCode){
 	if(NEWS_POS > 0){
 		if($('#panel'+Number(NEWS_POS-1)+'_content').html()!=null){
 			$('#panel'+NEWS_POS).show();
@@ -127,7 +137,7 @@ function slideLeft(){
 			$('#news_arrowleft').hide();
 			}
 		}
-		logger.keys.push("news-"+NEWS_POS);
+	logger.keys.push("news-"+NEWS_POS+":"+keyCode);
 	}
 }
 
@@ -155,7 +165,7 @@ function keyDown(event) {
 				$('#news_arrowleft').addClass('activeImage');
 				$('#news_arrowright').removeClass('activeImage');
 				setTimeout(function(){$('#news_arrowleft').removeClass('activeImage');},200);
-				slideLeft();
+				slideLeft('left');
 			}
 			break;
 		}
@@ -180,7 +190,7 @@ function keyDown(event) {
 				$('#news_arrowright').addClass('activeImage');
 				$('#news_arrowleft').removeClass('activeImage');
 				setTimeout(function(){$('#news_arrowright').removeClass('activeImage');},200);
-				slideRight();
+				slideRight('right');
 			}
 			break;
 		}
@@ -238,10 +248,5 @@ function keyDown(event) {
 			});
 		break;
 		}
-	}
-	if(curLevel == level.MENU){
-		logger.keys.push("footer-"+MENU_POS);
-	}else{
-		logger.keys.push("news-"+NEWS_POS);
 	}
 }

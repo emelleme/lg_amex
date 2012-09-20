@@ -111,6 +111,16 @@ $(document).ready(function() {
 	},function(){
 		NAV_HOVER = false;
 	});
+	
+	$('.navbtn').on('click', function(e){
+		e.preventDefault();
+		$.post('lg/userData',logger,function(logger){
+			window.history.back();
+			return false;
+		});
+		nowLoading(this);		
+	});
+	
 	$('.mosaicImage').hover(function(){
 		
 		if(IMAGE_MATRIX[PREV_ROW][PREV_COL] != '6-3'){
@@ -137,7 +147,7 @@ $(document).ready(function() {
 		PREV_COL = CUR_COL;
 		});
 	$('.mosaicImage').on('click',function(e){
-		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]+':mr');
+		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]+':click');
 		if(!$(this).hasClass('activeImage')){
 			//Set the item active
 			var t = $(this).attr('id').replace('image_', 'benefit_');
@@ -222,6 +232,7 @@ function keyDown(event) {
 					}
 				}
 			}
+			logKey(event.keyCode);
 			break;
 		}
 		case VK_RIGHT:
@@ -335,6 +346,7 @@ function keyDown(event) {
 				} 
 				
 			}
+			logKey(event.keyCode);
 			break;
 		}
 		case VK_DOWN:
@@ -393,6 +405,7 @@ function keyDown(event) {
 					}
 				}
 			}
+			logKey(event.keyCode);
 			break;
 		}
 		case VK_UP:
@@ -461,6 +474,7 @@ function keyDown(event) {
 					}
 				}
 			}
+			logKey(event.keyCode);
 			break;
 		}
 		case VK_ENTER:
@@ -499,6 +513,7 @@ function keyDown(event) {
 				});
 				
 			}
+			
 			break;
 		}
 		case VK_BACK:
@@ -509,9 +524,13 @@ function keyDown(event) {
 		break;
 		}
 	}
+	
+}
+
+function logKey(keyCode){
 	if(curLevel == level.MENU){
-		logger.keys.push("footer-"+MENU_POS);
+		logger.keys.push("footer-"+MENU_POS+":"+VK_CODES[keyCode]);
 	}else{
-		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
+		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]+":"+VK_CODES[keyCode]);
 	}
 }
