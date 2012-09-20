@@ -11,9 +11,9 @@
 				<tr><th>Version</th><th>Page</th><th>Keystrokes</th></tr>
 			</thead>
 			<tbody>
-				<% control Data %>
+				<% loop Data %>	
 					<tr><td>$Version</td><td>$Page</td><td>$Keystrokes</td></tr>
-				<% end_control %>
+				<% end_loop %>
 			</tbody>
 		</table>
 		<p>

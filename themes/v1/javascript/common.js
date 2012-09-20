@@ -1,11 +1,10 @@
 /**
  * common util function 
  */
-var logger = {};
-logger.keys = [];
-logger.version = versionStr;
+
 NAV_HOVER = false;
 $(document).ready(function() {
+	$('#versionInfo').html(versionStr);
 	$.preloadCssImages();
 	$('.termsbtn').hover(function(){
 		$('#termsconditions a').addClass('hover');
@@ -262,37 +261,36 @@ function viewOrgImage() {
 
 function getUserAgent() {
 	userAgent = new String(navigator.userAgent);
-	var LG_TV = document.getElementById("key_tv");
+	var LG_TV = document.getElementById("versionInfo");
 	var LG_TV_BG = document.getElementById("key_tv_bg");
 	var LG_MEDIA = document.getElementById("key_bdp");
 	var LG_MEDIA_BG = document.getElementById("key_bdp_bg");
 
-	if (userAgent.search("LG NetCast.TV") > -1 ) {	
-		if(LG_TV_BG!=null){
-			LG_TV_BG.style.display = "";
-		}
-		LG_TV.style.display = "";		
+	if (userAgent.search("LG NetCast.TV") > -1 ) {			
 		versionStr = "v 1.003 (20110310) -TV";	
 	} else if (userAgent.search("LG NetCast.Media") > -1 ){
-		if(LG_MEDIA_BG!=null){
-			LG_MEDIA_BG.style.display = "";
-		}
-		LG_MEDIA.style.display = "";
 		versionStr = "v 1.003 (20110310) -BDP";
 	} else {	
-		if(LG_TV_BG!=null){
-			LG_TV_BG.style.display = "";
-		}
-		LG_TV.style.display = "";		
 		versionStr = "v 1.003 (20110310) -TV";	
 	}
+	console.log(versionStr);
+}
+
+var pageLoading = false;
+function nowLoading(e) {
+
+	if(pageLoading) return false;
+	pageLoading = true;
 }
 
 /**
  * version set
  */
 var versionStr;
-
+getUserAgent();
+var logger = {};
+logger.keys = [];
+logger.version = versionStr;
 var menu = {"HOME": 0};
 //var level = {"MENU":0, "IMG_1":1, "IMG_2":2, "IMG_3": 3};
 var level = {"MENU":0, "IMG_1":1, "IMG_2":2, "IMG_3": 3, "BOTTOM_BUTTON":4};
