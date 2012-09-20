@@ -1,6 +1,9 @@
 /**
  * common util function 
  */
+var logger = {};
+logger.keys = [];
+logger.version = versionStr;
 NAV_HOVER = false;
 $(document).ready(function() {
 	$.preloadCssImages();

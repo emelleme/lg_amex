@@ -10,6 +10,7 @@ level.VIDEO = 4;
 level.INTROVIDEO = 5;
 level.TERMS = 6;
 NAV_HOVER = false;
+logger.page = 'benefits';
 //Define each Image Position within matrix
 IMAGE_MATRIX = {
 	1: {
@@ -136,6 +137,7 @@ $(document).ready(function() {
 		PREV_COL = CUR_COL;
 		});
 	$('.mosaicImage').on('click',function(e){
+		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]+':mr');
 		if(!$(this).hasClass('activeImage')){
 			//Set the item active
 			var t = $(this).attr('id').replace('image_', 'benefit_');
@@ -154,9 +156,13 @@ $(document).ready(function() {
 			var t = $(this).attr('id');
 			if(t == "image_2-1"){
 				//Show Media Player
-				window.location ="lg/live";
+				$.post('lg/userData',logger,function(logger){
+					window.location ="lg/live";
+				});
+				
 			}
 		}
+
 	})
 });
 
@@ -461,29 +467,51 @@ function keyDown(event) {
 		{
 			//added as ux change
 			if(curLevel == level.MOSAIC){
+				
 			  if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == "2-1"){
 			  	//Open video modal
-			  	window.location ="lg/live";
+			  	$.post('lg/userData',logger,function(logger){
+			  		window.location ="lg/live";
+			  	});
+			  	
 			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
-			  	var goto = $('#image_6-3 a').attr('href');
-				window.location =goto;
-			  };
-			}
+			  	$.post('lg/userData',logger,function(logger){
+			  		var goto = $('#image_6-3 a').attr('href');
+					window.location =goto;
+			  	});
+			  }
+			}	
 			else if (curLevel == level.MENU) {
-				var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-				window.location =goto;
+				$.post('lg/userData',logger,function(logger){
+					var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
+					window.location =goto;
+				});
+				
 			} else if (curLevel = level.VIDEO) {
 				//$('body').css('padding-top','48px');
-				window.location = 'lg/benefits';
+				$.post('lg/userData',logger,function(logger){
+					window.location = 'lg/benefits';
+				});
+				
 			}else if (curLevel = level.INTROVIDEO) {
-				window.location = 'lg/benefits';
+				$.post('lg/userData',logger,function(logger){
+					window.location = 'lg/benefits';
+				});
+				
 			}
 			break;
 		}
 		case VK_BACK:
 		{
-		  window.lication = 'lg/';
+			$.post('lg/userData',logger,function(logger){
+				window.location = 'lg/';
+			});
 		break;
 		}
+	}
+	if(curLevel == level.MENU){
+		logger.keys.push("footer-"+MENU_POS);
+	}else{
+		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 	}
 }
