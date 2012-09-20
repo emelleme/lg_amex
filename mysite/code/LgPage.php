@@ -68,6 +68,31 @@ class LgPage_Controller extends Page_Controller
 	}
 	###	
 
+	public function userData($arguments){
+		/* Retrieve User Data and save */
+		$logger = $arguments->requestVars();
+		$keys = $logger['keys'];
+		$version = ($logger['version'] != Null) ? $logger['version'] : '' ;
+		$page = $version = $logger['page'];
+		$user = new UserData();
+		$user->Keystrokes = implode(',',$keys); // sets property on object
+		$user->Version = $version;
+		$user->Page = $page;
+		$user->write();
+		var_dump($version);
+	}
+
+	public function userStats($arguments){
+		if ($member = Member::currentUser()) {
+			$data = UserData::get();
+			$d = array(
+				'Data' => $data);
+			return $this->customise($d)->renderWith('UserStats');
+		}else{
+			Director::redirect('Security/login?BackURL=%2Flg%2FuserStats');
+		}
+	}
+
 }
 ###
 ###

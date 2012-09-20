@@ -27,6 +27,7 @@ curIndex = 1;
 
 //Current Level
 curLevel = level.NEWS;
+logger.page = 'news';
 $(document).ready(function() {
 	//Todo: move to common.js
 	$('#news_arrowleft').addClass('activeImage');
@@ -37,8 +38,10 @@ $(document).ready(function() {
 		
 	});
 	$('.backButton').on('click', function(e){
-		window.history.back();
-		return false;
+		$.post('lg/userData',logger,function(logger){
+			window.history.back();
+			return false;
+		});
 	});
 
 	$('#showcase-container').on('click',function(){
@@ -85,25 +88,6 @@ $(document).ready(function() {
 	$('#news_arrowright').on('click', function(){
 		slideRight();
 	})
-	$('.mosaicImage').on('click',function(e){
-		if(!$(this).hasClass('activeImage')){
-			var t = $(this).attr('id').replace('image_', 'benefit_');
-			$('#main-copy').hide().html($('#'+t).html()).show();
-			//Set active.
-			clearActive();
-			$(this).addClass('activeImage');
-			//Active Image Matrix
-			var n=$(this).attr('id').split("_");
-			var pos = n[1].split("-")
-			CUR_ROW = Number(pos[0]);
-
-			CUR_COL = Number(pos[1]);
-			//console.log(CUR_COL);
-
-			
-		}
-
-	})
 });
 
 function slideRight(){
@@ -123,6 +107,7 @@ function slideRight(){
 		$('#news_arrowright').hide();
 		}
 	}
+	logger.keys.push("news-"+NEWS_POS);
 }
 
 function slideLeft(){
@@ -142,6 +127,7 @@ function slideLeft(){
 			$('#news_arrowleft').hide();
 			}
 		}
+		logger.keys.push("news-"+NEWS_POS);
 	}
 }
 
@@ -238,15 +224,24 @@ function keyDown(event) {
 		{
 			//added as ux change
 			if (curLevel == level.MENU) {
-				var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-				window.location =goto;
+				$.post('lg/userData',logger,function(logger){
+					var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
+					window.location =goto;
+				});
 			} 
 			break;
 		}
 		case VK_BACK:
 		{
-		  window.history.back();
+			$.post('lg/userData',logger,function(logger){
+				window.history.back();
+			});
 		break;
 		}
+	}
+	if(curLevel == level.MENU){
+		logger.keys.push("footer-"+MENU_POS);
+	}else{
+		logger.keys.push("news-"+NEWS_POS);
 	}
 }
