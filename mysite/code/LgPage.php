@@ -96,10 +96,11 @@ class LgPage_Controller extends Page_Controller
 					$button = $x[1];
 					$button = ($button == 'click') ? 'mouse' : $button;
 					$position = $x[0];
-					
+					$image = "mosaic-".$position.'.jpg';
 					$strokes->add(new ArrayData(array(
 					'Button'=>$button,
-					"Position"=>$position))); 
+					"Position"=>$position,
+					"Image"=>$image))); 
 				}
 				$c = array(
 				'Created' => date('m-j-Y h:i:s A',strtotime($b->Created)),
