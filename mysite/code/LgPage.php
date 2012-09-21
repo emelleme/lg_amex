@@ -96,10 +96,12 @@ class LgPage_Controller extends Page_Controller
 					$button = $x[1];
 					$button = ($button == 'click') ? 'mouse' : $button;
 					$position = $x[0];
+					if($position != null){
 					if(strstr($position, 'footer')){
 						$image = null;
 					}else{
 					$image = "mosaic-".$position.'.jpg';
+					}
 					}
 					$strokes->add(new ArrayData(array(
 					'Button'=>$button,
