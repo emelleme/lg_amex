@@ -12,7 +12,10 @@
 			</thead>
 			<tbody>
 				<% loop Data %>	
-					<tr><td>$Created</td><td>$Version</td><td>$Page</td><td><% if Keys %><% loop Keys %>$Button button $Position <% if Last %><% else %> to <% end_if %><% end_loop %><% end_if %></td></tr>
+					<tr><td>$Created</td><td>$Version</td><td>$Page</td>
+					<td><% if Page = benefits %><% if Keys %><% loop Keys %>$Button button click on <img src="/assets/images/$Image" height="50px"/><% if Last %><% else %> to <% end_if %><% end_loop %><% end_if %>
+					<% else %><% if Keys %><% loop Keys %>$Button button  $Position<% if Last %><% else %> to <% end_if %><% end_loop %><% end_if %><% end_if %></td>
+					</tr>
 				<% end_loop %>
 			</tbody>
 		</table>

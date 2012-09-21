@@ -786,7 +786,7 @@ animation: blinkButton 0.7s;
 
 #image_3-4{
 	position: absolute;left:365px;top:155px;width:108px;height:135px;
-	background-image: url('../images/mosaic-3-3.jpg');
+	background-image: url('../images/mosaic-3-4.jpg');
 	background-repeat: no-repeat;
 }
 #image_3-4.activeImage{
@@ -794,7 +794,7 @@ animation: blinkButton 0.7s;
 	height: 153px;
 	left: 357px;
 	top:146px;
-	background-image: url('../images/mosaic-3-3_active.jpg');
+	background-image: url('../images/mosaic-3-4_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
