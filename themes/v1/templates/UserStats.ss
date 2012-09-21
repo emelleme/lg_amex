@@ -12,7 +12,7 @@
 			</thead>
 			<tbody>
 				<% loop Data %>	
-					<tr><td>$Created</td><td>$Version</td><td>$Page</td><td><% loop Keys %>$Button button $Position <% if Last %><% else %> to <% end_if %><% end_loop %></td></tr>
+					<tr><td>$Created</td><td>$Version</td><td>$Page</td><td><% if Keys %><% loop Keys %>$Button button $Position <% if Last %><% else %> to <% end_if %><% end_loop %><% end_if %></td></tr>
 				<% end_loop %>
 			</tbody>
 		</table>
