@@ -85,8 +85,33 @@ class LgPage_Controller extends Page_Controller
 	public function userStats($arguments){
 		if ($member = Member::currentUser()) {
 			$data = UserData::get();
+			$m = new ArrayList();
+			foreach($data as $b){
+				//convert key strokes to html?
+				$strokes = new ArrayList();
+				$s = explode(',',$b->Keystrokes);
+				foreach($s as $t){
+				
+					$x = explode(":",$t);
+					$button = $x[1];
+					$button = ($button == 'click') ? 'mouse' : $button;
+					$position = $x[0];
+					
+					$strokes->add(new ArrayData(array(
+					'Button'=>$button,
+					"Position"=>$position))); 
+				}
+				$c = array(
+				'Created' => date('m-j-Y h:i:s A',strtotime($b->Created)),
+				'Version' => $b->Version,
+				'Page' => $b->Page,
+				'Keys' => $strokes);
+				$m->add(new ArrayData($c));
+				
+			}
+			//var_dump($m);
 			$d = array(
-				'Data' => $data);
+				'Data' => $m);
 			return $this->customise($d)->renderWith('UserStats');
 		}else{
 			Director::redirect('Security/login?BackURL=%2Flg%2FuserStats');

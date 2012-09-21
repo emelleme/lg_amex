@@ -8,11 +8,11 @@
 		<h3>LG - User Data</h3>
 		<table>
 			<thead>
-				<tr><th>Version</th><th>Page</th><th>Keystrokes</th></tr>
+				<tr><th>Date</th><th>Version</th><th>Page</th><th>Keystrokes</th></tr>
 			</thead>
 			<tbody>
 				<% loop Data %>	
-					<tr><td>$Version</td><td>$Page</td><td>$Keystrokes</td></tr>
+					<tr><td>$Created</td><td>$Version</td><td>$Page</td><td><% loop Keys %>$Button button $Position <% if Last %><% else %> to <% end_if %><% end_loop %></td></tr>
 				<% end_loop %>
 			</tbody>
 		</table>
