@@ -46,8 +46,9 @@ $(document).ready(function() {
 	
 	$('.navbtn').on('click', function(e){
 		e.preventDefault();
+		var link = $(this);
 		$.post('lg/userData',logger,function(logger){
-			window.history.back();
+			window.location = link.attr('href');
 			return false;
 		});
 		nowLoading(this);		

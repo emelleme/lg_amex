@@ -57,7 +57,7 @@ PREV_ROW = 2;
 PREV_COL = 1;
 MAX_ROW = 4;
 MAX_COL = 4;
-MENU_POS = 1;
+MENU_POS = 0;
 ACTIVE_PAGE = 0;
 //Current Index
 curIndex = 1;
@@ -114,8 +114,9 @@ $(document).ready(function() {
 	
 	$('.navbtn').on('click', function(e){
 		e.preventDefault();
+		var link = $(this);
 		$.post('lg/userData',logger,function(logger){
-			window.history.back();
+			window.location = link.attr('href');
 			return false;
 		});
 		nowLoading(this);		
