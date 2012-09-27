@@ -13,7 +13,7 @@
 			<tbody>
 				<% loop Data %>	
 					<tr><td>$Created</td><td>$Version</td><td>$Page</td><td>$Count</td>
-					<td><% if Page = benefits %><% if Keys %><% loop Keys %>$Button click on <% if Image %><img src="/assets/images/$Image" width="25px"/><% else %>$Position<% end_if %><% if Last %><% else %> &rarr; <% end_if %><% end_loop %><% end_if %>
+					<td><% if Page = benefits %><% if Keys %><% loop Keys %>$Button click on <% if Image %><img src="/assets/images/$Image" height="25px"/><% else %>$Position<% end_if %><% if Last %><% else %> &rarr; <% end_if %><% end_loop %><% end_if %>
 					<% else %><% if Keys %><% loop Keys %>$Button button  $Position<% if Last %><% else %> &rarr; <% end_if %><% end_loop %><% end_if %><% end_if %></td>
 					</tr>
 				<% end_loop %>
