@@ -141,7 +141,14 @@ class LgPage_Controller extends Page_Controller
 			//var_dump($m);
 			$d = array(
 				'Data' => $m);
+			$l = $arguments->requestVars();
+			$csv = (array_key_exists('csv',$l)) ? true : false;
+			if(!$csv){
 			return $this->customise($d)->renderWith('UserStats');
+			}else{
+			header('Content-Disposition: attachment; filename="userstats.csv"');
+			return $this->customise($d)->renderWith('UserStatsCSV');
+			}
 		}else{
 			Director::redirect('Security/login?BackURL=%2Flg%2FuserStats');
 		}

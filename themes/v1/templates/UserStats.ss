@@ -6,6 +6,7 @@
 </head>
 	<body onload="">
 		<h3>LG - User Data</h3>
+		<p><a href="/lg/userStats?csv=1">Download CSV</a></p>
 		<table>
 			<thead>
 				<tr><th>Date</th><th>Version</th><th>Page</th><th>Keystroke Count</th><th>Keystrokes</th></tr>
