@@ -146,6 +146,7 @@ class LgPage_Controller extends Page_Controller
 			if(!$csv){
 			return $this->customise($d)->renderWith('UserStats');
 			}else{
+			header_remove("Content-type");
 			header('Content-type: text/csv');
 			header('Content-Disposition: attachment; filename="userstats.csv"');
 			return $this->customise($d)->renderWith('UserStatsCSV');
