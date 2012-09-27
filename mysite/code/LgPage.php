@@ -43,7 +43,24 @@ class LgPage_Controller extends Page_Controller
 	
 	public function benefits($arguments){
 		return $this->renderWith('BenefitsPage');
+	}
 	
+	public function manage($arguments){
+		if ($member = Member::currentUser()) {
+			Director::redirect('benefits');
+		}else{
+			Director::redirect('Security/login?BackURL=%2Flg%2Fbenefits');
+		}
+	}
+	
+	public function allBenefits(){
+		$data = Benefit::get();
+		return $data;
+	}
+	
+	public function newsPanels(){
+		$data = NewsOffers::get();
+		return $data;
 	}
 	
 	public function cards($arguments){
@@ -90,6 +107,8 @@ class LgPage_Controller extends Page_Controller
 				//convert key strokes to html?
 				$strokes = new ArrayList();
 				$s = explode(',',$b->Keystrokes);
+				$count = 0;
+				if($b->Keystrokes != ''){
 				foreach($s as $t){
 				
 					$x = explode(":",$t);
@@ -107,12 +126,15 @@ class LgPage_Controller extends Page_Controller
 					'Button'=>$button,
 					"Position"=>$position,
 					"Image"=>$image))); 
+					$count = $count +1;
+				}
 				}
 				$c = array(
 				'Created' => date('m-j-Y h:i:s A',strtotime($b->Created)),
 				'Version' => $b->Version,
 				'Page' => $b->Page,
-				'Keys' => $strokes);
+				'Keys' => $strokes,
+				'Count' => $count);
 				$m->add(new ArrayData($c));
 				
 			}
