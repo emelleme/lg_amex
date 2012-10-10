@@ -1029,6 +1029,7 @@ animation: blinkButton 0.7s;
 
 #featuredcard-left {width: 506px !important; margin-top: 21px;}
 #featuredcard-right {width: 540px !important; margin-top: 21px;}
+#featuredcard-one {width: 1046px !important; margin-top: 45px;}
 
 #findacard h2 {font: 30px/36px BentonSansMedium; color: #003c79; margin: 24px 0 0 18px;}
 #findacard .subtitle {font: 25px/30px BentonSansMedium; color: #555;}
@@ -1037,6 +1038,12 @@ animation: blinkButton 0.7s;
 #findacard .bsm-blue {font: 23px/27px BentonSansMedium; color: #0080c3; margin: 12px 0;}
 #findacard .bsb {font-family: BentonSansBold !important; color: #555;}
 #findacard .card-image {float: left; margin: 0 0 12px -24px;}
+
+#featuredcard-one h2 {font: 36px/42px BentonSansMedium; color: #003c79; margin: 24px 0 18px 0;}
+#featuredcard-one .subtitle {font: 33px/36px BentonSansMedium; color: #555;}
+#featuredcard-one p {font: 30px/33px BentonSans; color: #555; margin: 21px 0;}
+#findacard .bsm-blue {font: 30px/33px BentonSansMedium; color: #0080c3; margin: 12px 0;}
+.card-image-one {float: left; margin: 0 36px 0 -54px;}
 
 #wingsmall{
 	position: absolute;
