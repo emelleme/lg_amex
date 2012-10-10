@@ -410,7 +410,7 @@ font-size: 21px;
 
 }
 
-#twitter_3-3 img {
+#twitter_3-4 img {
 margin-left: 7px;
 }
 
@@ -474,7 +474,7 @@ font-size: 23px;
 line-height: auto;
 }
 
-#twitter_4-1 p, #twitter_5-3 p {
+#twitter_4-1 p, #twitter_4-3 p {
 font-size: 22px;
 line-height: auto;
 }
@@ -510,146 +510,6 @@ line-height: auto;
 	display:inline-block;
 }
 
-#footer a.backtomain {
-	background-image:url('../images/button_back.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-	margin-top: 8px;
-}
-
-#footer a:hover.backtomain{
-	background-image:url('../images/button_back-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer a.backtomain .activeImage {
-	background-image:url('../images/button_back-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-
-#footer_playgame {
-	background-image:url('../images/button_playgame.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-	margin-top: 8px;
-}
-
-#footer a:hover.playgame{
-	background-image:url('../images/button_playgame-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer_playgame:hover.playgame {
-	background-image:url('../images/button_playgame-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer_playgame.activeImage {
-	background-image:url('../images/button_playgame-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-
-#footer_benefits {
-	background-image:url('../images/button_benefits.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-	margin-top: 8px;
-}
-
-#footer a:hover.benefits{
-	background-image:url('../images/button_benefits-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer_benefits:hover.benefits {
-	background-image:url('../images/button_benefits-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer_benefits.activeImage {
-	background-image:url('../images/button_benefits-active.png');
-	background-repeat: no-repeat;
-
-	width: 341px;
-	height: 45px;
-}
-
-#footer_newsoffers.newsoffers {
-	background-image:url('../images/button_newsoffers.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-	margin-top: 8px;
-}
-
-#footer_newsoffers:hover.newsoffers {
-	background-image:url('../images/button_newsoffers-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer_newsoffers.activeImage {
-	background-image:url('../images/button_newsoffers-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-
-#footer_findacard.findacard {
-	background-image:url('../images/button_findacard.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-	margin-top: 8px;
-}
-
-#footer_findacard:hover.findacard{
-	background-image:url('../images/button_findacard-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-#footer_findacard.activeImage {
-	background-image:url('../images/button_findacard-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-
-/* #footer_exit.exit {
-	background-image:url('../images/button_exit.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-	margin-top: 8px;
-}
-
- #footer_exit:hover.exit {
-	background-image:url('../images/button_exit-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-
- #footer_exit.activeImage {
-	background-image:url('../images/button_exit-active.png');
-	background-repeat: no-repeat;
-	width: 341px;
-	height: 45px;
-}
-*/
 #footer-text{
 	text-align: left;
 	margin-left: 129px;
@@ -692,14 +552,14 @@ display: none;
 
 #image_1-1{
 	position: absolute;left:164px;top:36px;width:81px;height:54px;
-	background-image: url('../images/mosaic-1-1.jpg');
+	background-image: url('../images/benefits/mosaic-1-1.jpg');
 	background-repeat: no-repeat;
 }
 
 
 #image_1-2{
 	position: absolute;left:250px;top:36px;width:156px;height:113px;
-	background-image: url('../images/mosaic-1-2.jpg');
+	background-image: url('../images/benefits/mosaic-1-2.jpg');
 	background-repeat: no-repeat;
 }
 #image_1-2.activeImage{
@@ -707,7 +567,7 @@ display: none;
 	height: 130px;
 	left: 238px;
 	top:27px;
-	background-image: url('../images/mosaic-1-2_active.jpg');
+	background-image: url('../images/benefits/mosaic-1-2_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -719,7 +579,7 @@ display: none;
 
 #image_2-1{
 	position: absolute;left:66px;top:95px;width:178px;height:134px;
-	background-image: url('../images/mosaic-2-1.jpg');
+	background-image: url('../images/benefits/mosaic-2-1.jpg');
 	background-repeat: no-repeat;
 }
 
@@ -728,7 +588,7 @@ display: none;
 	height: 154px;
 	left: 53px;
 	top:85px;
-	background-image: url('../images/mosaic-2-1_active-after.jpg');
+	background-image: url('../images/benefits/mosaic-2-1_active-after.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -759,14 +619,14 @@ animation: blinkButton 0.7s;
 
 #image_2-3{
 	position: absolute;left:411px;top:82px;width:93px;height:67px;
-	background-image: url('../images/mosaic-2-3.jpg');
+	background-image: url('../images/benefits/mosaic-2-3.jpg');
 	background-repeat: no-repeat;
 }
 
 
 #image_3-2{
 	position: absolute;left:250px;top:155px;width:109px;height:74px;
-	background-image: url('../images/mosaic-3-2.jpg');
+	background-image: url('../images/benefits/mosaic-3-2.jpg');
 	background-repeat: no-repeat;
 }
 #image_3-2.activeImage{
@@ -774,7 +634,7 @@ animation: blinkButton 0.7s;
 	height: 85px;
 	left: 242px;
 	top:149px;
-	background-image: url('../images/mosaic-3-2_active.jpg');
+	background-image: url('../images/benefits/mosaic-3-2_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -786,7 +646,7 @@ animation: blinkButton 0.7s;
 
 #image_3-4{
 	position: absolute;left:365px;top:155px;width:108px;height:135px;
-	background-image: url('../images/mosaic-3-4.jpg');
+	background-image: url('../images/benefits/mosaic-3-4.jpg');
 	background-repeat: no-repeat;
 }
 #image_3-4.activeImage{
@@ -794,7 +654,7 @@ animation: blinkButton 0.7s;
 	height: 153px;
 	left: 357px;
 	top:146px;
-	background-image: url('../images/mosaic-3-4_active.jpg');
+	background-image: url('../images/benefits/mosaic-3-4_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -806,7 +666,7 @@ animation: blinkButton 0.7s;
 
 #image_4-1{
 	position: absolute;left:122px;top:235px;width:155px;height:111px;
-	background-image: url('../images/mosaic-4-1.jpg');
+	background-image: url('../images/benefits/mosaic-4-1.jpg');
 	background-repeat: no-repeat;
 }
 #image_4-1.activeImage{
@@ -814,7 +674,7 @@ animation: blinkButton 0.7s;
 	height: 127px;
 	left: 111px;
 	top:227px;
-	background-image: url('../images/mosaic-4-1_active.jpg');
+	background-image: url('../images/benefits/mosaic-4-1_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -826,14 +686,14 @@ animation: blinkButton 0.7s;
 
 #image_disabled{
 	position: absolute;left:283px;top:234px;width:77px;height:55px;
-	background-image: url('../images/mosaic-4-3.jpg');
+	background-image: url('../images/benefits/mosaic-4-3.jpg');
 	background-repeat: no-repeat;
 }
 
 
 #image_5-1{
 	position: absolute;left:36px;top:352px;width:136px;height:97px;
-	background-image: url('../images/mosaic-5-1.jpg');
+	background-image: url('../images/benefits/mosaic-5-1.jpg');
 	background-repeat: no-repeat;
 }
 #image_5-1.activeImage{
@@ -841,7 +701,7 @@ animation: blinkButton 0.7s;
 	top:345px;
 	width:155px;
 	height:111px;
-	background-image: url('../images/mosaic-5-1_active.jpg');
+	background-image: url('../images/benefits/mosaic-5-1_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -853,7 +713,7 @@ animation: blinkButton 0.7s;
 
 #image_6-2{
 	position: absolute;left:141px;top:352px;width:136px;height:97px;
-	background-image: url('../images/mosaic-6-2.jpg');
+	background-image: url('../images/benefits/mosaic-6-2.jpg');
 	background-repeat: no-repeat;
 }
 #image_6-2.activeImage{
@@ -861,7 +721,7 @@ animation: blinkButton 0.7s;
 	top:345px;
 	width:155px;
 	height:111px;
-	background-image: url('../images/mosaic-6-2_active.jpg');
+	background-image: url('../images/benefits/mosaic-6-2_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -873,7 +733,7 @@ animation: blinkButton 0.7s;
 
 #image_4-3{
 	position: absolute;left:283px;top:295px;width:111px;height:87px;
-	background-image: url('../images/mosaic-5-3.jpg');
+	background-image: url('../images/benefits/mosaic-5-3.jpg');
 	background-repeat: no-repeat;
 }
 #image_4-3.activeImage{
@@ -881,7 +741,7 @@ animation: blinkButton 0.7s;
 	top:289px;
 	width:127px;
 	height:94px;
-	background-image: url('../images/mosaic-5-3_active.jpg');
+	background-image: url('../images/benefits/mosaic-5-3_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -893,7 +753,7 @@ animation: blinkButton 0.7s;
 
 #image_4-4{
 	position: absolute;left:400px;top:295px;width:89px;height:86px;
-	background-image: url('../images/mosaic-4-4.jpg');
+	background-image: url('../images/benefits/mosaic-4-4.jpg');
 	background-repeat: no-repeat;
 }
 #image_4-4.activeImage{
@@ -901,7 +761,7 @@ animation: blinkButton 0.7s;
 	top:290px;
 	width:100px;
 	height:96px;
-	background-image: url('../images/mosaic-4-4_active.jpg');
+	background-image: url('../images/benefits/mosaic-4-4_active.jpg');
 	background-repeat: no-repeat;
 	box-shadow: 1px 1px 15px #000000;
 	z-index: 33;
@@ -950,19 +810,6 @@ animation: blinkButton 0.7s;
 	line-height: 38px;
 }
 
-
-#content-title a {
-	position: absolute;
-	width: 122px;
-	height:38px;
-	background-image: url('../images/button_back.png');
-	background-repeat: no-repeat;
-}
-
-#content-title a:hover {
-	background-image: url('../images/button_back-active.png');
-	background-repeat: no-repeat;
-}
 
 .arrows {
 	position: absolute;
