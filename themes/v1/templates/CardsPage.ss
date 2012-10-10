@@ -22,7 +22,7 @@
 			<!-- header area (1024 x 80)-->
 			<section  style="padding-left:128px;" id="header-new" class="row">
 				<div id="header-title" class="span6">
-					<h1>Featured Cards.</h1>
+					<h1>Featured Card.</h1>
 					<h3>Go to americanexpress.com to see more Cards.</h3>
 				</div>
 
@@ -34,7 +34,31 @@
 				
 				<div id="findacard">
 				
-					<div id="featuredcard-left" class="span6">
+					<div id="featuredcard-one" class="span12">
+					
+						<img src="themes/v1/images/prepaid.jpg" class="card-image-one" alt="Prepaid" />
+						
+						<div style="float: left;">
+						<h2>American Express<sup>&reg;</sup> Prepaid Card</h2>
+						
+						<p class="subtitle">Load. Spend. Repeat.</p>
+						
+						<p>&bull; No monthly or annual fees<br>
+						&bull; Use in stores, online and at ATMs<br>
+						&bull; Reload as often as you wish</p>
+						
+						<p class="bsm-blue">Call 1-800-528-4800 or apply at<br>
+						AmericanExpress.com/Prepaid</p>
+						</div>
+						
+					</div>
+					
+					<div style="clear: both;"></div>
+					
+					<p id="termsconditions" style="margin: 18px 130px 0 0 !important;"><a class="termsbtn" href="lg/terms">Terms &#38; Conditions</a></p>
+					
+					
+					<!--div id="featuredcard-left" class="span6">
 					
 						<img src="themes/v1/images/findacard-goldcard.jpg" class="card-image" alt="Gold Card" />
 						<h2>Premier Rewards&nbsp; Gold Card</h2>
@@ -74,7 +98,7 @@
 					
 					<div style="clear: both;"></div>
 					
-					<p id="termsconditions"><a class="termsbtn" href="lg/terms">Terms &#38; Conditions</a></p>
+					<p id="termsconditions"><a class="termsbtn" href="lg/terms">Terms &#38; Conditions</a></p-->
 				
 				</div>
 				<!-- /findacard -->
