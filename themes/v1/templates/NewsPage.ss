@@ -37,48 +37,18 @@
 						<div id="showcase">
 
 							<div id="image-scroller">
-								<div id="panel1" class="panelHeader">
-									<h3><span class="headerText">Tribeca <br />Film Festival</span></h3>
-									<div class="month"><p>apr</p></div>
+							<% loop newsPanels %>
+								<div id="panel$Panel" class="panelHeader">
+								<% if CurrentMember %>
+								<span style="position: relative;"><a href="admin/benefits/Benefit/EditForm/field/NewsOffers/item/$ID" target="_blank" style="color:#fff"><img src="assets/images/edit.png" /></a></span>
+								<% end_if %>
+									<h3><span class="headerText">$Title.RAW</span></h3>
+									<div class="month"><p>$Month</p></div>
 								</div>
-								<div id="panel1_content" class="showcaseimage">
-									<img src="assets/images/banner_tribecafilm.jpg" height="288" width="671" alt="Tribeca Film Festival" />
+								<div id="panel{$Panel}_content" class="showcaseimage">
+									$PanelImage
 								</div>
-
-								<div id="panel2" class="panelHeader">
-									<h3><span class="headerText">US Open<br />Tennis</span></h3>
-									<div class="month"><p>aug</p></div>
-								</div>
-								<div id="panel2_content" class="showcaseimage">
-									<img src="assets/images/banner_USopen.jpg" height="288" width="671" alt="US Open Tennis" />
-								</div>
-
-								<div id="panel3" class="panelHeader">
-									<h3><span class="headerText">MERCEDES-BENZ FASHION WEEK</span></h3>
-									<div class="month"><p>sept</p></div>
-								</div>
-								<div id="panel3_content" class="showcaseimage">
-									<img src="assets/images/banner_mercedes.jpg" height="288" width="671" alt="MERCEDES-BENZ FASHION WEEK" />
-								</div>
-
-
-								<div id="panel4" class="panelHeader">
-									<h3><span class="headerText">nba <br />2012 season</span></h3>
-									<div class="month"><p>oct</p></div>
-								</div>
-								<div id="panel4_content" class="showcaseimage">
-									<img src="assets/images/banner_NBA.jpg" height="288" width="671" alt="NBA" />
-								</div>
-
-								<div id="panel5" class="panelHeader">
-									<h3><span class="headerText">SMALL BUSINESS SATURDAY</span></h3>
-									<div class="month"><p>nov</p></div>
-								</div>
-								<div id="panel5_content" class="showcaseimage">
-									<img src="assets/images/banner_smallbusiness.jpg" height="288" width="671" alt="Small BUSINESS SATURDAY" />
-								</div>
-
-
+							<% end_loop %>
 								<div class="fix"></div>
 							</div>
 						</div>
@@ -98,9 +68,9 @@
 					</div>
 
 					<div id="copy-right">
-						<h3><img src="assets/images/circle_1.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Sync</span> your eligible Card with Twitter</h3>
-						<h3><img src="assets/images/circle_2.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Tweet</span> special offer #hashtags</h3>
-						<h3><img src="assets/images/circle_3.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Save</span> with statement credits on qualified purchases using your synced Card</h3>
+						<h3><img src="assets/images/newsoffers/circle_1.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Sync</span> your eligible Card with Twitter</h3>
+						<h3><img src="assets/images/newsoffers/circle_2.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Tweet</span> special offer #hashtags</h3>
+						<h3><img src="assets/images/newsoffers/circle_3.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Save</span> with statement credits on qualified purchases using your synced Card</h3>
 					</div>
 				</div>
 			</section>
