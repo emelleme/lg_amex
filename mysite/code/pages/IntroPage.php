@@ -38,7 +38,13 @@ class IntroPage_Controller extends Page_Controller
 	}
 	
 	public function index($arguments){
-		return $this->renderWith('IntroPage');
+		//return $this->renderWith('IntroPage');
+		return $this->renderWith('StaticImagePage');
+	}
+
+	public function sbs(){
+
+		return $this->renderWith('StaticImagePage');
 	}
 
 }

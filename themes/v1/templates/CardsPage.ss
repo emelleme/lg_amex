@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>See Cards</title>
 <% require themedCSS(bootstrap) %>
-<% require themedCSS(layout) %>
+<% require themedCSS(layout-110812) %>
 <% require themedCSS(countdown-mosaic) %>
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>
 <% require javascript(themes/v1/javascript/keycode.js) %>
@@ -26,7 +26,9 @@
 					<h3>Go to americanexpress.com to see more Cards.</h3>
 				</div>
 
-				<% include Logo %>
+			<div id="header-logo" style="margin:0px 0px 0px 0px" class="span6">
+			<img src="assets/images/logo.png" alt="Founding Partner">
+			</div>
 			</section>
 
 			<section id="content-new" class="row">
@@ -36,7 +38,7 @@
 				
 					<div id="featuredcard-one" class="span12">
 					
-						<img src="themes/v1/images/prepaid.jpg" class="card-image-one" alt="Prepaid" />
+						<img src="themes/v1/images/findacard-prepaidcard.jpg" class="card-image-one" alt="Prepaid" />
 						
 						<div style="float: left;">
 						<h2>American Express<sup>&reg;</sup> Prepaid Card</h2>

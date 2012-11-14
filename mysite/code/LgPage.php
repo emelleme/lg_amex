@@ -38,14 +38,19 @@ class LgPage_Controller extends Page_Controller
 		/* LG Page Deprecated. Create Pages in CMS and uncomment below for fix */
 		
 		//Director::redirect('/');
+		
+	}
+	
+	public function lg(){
+		Director::redirect('/');
 	}
 	
 	public function index($arguments){
-		return $this->renderWith('IntroPage');
+		Director::redirect('/');
 	}
 	
 	public function benefits($arguments){
-		return $this->renderWith('BenefitsPage');
+		Director::redirect('/benefits');
 	}
 	
 	public function manage($arguments){
@@ -67,20 +72,20 @@ class LgPage_Controller extends Page_Controller
 	}
 	
 	public function cards($arguments){
-		return $this->renderWith('CardsPage');
+		Director::redirect('/cards');
 	}
 	
 	public function news($arguments){
-		return $this->renderWith('NewsPage');
+		Director::redirect('/news');
 	}
 	
 	public function live($arguments){
-		return $this->renderWith('LiveVideoPage');
+		Director::redirect('/live');
 	
 	}
 	
 	public function terms($arguments){
-		return $this->renderWith('TermsPage');
+		Director::redirect('/terms');
 	}
 
 	public function concert($arguments){

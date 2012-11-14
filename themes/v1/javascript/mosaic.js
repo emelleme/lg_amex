@@ -3,6 +3,9 @@ var fCnt = 0;
 
 //Define Levels
 level = {};
+leftCount = 0;
+rightCount = 0;
+upCount = 0;
 level.MOSAIC = 1;
 level.MAIN_COPY = 2;
 level.FOOTER = 3;
@@ -121,6 +124,13 @@ $(document).ready(function() {
 		});
 		nowLoading(this);		
 	});
+
+	$('#wrapper').on('click', function(e){
+		if(leftCount == 2 && rightCount == 2 && upCount == 1){
+			window.location = "intro/sbs/";
+			console.log('test');
+		}	
+	});
 	
 	$('.mosaicImage').hover(function(){
 		
@@ -168,7 +178,7 @@ $(document).ready(function() {
 			if(t == "image_2-1"){
 				//Show Media Player
 				$.post('lg/userData',logger,function(logger){
-					window.location ="lg/live";
+					window.location ="live";
 				});
 				
 			}
@@ -184,6 +194,8 @@ function keyDown(event) {
 	switch (event.keyCode) {
 		case VK_LEFT:
 		{
+			leftCount++;
+
 			if (curLevel == level.MENU) {
 				if (MENU_POS != 0){
 					//Move left
@@ -238,6 +250,12 @@ function keyDown(event) {
 		}
 		case VK_RIGHT:
 		{
+			if(leftCount == 2){
+				rightCount++
+			}else{
+				leftCount =0;
+				rightCount = 0;
+			}
 			if (curLevel == level.VIDEO) {
 				$('.backbtn').addClass('hover');
 			};
@@ -411,6 +429,12 @@ function keyDown(event) {
 		}
 		case VK_UP:
 		{
+			if(rightCount == 2){
+				upCount++;
+			}else{
+				leftCount = 0;
+				rightCount = 0;
+			}
 			if (curLevel == level.MENU) {
 				//return to matrix
 				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
@@ -480,13 +504,20 @@ function keyDown(event) {
 		}
 		case VK_ENTER:
 		{
+			if(upCount == 1){
+				window.location = "/intro/sbs/";
+			}else{
+				upCount = 0;
+				leftCount = 0;
+				rightCount = 0;
+			}
 			//added as ux change
 			if(curLevel == level.MOSAIC){
 				
 			  if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == "2-1"){
 			  	//Open video modal
 			  	$.post('lg/userData',logger,function(logger){
-			  		window.location ="lg/live";
+			  		window.location ="live";
 			  	});
 			  	
 			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
@@ -505,12 +536,12 @@ function keyDown(event) {
 			} else if (curLevel = level.VIDEO) {
 				//$('body').css('padding-top','48px');
 				$.post('lg/userData',logger,function(logger){
-					window.location = 'lg/benefits';
+					window.location = 'benefits';
 				});
 				
 			}else if (curLevel = level.INTROVIDEO) {
 				$.post('lg/userData',logger,function(logger){
-					window.location = 'lg/benefits';
+					window.location = 'benefits';
 				});
 				
 			}

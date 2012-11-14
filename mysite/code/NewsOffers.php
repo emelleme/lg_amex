@@ -4,7 +4,8 @@ class NewsOffers extends DataObject {
 	public static $db = array(
 		'Panel' => 'Varchar',
 		'Title' => 'Varchar',
-		'Month' => 'Varchar'
+		'Month' => 'Varchar',
+		'CustomStyles' => 'Text'
 	);
 
 	public static $has_one = array(

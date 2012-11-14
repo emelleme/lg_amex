@@ -37,6 +37,11 @@ class NewsOffersPage_Controller extends Page_Controller
 		Requirements::set_write_js_to_body(false);
 	}
 	
+	public function newsPanels(){
+		$data = NewsOffers::get();
+		return $data;
+	}
+	
 	public function index($arguments){
 		return $this->renderWith('NewsPage');
 	}

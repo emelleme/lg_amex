@@ -78,5 +78,5 @@ class Page_Controller extends ContentController {
 		// included so that our older themes still work
 		Requirements::set_write_js_to_body(false);
 	}
-
+	
 }

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Experience the Benefits</title>
 <% require themedCSS(bootstrap) %>
-<% require themedCSS(layout) %>
+<% require themedCSS(layout-110812) %>
 <% require themedCSS(countdown-mosaic) %>
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>
 <% require javascript(themes/v1/javascript/swfobject/swfobject.js) %>

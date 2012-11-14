@@ -1,16 +1,13 @@
 level.INTROVIDEO = 5;
 curLevel = level.INTROVIDEO;
-nextPage = 'benefits';
+nextPage = 'shop-small';
 $(document).ready(function() {
 	$('body').css('padding-top','0px');
 	$('#videoPlayer').on('click',function(){
 		window.location = nextPage; 
 	})
-	var media = document.getElementById("introVideo");
-	var playInfo = media.mediaPlayInfo();
-	media.stop();
-	media.onPlayStateChange = processPlayStateChangeFunction;
 	curLevel = level.INTROVIDEO;
+	setTimeout(function(){window.location = nextPage; },10000);
 });
 
 function processPlayStateChangeFunction() {

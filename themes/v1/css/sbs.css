@@ -1,0 +1,24 @@
+/* SMALL BUSINESS SATURDAYS */
+
+.sbs-darkblue {color: #172a75;}
+.sbs-blue {color: #1c85c8;}
+.bentonbold {font-family: BentonSansBold;}
+
+#sbs-main {width: 947px; height: 315px; background: url(../images/sbs/sbs-largeimage.jpg) no-repeat; margin: 6px 0 0 0;}
+
+#sbs-main .callout-1 {font: 24px/33px BentonSans; color: #4d5456; padding: 30px 30px 0 354px;}
+#sbs-main .callout-2 {font: 24px/33px BentonSans; color: #4d5456; padding: 15px 30px 30px 354px;}
+
+#sbs-text-1 {font: 50px/50px TradeGothicBold; text-align: center; margin: 21px 0 0 0; letter-spacing: 3px;}
+#sbs-text-1 span {font: 50px/50px TradeGothicBold; letter-spacing: 3px;}
+#sbs-text-2 {font: 24px/27px BentonSansMedium; color: #8f8f8f; text-align: center;}
+#sbs-text-3 {font: 16px/19px TradeGothic; color: #8f8f8f; text-align: center;}
+
+#getupdates-image {width: 323px; height: 484px; float: left; margin: 21px 0 0 0;}
+#getupdates-main {width: 624px; height: 485px; background: url(../images/sbs/getupdates-back.gif) no-repeat top right; margin: 21px 0 0 0; float: left;}
+
+#getupdates-main .jointheconversation {font: 44px/44px TradeGothicBold; color: #172a75; display: block; text-align: center; margin: 30px 0 0 0;}
+#getupdates-main .callout-1 {font: 21px/30px BentonSans; color: #4d5456; margin: 24px 0 0 24px; padding: 21px 0 0 111px; width: 571px; height: 111px; background: url(../images/sbs/getupdates-twitterback.png) no-repeat top left;}
+#getupdates-main .callout-2 {font: 21px/30px BentonSans; color: #4d5456; margin: 15px 0 0 24px; padding: 21px 0 0 111px; width: 571px; height: 111px; background: url(../images/sbs/getupdates-facebookback.png) no-repeat top left;}
+
+#sbs-newsbottom {margin: 300px 0 0 178px; text-align: center;}

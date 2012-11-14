@@ -6,7 +6,9 @@
 					<h3>Use your remote to explore the benefits.</h3>
 				</div>
 
-				<% include Logo %>
+			<div id="header-logo" style="margin:0px 0px 0px 0px" class="span6">
+			<img src="assets/images/logo.png" alt="Founding Partner">
+				</div>
 			</section>
 
 			<section id="content-new" class="row">

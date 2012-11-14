@@ -14,16 +14,10 @@ FOOTER_MATRIX = {
 	4: "exit"
 }
 
-START_IMAGE = 2;
-CUR_ROW = 2;
-CUR_COL = 1;
-MAX_ROW = 4;
-MAX_COL = 4;
 MENU_POS = 0;
 NEWS_POS = 3;
-ACTIVE_PAGE = 1;
 //Current Index
-curIndex = 1;
+curIndex = 3;
 
 //Current Level
 curLevel = level.NEWS;
@@ -150,11 +144,6 @@ function keyDown(event) {
 			if (curLevel == level.MENU) {
 				if (MENU_POS > 0){
 					//Move left
-					/*if (MENU_POS-1 == ACTIVE_PAGE) {
-						MENU_POS = MENU_POS-2;
-						clearActive();
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-					}else{*/
 					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
 					MENU_POS = MENU_POS-1;
 					clearActive();
@@ -175,11 +164,6 @@ function keyDown(event) {
 			if (curLevel == level.MENU) {
 				if (MENU_POS < 2){
 					//Move Right
-					/*if (MENU_POS+1 == ACTIVE_PAGE) {
-						MENU_POS = MENU_POS+2;
-						clearActive();
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-					}else{*/
 					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
 					MENU_POS = MENU_POS+1;
 					clearActive();

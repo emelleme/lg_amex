@@ -26,7 +26,10 @@
 					
 				</div>
 
-				<% include Logo %>
+				
+			<div id="header-logo" style="margin:0px 0px 0px 0px" class="span6">
+			<img src="assets/images/sbs/logo-foundingpartner.png" alt="Founding Partner">
+				</div>
 			</section>
 
 

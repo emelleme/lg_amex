@@ -6,7 +6,6 @@
 <title>News and Offers</title>
 <% require themedCSS(bootstrap) %>
 <% require themedCSS(layout) %>
-<% require themedCSS(sbs) %>
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>
 <% require javascript(themes/v1/javascript/keycode.js) %>
 <% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
@@ -19,8 +18,8 @@
 	<div id="wrapper" class="container">
 		<div>
 			<!-- header area (1024 x 80)-->
-			<section  style="padding-left:159px;" id="header-new" class="row">
-				<div id="header-title" class="span5">
+			<section  style="padding-left:128px;" id="header-new" class="row">
+				<div id="header-title" class="span6">
 					<h1>News &amp; Offers.</h1>
 					<h3>Check back often to see what’s new.</h3>
 				</div>
@@ -43,7 +42,7 @@
 								<% if CurrentMember %>
 								<!--<span style="position: relative;"><a href="admin/benefits/Benefit/EditForm/field/NewsOffers/item/$ID" target="_blank" style="color:#fff"><img src="assets/images/edit.png" /></a></span>-->
 								<% end_if %>
-									<h3 style="$CustomStyles"><span class="headerText">$Title.RAW</span></h3>
+									<h3><span class="headerText">$Title.RAW</span></h3>
 									<div class="month"><p>$Month</p></div>
 								</div>
 								<div id="panel{$Panel}_content" class="showcaseimage">
@@ -61,21 +60,32 @@
 					</div>
 					<!-- End showcase container -->
 
-				<div class="span2"></div>
-				<div id="sbs-newsbottom" class="span12">
-				
-					<p id="sbs-text-1"><img src="themes/v1/images/sbs/sbs-star.gif" alt="star" style="margin: -6px 0 0 0;"> <span class="sbs-darkblue">TEXT</span> <span class="sbs-blue">SHOP</span> <span class="sbs-darkblue">TO 74642</span> <img src="themes/v1/images/sbs/sbs-star.gif" alt="star" style="margin: -6px 0 0 0;"></p>
-				
-					<p id="sbs-text-2">For a reminder to Shop Small<sup>&reg;</sup> on November 24<sup>th</sup>. Last year, 100 million people shopped small on Small Business Saturday*. This year, let's make it even more.</p>
-				
-					<p id="sbs-text-3">*Based on 2011 Small Business Saturday Consumer Survey by Echo Research, and commissioned by American Express. Message & Data rates may apply. Max 4 messages per month. To quit, text STOP to 74642. Not available on all carriers. Your contact information will not be sold or used for any other purposes.</p>
-				
+				<div id="news-copy" class="span4">
+					<div id="copy-left">
+						<h2> Tweet your way to savings</h2>
+						<img src="assets/images/twitterbird_dark.png" alt="Twitter Bird" width="43" height="32"/>
+						<span class="darkblue2">Tweet #AmexSync <span id="moveleft">to learn how</span></span>
+					</div>
+
+					<div id="copy-right">
+						<h3><img src="assets/images/newsoffers/circle_1.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Sync</span> your eligible Card with Twitter</h3>
+						<h3><img src="assets/images/newsoffers/circle_2.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Tweet</span> special offer #hashtags</h3>
+						<h3><img src="assets/images/newsoffers/circle_3.png" alt="blank" width="26" height="27"/><span class="lightblue2"> Save</span> with statement credits on qualified purchases using your synced Card</h3>
+					</div>
 				</div>
-				
 			</section>
 		</div>
 		<div class="navbar navbar-fixed-bottom">
-			<% include DefaultNavigation %>
+			<div class="menubar-inner">
+				<div class="container">
+					<ul>
+						<li><a class="navbtn" href="lg/benefits">Benefits</a>
+						<li class="center"><a class="navbtn" href="lg/cards">See Cards</a>
+						<li><a class="navbtn" href="lg/live">Watch Concert</a>
+					</ul>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

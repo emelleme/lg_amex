@@ -5,7 +5,7 @@
 #
 #/doc
 
-class BenefitsPage extends Page
+class ShopSmallPage extends Page
 {
 	#	internal variables
 	public static $db = array(
@@ -13,14 +13,6 @@ class BenefitsPage extends Page
 
 	public static $has_one = array(
 	);
-	
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$fields->removeFieldFromTab('Root.Main', 'Content');
-		$fields->addFieldToTab('Root.Main', new LiteralField('BenefitManager','<h2><a href="/admin/benefits/">Click Here to manage Benefits</a></h2>'));
-		return $fields;
-		
-	}
 
 }
 #doc
@@ -29,7 +21,7 @@ class BenefitsPage extends Page
 #
 #/doc
 
-class BenefitsPage_Controller extends Page_Controller
+class ShopSmallPage_Controller extends Page_Controller
 {
 	#	internal variables
 	
@@ -45,13 +37,8 @@ class BenefitsPage_Controller extends Page_Controller
 		Requirements::set_write_js_to_body(false);
 	}
 	
-	public function allBenefits(){
-		$data = Benefit::get();
-		return $data;
-	}
-	
 	public function index($arguments){
-		return $this->renderWith('BenefitsPage');
+		return $this->renderWith('ShopSmallPage');
 	}
 
 }
