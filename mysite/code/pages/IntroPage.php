@@ -9,10 +9,19 @@ class IntroPage extends Page
 {
 	#	internal variables
 	public static $db = array(
+		'isVideo'=>'Boolean'
 	);
 
 	public static $has_one = array(
 	);
+
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
+		$fields->addFieldToTab("Root.Main", new CheckboxField('isVideo'));
+		$fields->removeFieldFromTab('Root.Main', 'Content');
+		
+		return $fields;
+	}
 
 }
 #doc
@@ -39,7 +48,7 @@ class IntroPage_Controller extends Page_Controller
 	
 	public function index($arguments){
 		//return $this->renderWith('IntroPage');
-		return $this->renderWith('StaticImagePage');
+		return $this->renderWith('IntroPage');
 	}
 
 	public function sbs(){
