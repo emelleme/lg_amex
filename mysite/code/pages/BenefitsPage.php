@@ -54,6 +54,38 @@ class BenefitsPage_Controller extends Page_Controller
 		return $this->renderWith('BenefitsPage');
 	}
 
+	public function layout($arguments){
+		return $this->renderWith('BenefitsLayoutPage');
+	}
+
+	public function samsung($arguments){
+		return $this->renderWith('SBenefitsPage');
+	}
+
+	public function all($arguments){
+		/* return all benefit data in json format for angular */
+		$id = Director::URLParam('ID');
+		$benefits = Benefit::get();
+		$a = array();
+		$count = 0;
+		foreach ($benefits as $b) {
+			$c = array(
+			"Title" => $b->Title,
+			"WingColor" => $b->WingColor,
+			"Position" => $b->Position,
+			"BoxColor" => $b->BoxColor,
+			"BoxClass" => $b->BoxClass,
+			"MainClass" =>  ($b->Position =="2-1") ? "mainImage activeImage" : "mainImage",
+			"Description" => str_replace(array("\r\n","<br>"), array(""," "), $b->Description)
+			);
+			array_push($a, $c);
+			$count++;
+		}
+		
+		$j = json_encode($a);
+		return $j;
+	}
+
 }
 ###
 ###

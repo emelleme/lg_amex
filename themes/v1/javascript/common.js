@@ -5,8 +5,9 @@
 NAV_HOVER = false;
 $(document).ready(function() {
 	$('#versionInfo').html(versionStr);
-	$.preloadCssImages();
+	//$.preloadCssImages();
 	$('.termsbtn').hover(function(){
+		clearActive();
 		$('#termsconditions a').addClass('hover');
 	});
 	$('.navbtn').hover(function(){
@@ -23,6 +24,7 @@ $(document).ready(function() {
 		$('#termsconditions a').addClass('hover');
 		$('.backbtn').addClass('hover');
 		curLevel = 2;
+		console.log('Hoover')
 	},function(){
 		$('.backbtn').removeClass('hover');
 	})
@@ -30,6 +32,7 @@ $(document).ready(function() {
 
 function clearActive(){
 	$('.activeImage').removeClass('activeImage');
+	$('.arrows').hide();
 	$('.hover').removeClass('hover');
 }
 function getParams() {

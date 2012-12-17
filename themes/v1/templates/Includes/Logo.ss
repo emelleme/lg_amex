@@ -1,3 +1,3 @@
-				<div id="header-logo" class="span6">
-					<img src="assets/images/sbs/logo-foundingpartner.png" alt="Founding Partner">
+				<div id="header-logo">
+					<img src="http://dev.amxp.cc/assets/images/logo.png" alt="American Express logo">
 				</div>

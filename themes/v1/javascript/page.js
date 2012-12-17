@@ -50,6 +50,7 @@ function keyDown(event) {
 
 		case VK_LEFT:
 		{
+			leftCount++;
 			if (curLevel == level.MENU) {
 				if (MENU_POS > 0){
 					//Move left
@@ -71,6 +72,12 @@ function keyDown(event) {
 		}
 		case VK_RIGHT:
 		{
+			if(leftCount == 2){
+				rightCount++
+			}else{
+				leftCount =0;
+				rightCount = 0;
+			}
 			if (curLevel == level.MENU) {
 				if (MENU_POS < 2){
 					//Move Right
@@ -103,6 +110,12 @@ function keyDown(event) {
 		}
 		case VK_UP:
 		{
+			if(rightCount == 2){
+				upCount++;
+			}else{
+				leftCount = 0;
+				rightCount = 0;
+			}
 			if (curLevel == level.MENU) {
 				//return to matrix
 				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
@@ -119,18 +132,25 @@ function keyDown(event) {
 		}
 		case VK_ENTER:
 		{
+			if(upCount == 1){
+				window.location = "/videos";
+			}else{
+				upCount = 0;
+				leftCount = 0;
+				rightCount = 0;
+			}
 			//added as ux change
 			if (curLevel == level.MENU) {
 				var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
 				window.location =goto;
 			}else{
-				window.history.back();
+				window.location = 'travel';
 			}
 			break;
 		}
 		case VK_BACK:
 		{
-		  window.history.back();
+		  window.location = 'travel';
 		break;
 		}
 	}

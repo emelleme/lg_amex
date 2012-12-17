@@ -43,7 +43,7 @@
 								<% if CurrentMember %>
 								<!--<span style="position: relative;"><a href="admin/benefits/Benefit/EditForm/field/NewsOffers/item/$ID" target="_blank" style="color:#fff"><img src="assets/images/edit.png" /></a></span>-->
 								<% end_if %>
-									<h3 style="$CustomStyles"><span class="headerText">$Title.RAW</span></h3>
+									<h3 class="news-panel-text" style="$CustomStyles"><span class="headerText">$Title.RAW</span></h3>
 									<div class="month"><p>$Month</p></div>
 								</div>
 								<div id="panel{$Panel}_content" class="showcaseimage">

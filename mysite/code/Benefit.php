@@ -6,7 +6,10 @@ class Benefit extends DataObject {
 		'Title' => 'Varchar',
 		'Description' => 'Text',
 		'LegalCopy' => 'Text',
-		'BoxText' => 'HTMLText'
+		'BoxText' => 'HTMLText',
+		'BoxClass' => 'Varchar',
+		'BoxColor' => 'Varchar',
+		'WingColor' => 'Varchar'
 
 	);
 

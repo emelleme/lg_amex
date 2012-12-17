@@ -41,6 +41,10 @@ class CardsPage_Controller extends Page_Controller
 		return $this->renderWith('CardsPage');
 	}
 
+	public function layout($arguments){
+		return $this->renderWith('CardsLayoutPage');
+	}
+
 }
 ###
 ###

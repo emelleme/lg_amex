@@ -40,6 +40,17 @@ class TermsPage_Controller extends Page_Controller
 	public function index($arguments){
 		return $this->renderWith('TermsPage');
 	}
+	public function samsung($arguments){
+		return $this->renderWith('STermsPage');
+	}
+
+	public function items($arguments){
+		return $this->renderWith('TermsLayoutPage');
+	}
+
+	public function layout($arguments){
+		return $this->renderWith('TermsLayoutPage');
+	}
 
 }
 ###
