@@ -130,15 +130,8 @@ $(document).ready(function() {
 		$.post('lg/userData',logger,function(logger){
 			window.location = link.attr('href');
 			return false;
-		});
-		nowLoading(this);		
+		});		
 	});
-
-	$('#showcase-container').on('click',function(){
-		//Clear active
-		//Set level to news
-		curLevel = level.NEWS;
-	})
 
 	$('.panelHeader').on('click', function(e){
 		var a = $(this).attr('id');
@@ -183,19 +176,22 @@ $(document).ready(function() {
 		//Play Video
 		playCurrentVideo();
 	}).on('hover',function(){
-		clearActive();
-		if(NEWS_POS == 1){
-			//Hide left arrow
-			$('#videos_arrowleft').hide();
-			$('#videos_arrowright').show();
-		}else if (NEWS_POS < 5) {
-			//show both arrows
-			$('#videos_arrowleft').show();
-			$('#videos_arrowright').show();
-		}else{
-			//hide right arrow
-			$('#videos_arrowright').hide();
-			$('#videos_arrowleft').show();
+		
+		if(curLevel != level.VIDEO){
+			clearActive();
+			if(NEWS_POS == 1){
+				//Hide left arrow
+				$('#videos_arrowleft').hide();
+				$('#videos_arrowright').show();
+			}else if (NEWS_POS < 5) {
+				//show both arrows
+				$('#videos_arrowleft').show();
+				$('#videos_arrowright').show();
+			}else{
+				//hide right arrow
+				$('#videos_arrowright').hide();
+				$('#videos_arrowleft').show();
+			}
 		}
 	});
 
@@ -404,7 +400,7 @@ function keyDown(event) {
 				window.location =g;
 			}else if(curLevel == level.NEWS){
 				playCurrentVideo();
-				
+				console.log('Playing');
 			}else if(curLevel == level.VIDEO){
 				window.clearTimeout(playBarTimeout);
 				$('#videoMenu').toggle();
@@ -421,6 +417,7 @@ function keyDown(event) {
 		{
 			if(curLevel == level.VIDEO){
 				stopCurrentVideo();
+				break;
 			}
 			break;
 		}
