@@ -23,7 +23,7 @@ ACTIVE_PAGE = 2;
 curLevel = level.CARD;
 $(document).ready(function() {
 	//Todo: move to common.js
-	$('#termsconditions a').addClass('hover');
+	$('.termsconditions a').addClass('hover');
 	CUR_POS = 2;
 	$('.backButton').on('click', function(e){
 		window.history.back();
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	
 	$('.termsbtn').hover(function(){
 		clearActive();
-		$('#termsconditions a').addClass('hover');
+		$('.termsconditions a').addClass('hover');
 		curLevel = level.CARD;
 	})
 });
@@ -58,7 +58,7 @@ function keyDown(event) {
 
 			if (curLevel == level.CARD) {
 				// Do nada
-				$('#termsconditions').addClass('hover');
+				$('.termsconditions').addClass('hover');
 				CUR_POS = 2;
 			}
 			break;
@@ -79,7 +79,7 @@ function keyDown(event) {
 				}
 			}
 			if (curLevel == level.CARD) {
-				$('#termsconditions a').addClass('hover');
+				$('.termsconditions a').addClass('hover');
 				CUR_POS = 2;
 			}
 			break;
@@ -92,13 +92,13 @@ function keyDown(event) {
 			if (curLevel == level.CARD) {
 				if(CUR_POS == 2){
 					//On Terms, go to Menu
-					$('#termsconditions a').removeClass('hover');
+					$('.termsconditions a').removeClass('hover');
 					curLevel = level.MENU;
 					clearActive();
 					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
 				}else{
 					//Go to Terms
-					$('#termsconditions a').addClass('hover');
+					$('.termsconditions a').addClass('hover');
 					CUR_POS = 2;
 				}
 				
@@ -112,7 +112,7 @@ function keyDown(event) {
 				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
 				curLevel = level.CARD;
 				clearActive();
-				$('#termsconditions a').addClass('hover');
+				$('.termsconditions a').addClass('hover');
 				CUR_POS = 2;
 			}else {
 				//
@@ -123,17 +123,19 @@ function keyDown(event) {
 		{
 			//added as ux change
 			if (curLevel == level.MENU) {
+			window.NetCastSetPageLoadingIcon('enabled');
 				var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
 				window.location =g;
 			}else{
-				var g = $('#termsconditions a').attr('href');
+				var g = $('.termsconditions a').attr('href');
 				window.location =g;
 			}
 			break;
 		}
 		case VK_BACK:
 		{
-		  window.location = 'travel';
+			window.NetCastSetPageLoadingIcon('enabled');
+			window.history.back();
 		break;
 		}
 	}

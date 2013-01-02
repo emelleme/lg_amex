@@ -27,7 +27,7 @@
 		
 		$Layout
 		 <a href="#" id="yesno">Normal test with yes and no</a>
-		 <div id="loading" title="Dialog Title">Loading...</div>
+		 
 	</div>
 </body>
 </html>

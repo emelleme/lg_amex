@@ -8,9 +8,9 @@ CUR_POS = 1;
 //Current Level
 curLevel = level.TERMS;
 $(document).ready(function() {
-	$('.backbtn').on('click', function(e){
+	$('a.backbtn').on('click', function(e){
 		window.history.back();
-		//return false;
+		return false;
 	});
 	$('.backbtn').addClass('hover');
 
@@ -113,8 +113,9 @@ function keyDown(event) {
 		{
 			//added as ux change
 			if (curLevel == level.MENU) {
-				var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-				window.location =goto;
+			window.NetCastSetPageLoadingIcon('enabled');
+				var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
+				window.location =g;
 			}else{
 				window.history.back();
 			}
@@ -122,7 +123,8 @@ function keyDown(event) {
 		}
 		case VK_BACK:
 		{
-		  window.history.back();
+			window.NetCastSetPageLoadingIcon('enabled');
+			window.history.back();
 		break;
 		}
 	}

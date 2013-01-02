@@ -18,12 +18,12 @@
 			
 			
 			<div class="card-uno">
-			
+			 <div>
 				<img src="{$BaseHref}/themes/v1/images/featuredcards-rewardsgold.jpg" class="card-image" alt="Rewards Gold Card" />
 
 				<h1>Premier Rewards<br>Gold Card</h1>
 				<h2>Earn More. You've Earned It.<br><span class="blue">Call 1-800-AXP-GOLD</span></h2>
-				
+			</div>
 				<ul>
 				<li>Spend $2,000 on your Card in your<br>first 3 months of Card membership<br>and earn 25,000 points</li>
 				<li>Also, enjoy a $0 introductory annual<br>fee for the first year, then $175</li>
@@ -53,21 +53,21 @@
 			</div>
 			
 			<div style="clear: both;"></div>
-			
+		
 			
 			<div class="card-footers">
 			
 				<div class="card-footer-one">
-				<p>Shop for gifts with confidence knowing <span class="bold">Purchase Protection</span><sup>1</sup> can protect eligible items for up to 90 days from the date of purchase if stolen or accidentally damaged.</p>
+				<p>Shop with confidence knowing <span class="benton-bold">Purchase Protection</span><sup>1</sup> can protect eligible items<br>for up to 90 days from the date of purchase if stolen or accidentally damaged.</p>
 				</div>
 				
 				<p class="card-footer-two"><sup>1</sup> Purchase Protection is underwritten by AMEX Assurance Company, Administrative Office, Phoenix, AZ. Coverage is determined by the terms, conditions, and exclusions of Policy AX0951 or Policy PP-IND and is subject to change with notice. This document does not supplement or replace the Policy.</p>
 				
-				<p id="termsconditions" style="float: right; margin: 15px 78px 0 0;"><a class="termsbtn" href="terms.html">Terms &#38; Conditions</a></p>
+				<p class="termsconditions" style="float: right; margin: 15px 78px 0 0;"><a class="termsbtn" href="terms.html">Terms &#38; Conditions</a></p>
 			
 			</div>
 			
-			
+		</div>
 			<!--img src="{$BaseHref}/themes/v1/images/featuredcards-rewardsgold.jpg" class="card-image" alt="Rewards Gold Card" />
 			
 			<div style="float: left;">
@@ -102,7 +102,7 @@
 			
 			<div class="card-footers">
 			
-				<p class="card-footer-one">Shop for gifts with confidence knowing <span class="teal">Purchase Protection<sup>1</sup></span> can protect eligible items for up to 90 days from the date of purchase if stolen or accidentally damaged.</p>
+				<p class="card-footer-one">Shop with confidence knowing <span class="benton-bold">Purchase Protection<sup>1</sup></span> can protect eligible items<br>for up to 90 days from the date of purchase if stolen or accidentally damaged.</p>
 				
 				<p class="card-footer-two"><sup>1</sup> Purchase Protection is underwritten by AMEX Assurance Company, Administrative Office, Phoenix, AZ. Coverage is determined by the terms, conditions, and exclusions of Policy AX0951 or Policy PP-IND and is subject to change with notice. This document does not supplement or replace the Policy.</p>
 			
@@ -119,13 +119,13 @@
 </div>
 
 <!-- Footer -->
-<div class="navbar navbar-fixed-bottom">
+<div id="cardsNav" class="navbar navbar-fixed-bottom">
 	<div class="menubar-inner">
 		<div class="container">
 		<ul>
-			<li><a class="navbtn" href="travel.html">Travel Tips</a>
-			<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
-			<li><a class="navbtn" href="videos.html">Video Gallery</a>
+			<li><a class="navbtn" data-page="travel" href="travel.html">Travel Ideas</a>
+			<li class="center"><a class="navbtn" data-page="recipes" href="recipes.html">Party Recipes</a>
+			<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
 		</ul>
 		<div style="clear: both;"></div>
 		</div>

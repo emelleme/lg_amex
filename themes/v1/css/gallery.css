@@ -64,16 +64,16 @@ left: 1000px;
 
 div.gallery-items {width: 963px; position: absolute; top: 140px; left: 160px;}
 
-.gallery-items h2 {font: 30px/30px BentonSansBold; color: #19a699;}
+.gallery-items h2 {font: 30px/30px BentonSansBold; color: #782170;}
 
-.gallery-items .full-recipe {background: #ededed; width: 963px; height: 300px; margin: 9px 0;}
+.gallery-items .full-recipe {background: #ededed; width: 923px; height: 300px; margin: 9px 18px;}
 
 .gallery-items .full-recipe ul {width: 400px; float: left; margin: 27px 0 18px 55px;}
 .gallery-items .full-recipe ul li {font: 19px/21px BentonSans; color: #818181;}
 .gallery-items .full-recipe p {font: 19px/21px BentonSans; color: #818181; margin: 0 30px;}
 
-.gallery-items .para-one {font: 23px/23px BentonSansBold; color: #19a699; text-align: left; width: 750px; margin: 12px 0 6px 0;}
-.gallery-items .para-two {font: 14px/16px BentonSans; color: #818181; text-align: left; width: 750px;}
+.gallery-items .para-one {font: 23px/23px BentonSansBold; color: #782170; text-align: left; width: 750px; margin: 21px 0 6px 0;}
+.gallery-items .para-two {font: 14px/14px TradeGothic; color: #818181; text-align: left; width: 750px;}
 
 
 /* SMALL BUSINESS SATURDAYS */

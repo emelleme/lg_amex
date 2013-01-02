@@ -30,10 +30,17 @@ $(document).ready(function() {
 	$('.navbtn').focus(function() {
  		clearActive();
 	});
+	
+	$('.termsconditions a').hover(function(){
+		clearActive();
+		$('.termsconditions a').addClass('hover');
+	},function(){
+		
+	});
 
 	$('.backbtn').hover(function(){
 		clearActive();
-		$('#termsconditions a').addClass('hover');
+		$('.termsconditions a').addClass('hover');
 		$('.backbtn').addClass('hover');
 		curLevel = level.TERMS;
 	});
@@ -92,7 +99,7 @@ function keyDown(event) {
 				$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
 			}
 			if (curLevel == level.TERMS) {
-				$('#termsconditions').addClass('hover');
+				$('.termsconditions').addClass('hover');
 				CUR_POS = 2;
 			}
 			break;

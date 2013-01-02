@@ -36,7 +36,7 @@
 </div>
 <div id="main-area">
 	<section id="mini-gallery" class="row">
-		<div id="gal" class="span12" style="width: 1037px; height: 70px; position: relative; top: 20px; left: 138px;">
+		<div id="gal" class="span12" style="width: 1037px; height: 70px; position: relative; top: 50px; left: 138px;">
 		
 			<div class="mini-gallery-arrow-l arrows" id="news_arrowleft">
 				<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
@@ -66,7 +66,7 @@
 					<% if Content %>
 						<div class="recipes-main">
 							<h2>$Title.RAW</h2>
-							<p>$Content</p>
+							<p>$Content.RAW</p>
 							<p><span class="benton-bold">SELECT for more details</span></p>
 						</div>
 						<div class="sms-footer" style="width: 987px; height: 250px; position: absolute; top: 255px; left: 0px;">

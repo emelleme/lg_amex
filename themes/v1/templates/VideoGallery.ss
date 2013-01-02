@@ -18,7 +18,7 @@
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 	<!-- App Wrapper: 1280px x 720 (full application size) -->
-	<object type="video/mp4" id="fullPlayer" src="http://9415d76ee7de9f62f3ed-abfa988e4213bbf6e7d06542f0d11811.r69.cf2.rackcdn.com/foodieGetaways_1mbps.mp4" width="1280" height="720">
+	<object type="application/x-netcast-av" id="fullPlayer" src="" width="1280" height="720">
 	</object>
 
 	
@@ -41,11 +41,11 @@
 			<section id="content-new" class="row">
 				
 					<div id="showcase-container">
-						<div class="gallery-arrow-l arrows" id="news_arrowleft">
+						<div class="gallery-arrow-l arrows" id="videos_arrowleft">
 							<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 
-						<div style="width: 979px;height:400px;margin: 36px 0 0 36px; overflow: hidden;">
+						<div style="width: 979px;height:400px;margin: 18px 0 0 36px; overflow: hidden;">
 
 							<div id="image-scroller">
 							<% loop videoPanels %>
@@ -62,9 +62,11 @@
 							</div>
 						</div>
 
-						<div class="gallery-arrow-r arrows" id="news_arrowright">
+						<div class="gallery-arrow-r arrows" id="videos_arrowright">
 						<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
+						
+						<p class="termsconditions" style="float: right; margin: 18px 43px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p>
 
 					</div>
 					<!-- End showcase container -->
@@ -77,7 +79,7 @@
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" href="travel.html">Travel Tips</a>
+				<li><a class="navbtn" href="travel.html">Travel Ideas</a>
 				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
 				<li><a class="navbtn" href="cards.html">See Cards</a>
 			</ul>
@@ -91,8 +93,8 @@
 			<div id="videoMenu" class="navbar navbar-fixed-bottom">
 				<div class="videobar-inner">
 				<div id="VideoMenuContent" class="container">
-					<h2 class="left" id="currentVideoTitle" style="padding-bottom:20px;padding-left:10px">FOODIE GETAWAYS</h2>
-					<h2 class="right" id="videoPlayState"  style="padding-bottom:20px;padding-right:10px">0:01 / 0:35</h2></div>
+					<h2 class="left" id="currentVideoTitle" style="padding-bottom:20px;padding-left:10px;width:400px">FOODIE GETAWAYS</h2>
+					<h2 class="right" id="videoPlayState"  style="padding-bottom:20px;padding-right:10px;width:180px">0:01 / 0:35</h2></div>
 					<div style="clear: both;"></div>
 				</div>
 				</div>

@@ -10,7 +10,7 @@
 
 * {
 
-	font-family:LG Display_Eng_Kor, LG Display;
+	font-family: BentonSans;
 
 	margin : 0px 0 0 0px;
 
@@ -142,9 +142,9 @@ width: 1240px;
 
 a.navbtn {width: 345px; height: 46px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 20px/46px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 
-a.navbtn.active {background: #19a699; color: #fff;}
+a.navbtn.active {background: #782170; color: #fff;}
 
-a.navbtn.hover {background: #19a699; color: #fff; height: 46px; width: 345px; line-height: 46px;}
+a.navbtn.hover {background: #782170; color: #fff; height: 46px; width: 345px; line-height: 46px;}
 
 
 
@@ -154,13 +154,13 @@ a.navbtn.noHover {width: 345px; height: 46px; -webkit-border-radius: 3px; -moz-b
 
 a.termsbtn {width: 176px; height: 33px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 15px/39px BentonSansBold; text-decoration: none; text-transform: uppercase; display: inline-block; text-align:center;}
 
-a.termsbtn.hover {background: #19a699; color: #fff;}
+a.termsbtn.hover {background: #782170; color: #fff;}
 
 
 
 a.backbtn {width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 
-a.backbtn.hover{background: #19a699; width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+a.backbtn.hover{background: #782170; width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 
 
 
@@ -451,14 +451,10 @@ background-repeat: repeat-x;
 -moz-border-radius: 4px;
 
 border-radius: 4px;
+border-top: 1px solid rgba(0, 0, 0, 0.2);
 
-filter: progid:dximagetransform.microsoft.gradient(startColorstr='#333333', endColorstr='#222222', GradientType=0);
-
--webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-
--moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-
-box-shadow: 1px 1px 8px #000000;
+-webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
+box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
 
 }
 
@@ -601,7 +597,7 @@ color: #999;
 
 	background:#ffffff;
 
-	position: relative; 
+	position: absolute; 
 
 	height: 80px;
 
@@ -617,7 +613,7 @@ color: #999;
 
 	background-repeat: no-repeat;*/
 
-	font-family: BentonSansLight;
+	font-family: BentonSans;
 
 	font-size: 41px;
 
@@ -647,9 +643,10 @@ color: #999;
 
 #header-logo{
 
-	position: relative;
+	position: absolute;
 
 	height: 99px;
+	right:10px;
 
 }
 
@@ -767,21 +764,17 @@ color: #999;
 
 }
 
-
+#main-area{
+	position: absolute;
+	top: 110px;
+}
 
 #main-copy{
-
-	background:#ffffff;
-
-	position: relative; 
-
-	width:500; 
-
-	left:120px;
-
-	margin-top: 25px;
-
-	margin-left: 30px;
+	background: #ffffff;
+	position: absolute;
+	width: 500;
+	left: 130px;
+	top: 140px;
 
 }
 
@@ -1213,7 +1206,7 @@ div.month{
 
 #twitter_3-2 p{
 
-font-size: 23px;
+font-size: 22px;
 
 line-height: auto;
 
@@ -1237,6 +1230,7 @@ line-height: auto;
 
 }
 
+.twitter-text p {margin-top: 9px;}
 
 
 #main-mosaic{
@@ -1748,7 +1742,7 @@ animation: blinkButton 0.7s;
 
 
 
-	#image_6-3.activeImage a	{background: #19a699; color: #fff;}
+	#image_6-3.activeImage a	{background: #782170; color: #fff;}
 
 
 
@@ -1932,9 +1926,13 @@ sup {top: -0.25em !important;}
 
 
 
-#featuredcards {width: 1046px !important; margin-top: 30px; margin-left: -15px;}
+#featuredcards {
+	position: absolute;
+left: 100px;
+top: 140px;
+width: 1046px !important;}
 
-#featuredcards h1 {font: 27px/30px BentonSansBold; color: #36bbaf; margin: 0 0 3px 0;}
+#featuredcards h1 {font: 27px/30px BentonSansBold; color: #782170; margin: 0 0 3px 0;}
 
 #featuredcards h2 {font: 22px/25px BentonSans; color: #555; margin: 0 0 0 0;}
 
@@ -1942,13 +1940,13 @@ sup {top: -0.25em !important;}
 
 
 
-#featuredcards .card-uno {width: 500px; float: left;}
+#featuredcards .card-uno {width: 510px; float: left;}
 
 #featuredcards .card-dos {width: 450px; float: right; margin: 0 75px 0 0;}
 
 
 
-.card-image {float: left; margin: -15px 15px 12px -24px;}
+.card-image {float:left;margin: -15px 25px 12px -34px;}
 
 #featuredcards .blue {color: #002663; font-family: BentonSansMedium;}
 
@@ -1966,11 +1964,11 @@ sup {top: -0.25em !important;}
 
 #featuredcards .card-footers {margin: 12px 0 0 24px;}
 
-#featuredcards .card-footer-one {background: url('../images/featuredcards-tealbox.png') no-repeat; width: 970px; height: 75px;}
+#featuredcards .card-footer-one {background: url('../images/featuredcards-purplebox.png') no-repeat; width: 970px; height: 75px;}
 
-#featuredcards .card-footer-one p {padding: 15px 21px 0 81px; font: 21px/23px BentonSansMedium; color: #fff;}
+#featuredcards .card-footer-one p {padding: 14px 21px 0 96px; font: 21px/23px BentonSansMedium; color: #fff;}
 
-#featuredcards .card-footer-two {font: 14px/17px TradeGothic; margin: 9px 0 0 81px; width: 650px; float: left;}
+#featuredcards .card-footer-two {font: 14px/17px TradeGothic; margin: 9px 0 0 78px; width: 650px; float: left;}
 
 
 
@@ -2192,6 +2190,32 @@ margin: -15px 162px 0 0;
 
 }
 
+.termsconditions{
+
+text-align: right;
+
+margin: -15px 162px 0 0;	
+
+}
+
+
+
+.termsconditions a, .termsconditions-news a{
+
+
+
+	/*background-image: url('../images/termsandconditions.png');
+
+	background-repeat: no-repeat;*/
+
+	font-family: TradeGothic;
+
+	font-size: 19px;
+
+	text-transform: uppercase;
+
+}
+
 
 
 
@@ -2332,6 +2356,46 @@ margin: -15px 162px 0 0;
 
 }
 
+#videos_arrowleft {
+
+	background-image: url('../images/arrow_leftnew.png');
+
+	background-repeat: no-repeat;
+
+
+
+}
+
+
+
+#videos_arrowleft:hover, #videos_arrowleft.activeImage{
+
+		background-image: url('../images/arrow_leftnew-active.png');
+
+		background-repeat: no-repeat;
+
+}
+
+
+
+#videos_arrowright {
+
+	background-image: url('../images/arrow_rightnew.png');
+
+	background-repeat: no-repeat;
+
+}
+
+
+
+#videos_arrowright:hover, #videos_arrowright.activeImage{
+
+		background-image: url('../images/arrow_rightnew-active.png');
+
+		background-repeat: no-repeat;
+
+}
+
 
 
 #showcase-container{
@@ -2428,6 +2492,7 @@ font-family: BentonSansMedium;
 
 }
 
+#panel2 h3 {margin-left: -14px;}
 
 
 #panel3{
@@ -2442,7 +2507,7 @@ font-family: BentonSansMedium;
 
 }
 
-
+#panel4 h3 {margin-left: -14px;}
 
 #panel5{
 
@@ -2702,12 +2767,14 @@ margin-right: 49px;
 
 
 
-.recipes-main {background: url('../images/recipes-back.png') no-repeat; width: 578px; height: 253px; float: left;}
+.recipes-main {width: 578px; height: 305px; float: left;}
 
 .recipes-main h2 {font: 27px/30px BentonSansBold; color: #fff; padding: 18px 18px 15px 18px;}
 
 .recipes-main p {font: 24px/33px BentonSans; color: #fff; padding: 0 18px 3px 18px;}
 
+
+.galleryContent {background: #782170 url('../images/recipes-back.png') no-repeat top right;}
 
 
 #recipe-footer {position: absolute; top: 485px; left: 261px; width: 900px;}
@@ -2718,17 +2785,18 @@ margin-right: 49px;
 
 
 
-.sms-footer {margin-top: 0;}
+.sms-footer {margin-top: 52px;}
 
-.sms-footer .para-one {font: 23px/23px BentonSansBold; color: #19a699; text-align: left; width: 750px; margin: 12px 0 6px 0;}
+.sms-footer .para-one {font: 23px/23px BentonSansBold; color: #782170; text-align: left; width: 750px; margin: 21px 0 6px 0;}
 
-.sms-footer .para-two {font: 14px/16px BentonSans; color: #818181; text-align: left; width: 750px;}
+.sms-footer .para-two {font: 14px/14px TradeGothic; color: #818181; text-align: left; width: 750px;}
 
 
-#sync-footer {position: absolute; top: 260px; left: 30px; width: 900px;}
+#sync-footer {position: absolute; top: 252px; left: 0; padding-left: 30px; padding-top: 8px; width: 920px; background: #ffffff;}
 
 #sync-footer .para-one {font: 24px/26px BentonSans; color: #818181;}
 
 #sync-footer .para-two {font: 16px/17px TradeGothic; color: #818181; text-align: left; width: 750px;}
 
-#sync-footer .syncoffersgreen {color: #19a699; font-weight:bold;}
+#sync-footer .syncoffersgreen {color: #19a699; font-family: BentonSansBold;}
+#sync-footer .syncofferspurple {color: #782170; font-family: BentonSansBold;}

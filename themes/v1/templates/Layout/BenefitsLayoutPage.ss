@@ -2,8 +2,8 @@
 	<!-- header area (1024 x 80)-->
 	<section  style="padding-left:128px;" id="header-new" class="row">
 		<div id="header-title" class="span6">
-			<h1>Holiday Travel Made Easy.</h1>
-			<h3>Use your remote to explore helpful travel tips.</h3>
+			<h1>New Year's Resolution Trips.</h1>
+			<h3>Use your remote to find great travel locations.</h3>
 		</div>
 
 		<div id="header-logo" style="margin:0px 0px 0px 0px" class="span6">
@@ -47,7 +47,7 @@
 							</div>
 							<div id="twitter_$Position" class="$BoxClass">
 								<div class="twitter-text">
-									<p>$BoxText</p>
+									$BoxText
 								</div>
 							</div>
 							<% if LegalCopy %>
@@ -62,9 +62,10 @@
 
 				
 			<% loop allBenefits %>
+				<% if Position = 6-2 %>
 			<div id="image_6-3" style="" data-wingcolor="$WingColor">
 				<a class="termsbtn" href="terms.html">Terms &#38; Conditions</a>
-				<% if Position = 6-2 %>
+				
 				<div id="benefit_6-3" class="hidden">
 					<div class="benefit-title">
 						<!--<img alt="Welcome In." src="http://dev.amxp.cc/assets/images/entertainmentaccess.png"/>-->
@@ -74,31 +75,31 @@
 						<!--<img alt="Welcome In." src="http://dev.amxp.cc/assets/images/entertainmentaccess_bodycopy.png"/>-->
 						<h4>$Description.RAW</h4>
 					</div>
-					<div id="twitter_$Position" class="$BoxClass">
+					<div id="twitter_$Position_" class="$BoxClass">
 						<div class="twitter-text">
 							<!--<img alt="Welcome In." src="http://dev.amxp.cc/assets/images/entertainmentaccess_tweet.png"/>-->
-							<p>$BoxText.RAW</p>
+							$BoxText.RAW
 						</div>
 					</div>
-
 					<div class="legalcopy">
 						$LegalCopy.RAW
 					</div>
 				</div>
+			</div>
 				<% end_if %>
 			<% end_loop %>
-			</div>
+		</div>
 				
 	</div>
 	</section>	
 </div>
-<div class="navbar navbar-fixed-bottom">
+<div id="travelNav" class="navbar navbar-fixed-bottom">
 			<div class="menubar-inner">
 			<div class="container">
 			<ul>
-				<li><a class="navbtn" href="videos.html">Video Gallery</a>
-				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
-				<li><a class="navbtn" href="cards.html">See Cards</a>
+				<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
+				<li class="center"><a data-page="recipes" class="navbtn" href="recipes.html">Party Recipes</a>
+				<li><a data-page="cards" class="navbtn" href="cards.html">See Cards</a>
 			</ul>
 				
 			<div style="clear: both;"></div>

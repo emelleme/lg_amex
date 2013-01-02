@@ -51,7 +51,7 @@ $(document).ready(function(){
 
 	$('.termsbtn').hover(function(){
 		clearActive();
-		$('#termsconditions a').addClass('hover');
+		$('.termsconditions a').addClass('hover');
 	},function(){
 		
 	});
@@ -261,19 +261,19 @@ function keyDown(event) {
 				$('.arrows').removeClass('activeImage');
 				$('#icon-'+NEWS_POS).css('background-image',"url("+$('#icon-'+NEWS_POS).attr('data-thumbnailinactive')+")");
 				$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-				$('#termsconditions a').removeClass('hover');
+				$('.termsconditions a').removeClass('hover');
 			}
 			if (curLevel == level.GALLERY){
 				//Go to terms
 				curLevel = level.TERMS;
 				$('.arrows').hide();
 				$('#icon-'+NEWS_POS).css('background-image',"url("+$('#icon-'+NEWS_POS).attr('data-thumbnailinactive')+")");
-				$('#termsconditions a').addClass('hover');
+				$('.termsconditions a').addClass('hover');
 			}else if(curLevel == level.GALLERYITEM){
 				//Move Down to menu
 				curLevel = level.TERMS;
 				$('.backbtn').removeClass('hover');
-				$('#termsconditions a').addClass('hover');
+				$('.termsconditions a').addClass('hover');
 				
 			}
 			break;
@@ -287,7 +287,7 @@ function keyDown(event) {
 				$('.backbtn').addClass('hover');
 				}else{
 				curLevel = level.TERMS;
-				$('#termsconditions a').addClass('hover');
+				$('.termsconditions a').addClass('hover');
 				}
 				$('.arrows').hide();
 				
@@ -296,10 +296,10 @@ function keyDown(event) {
 				if(GALLERYITEMACTIVE == true){
 				curLevel = level.GALLERYITEM;
 				$('.backbtn').addClass('hover');
-				$('#termsconditions a').removeClass('hover');
+				$('.termsconditions a').removeClass('hover');
 				}else{
 					$('#icon-'+NEWS_POS).css('background-image',"url("+$('#icon-'+NEWS_POS).attr('data-thumbnailactive')+")");
-					$('#termsconditions a').removeClass('hover');
+					$('.termsconditions a').removeClass('hover');
 					$('.arrows').show();
 					setArrows();
 					
@@ -312,13 +312,12 @@ function keyDown(event) {
 		{
 			//added as ux change
 			if (curLevel == level.MENU) {
-				$.post('lg/userData',logger,function(logger){
-					var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-					window.location =goto;
-				});
+				window.NetCastSetPageLoadingIcon('enabled');
+					var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
+					window.location =g;
 			}
 			if(curLevel == level.TERMS){
-				var g = $('#termsconditions a').attr('href');
+				var g = $('.termsconditions a').attr('href');
 				window.location =g;
 			}
 			if(curLevel == level.GALLERY){
@@ -353,7 +352,8 @@ function keyDown(event) {
 		}
 		case VK_BACK:
 		{
-			window.location = 'travel';
+			window.NetCastSetPageLoadingIcon('enabled');
+			window.history.back();
 		break;
 		}
 	}
@@ -369,7 +369,7 @@ function clearActive(){
 	$('.activeImage').removeClass('activeImage');
 	$('.arrows').hide();
 	$('.hover, .backbtn').removeClass('hover');
-	$('#termsconditions a').removeClass('hover');
+	$('.termsconditions a').removeClass('hover');
 	$('#icon-'+NEWS_POS).css('background-image',"url("+$('#icon-'+NEWS_POS).attr('data-thumbnailinactive')+")");
 	$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
 }

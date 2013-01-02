@@ -1,150 +1,115 @@
-var widgetAPI = new Common.API.Widget();
-var tvKey = new Common.API.TVKeyValue();
-var nextPage = 'recipes.html';
-
-//Define Levels
-level = {};
-level.TERMS = 1;
-level.MENU = 2;
-
-MENU_POS = 0;
-CUR_POS = 1;
-//Current Level
-curLevel = level.TERMS;
-
-function clearActive(){
-    $('.activeImage').removeClass('activeImage');
-    $('.hover').removeClass('hover');
+Main.termsLoad = function(){
+	Main.MENU_POS = 0;
+	Main.CUR_ROW = 4;
+	Main.CUR_COL = 1;
+	Main.PREV_ROW = Main.CUR_ROW;
+	Main.PREV_COL = Main.PREV_COL;
+	Main.NEWS_POS = 1;
+	Main.clearActive();
+	Main.curLevel = Main.level.TERMS;
+	document.getElementById('anchor').onkeydown = Main.termsKeys; 
+	$('#cardsView').hide();
+	$('#travelView').hide();
+	$('#videosView').hide();
+	$('#recipesView').hide();
+	$('#termsView').show();
+	$('.backbtn').addClass('hover');
+	
 }
 
-var Main =
-{
-
-};
-
-Main.onLoad = function()
-{
-	// Enable key event processing
-	this.enableKeys();
-	widgetAPI.sendReadyEvent();
-	$('.backbtn').on('click', function(e){
-		window.history.back();
-		//return false;
-	});
-	$('.backbtn').addClass('hover');
-
-	$('.navbtn').hover(function(){
-		clearActive();
-		NAV_HOVER = true;
-		$(this).addClass('hover');
-		curLevel = level.MENU;
-		MENU_POS = $(this).parent().index();
-	},function(){
-		NAV_HOVER = false;
-	});
-
-	$('.navbtn').focus(function() {
- 		clearActive();
-	});
-
-	$('.backbtn').hover(function(){
-		clearActive();
-		$('#termsconditions a').addClass('hover');
-		$('.backbtn').addClass('hover');
-		curLevel = level.TERMS;
-	});
-};
-
-Main.onUnload = function()
-{
-	
-};
-
-Main.enableKeys = function()
-{
-	document.getElementById("anchor").focus();
-};
-
-Main.keyDown = function()
-{
+Main.termsKeys = function(event) {
 	var keyCode = event.keyCode;
-
-	switch(keyCode)
-	{
+	alert("Key pressed: " + keyCode);
+	switch (keyCode) {
 		case tvKey.KEY_RETURN:
 		case tvKey.KEY_PANEL_RETURN:
+			//Return to Travel Page//
+			event.preventDefault();
+			if(Main.prevLevel == 'cards'){
+				Main.cardsLoad();
+			}else if(Main.prevLevel == 'recipes'){
+				Main.recipesLoad();
+			}else if(Main.prevLevel == 'travel'){
+				Main.travelLoad();
+			}
 			alert("RETURN");
-			widgetAPI.sendReturnEvent();
+			//widgetAPI.sendReturnEvent();
 			break;
 		case tvKey.KEY_LEFT:
-			if (curLevel == level.MENU) {
-				if (MENU_POS > 0){
+			if (Main.curLevel == Main.level.MENU) {
+				if (Main.MENU_POS > 0){
 					//Move left
-					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-					MENU_POS = MENU_POS-1;
-					clearActive();
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+					$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					Main.MENU_POS = Main.MENU_POS-1;
+					Main.clearActive();
+					$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					
 				}
-			}else if (curLevel == level.TERMS) {
+			}
+
+			if (Main.curLevel == Main.level.TERMS) {
 				// Do nada
 			}
 			break;
 		case tvKey.KEY_RIGHT:
-			alert("RIGHT");
-			if (curLevel == level.MENU) {
-                if (MENU_POS < 2){
-                    //Move Right
-                    $('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-                    MENU_POS = MENU_POS+1;
-                    clearActive();
-                    $('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-                }
-            }else{
-                curLevel = level.MENU;
-                clearActive();
-                $('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-            }
-			break;
-		case tvKey.KEY_UP:
-			alert("UP");
-			if (curLevel == level.MENU) {
-				//return to matrix
-				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-				curLevel = level.TERMS;
-				clearActive();
-				$('.backbtn').addClass('hover');
+		
+			if (Main.curLevel == Main.level.MENU) {
+				if (Main.MENU_POS < 2){
+					//Move Right
+					$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					Main.MENU_POS = Main.MENU_POS+1;
+					Main.clearActive();
+					$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+				}
+			}
+			if (Main.curLevel == Main.level.TERMS) {
+				$('#termsconditions').addClass('hover');
 				CUR_POS = 2;
-			}else {
-				
 			}
 			break;
 		case tvKey.KEY_DOWN:
-			alert("DOWN");
-			if (curLevel == level.MENU) {
+			if (Main.curLevel == Main.level.MENU) {
 				//chill
+			}else if (Main.curLevel == Main.level.TERMS) {
+				Main.curLevel = Main.level.MENU;
+				Main.clearActive();
+				$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 			}
-			if (curLevel == level.TERMS) {
-				
-				curLevel = level.MENU;
-				clearActive();
-				$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-				
+			break;
+		case tvKey.KEY_UP:
+			if (Main.curLevel == Main.level.MENU) {
+				//return to matrix
+				$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+				Main.curLevel = Main.level.TERMS;
+				Main.clearActive();
+				$('.backbtn').addClass('hover');
+				CUR_POS = 2;
 			}
 			break;
 		case tvKey.KEY_ENTER:
 		case tvKey.KEY_PANEL_ENTER:
-			alert("ENTER");
 			//added as ux change
-			if (curLevel == level.MENU) {
-				var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-				window.location =goto;
+			if (Main.curLevel == Main.level.MENU) {
+				var g = $('#termsNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
+				if(g == 'travel'){
+		  			Main.travelLoad();
+				}else if(g == 'videos'){
+					Main.videosLoad();
+				}else if(g == 'recipes'){
+					Main.recipesLoad();
+				}
 			}else{
-				window.history.back();
+				if(Main.prevLevel == 'cards'){
+					Main.cardsLoad();
+				}else if(Main.prevLevel == 'recipes'){
+					Main.recipesLoad();
+				}else if(Main.prevLevel == 'travel'){
+					Main.travelLoad();
+				}
 			}
 			break;
 		default:
 			alert("Unhandled key");
 			break;
 	}
-};
+}

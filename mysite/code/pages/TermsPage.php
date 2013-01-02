@@ -12,7 +12,18 @@ class TermsPage extends Page
 	);
 
 	public static $has_one = array(
+		'TermsCopy' => 'Image'
 	);
+	
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
+		$tc = new UploadField('TermsCopy');
+		$tc->setFolderName('termscopy');
+		$fields->addFieldToTab("Root.Main", $tc);
+		$fields->removeFieldFromTab('Root.Main', 'Content');
+		
+		return $fields;
+	}
 
 }
 #doc

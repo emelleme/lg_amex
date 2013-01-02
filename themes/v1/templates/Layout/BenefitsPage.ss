@@ -1,12 +1,12 @@
 <div id="mainArea">
 	<!-- header area (1024 x 80)-->
 	<section  style="padding-left:128px;" id="header-new" class="row">
-		<div id="header-title" class="span6">
+		<div id="header-title">
 			<h1>Holiday Travel Made Easy.</h1>
 			<h3>Use your remote to explore helpful travel tips.</h3>
 		</div>
 
-		<div id="header-logo" style="margin:0px 0px 0px 0px" class="span6">
+		<div id="header-logo" style="margin:0px 0px 0px 0px">
 		<img src="http://dev.amxp.cc/assets/images/logo.png" alt="Founding Partner">
 		</div>
 	</section>

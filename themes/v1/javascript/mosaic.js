@@ -451,7 +451,7 @@ function keyDown(event) {
 					clearActive();
 					CUR_ROW = CUR_ROW;
 					curLevel = level.MENU;
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+					$('#travelNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
 				}else if (CUR_ROW == 5){
 					//At the bottom, move to the footer or terms of service
 					if(CUR_COL > 2){
@@ -463,7 +463,7 @@ function keyDown(event) {
 						CUR_ROW = CUR_ROW;
 						curLevel = level.MENU;
 						$('.termsbtn').removeClass('hover');
-						$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+						$('#travelNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
 					}
 				}else{
 					//Move to next Postion
@@ -610,41 +610,22 @@ function keyDown(event) {
 			  	//Open video modal
 			  	
 			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
-			  	$.post('lg/userData',logger,function(logger){
-			  		var goto = $('#image_6-3 a').attr('href');
-					window.location =goto;
-			  	});
+			  		var g = $('#image_6-3 a').attr('href');
+					window.location =g;
 			  }
 			}	
 			else if (curLevel == level.MENU) {
 
-				$('#loading').dialog({
-	                autoOpen: true,
-	                resizable: false,
-	                draggable: false,
-	                closeOnEscape: true,
-	                width: 'auto',
-	                minHeight: 80,
-	                maxHeight: 200,
-	                title: 'Now Loading',
-	                modal: true
-	            });
-	            $('.ui-dialog-titlebar').hide();
-				$.post('lg/userData',logger,function(logger){
-					var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-					window.location =goto;
-				});
+				window.NetCastSetPageLoadingIcon('enabled');
+					var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
+					window.location =g;
 				
 			} else if (curLevel == level.VIDEO) {
 				//$('body').css('padding-top','48px');
-				$.post('lg/userData',logger,function(logger){
 					window.location = 'benefits';
-				});
 				
 			}else if (curLevel == level.INTROVIDEO) {
-				$.post('lg/userData',logger,function(logger){
 					window.location = 'benefits';
-				});
 				
 			}else if(curLevel == level.DIAG){
 				if(EXIT_ACTIVE == true){
@@ -660,12 +641,9 @@ function keyDown(event) {
 		}
 		case VK_BACK:
 		{
-			if(curLevel != level.DIAG ){
-				window.NetCastExit();
-			}else{
-				//Close Dialog
-				window.NetCastExit();
-			}
+			window.NetCastSetPageLoadingIcon('enabled');
+					//window.history.back();
+				window.NetCastBack();
 		break;
 		}
 	}

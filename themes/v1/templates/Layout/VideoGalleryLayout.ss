@@ -56,7 +56,7 @@
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" href="travel.html">Travel Tips</a>
+				<li><a class="navbtn" href="travel.html">Travel Ideas</a>
 				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
 				<li><a class="navbtn" href="cards.html">See Cards</a>
 			</ul>

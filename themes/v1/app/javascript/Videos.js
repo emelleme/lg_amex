@@ -1,159 +1,34 @@
-var widgetAPI = new Common.API.Widget();
-var tvKey = new Common.API.TVKeyValue();
-var pluginObj = new Common.API.Plugin();
+Main.videosLoad = function(){
+	Main.MENU_POS = 0;
+	Main.CUR_ROW = 4;
+	Main.CUR_POS = 1;
+	Main.PREV_ROW = Main.CUR_ROW;
+	Main.PREV_COL = Main.PREV_COL;
+	Main.NEWS_POS = 1;
+	Main.selectedVideo = 0;
+	Main.updateCurrentVideo(Main.NEWS_POS);
+	Main.clearActive();
 
-var Main =
-{
-    selectedVideo : 0,
-    mode : 0,
-    mute : 0,
-    
-    UP : 0,
-    DOWN : 1,
-
-    WINDOW : 0,
-    FULLSCREEN : 1,
-    
-    NMUTE : 0,
-    YMUTE : 1
-}
-
-
-//Define Levels
-level = {};
-level = {};
-level.NEWS = 1;
-
-level.MENU = 2;
-level.VIDEO = 3;
-
-MENU_POS = 0;
-NEWS_POS = 1;
-CUR_POS = 1;
-enterCount = 0;
-//Current Level
-curLevel = level.NEWS;
-
-function clearActive(){
-    $('.activeImage').removeClass('activeImage');
-    $('.hover').removeClass('hover');
-}
-
-Main.updateCurrentVideo = function (index) {
-    Player.setVideoURL(Data.getVideoURL(index));
-}
-
-
-Main.onLoad = function()
-{
-
-	window.onShow = showHandler;
+	Main.curLevel = Main.level.NEWS;
+	Main.prevLevel = Main.curLevel;
+	document.getElementById('anchor').onkeydown = Main.videosKeys; 
 	
-    if ( Player.init() && Audio.init() && Server.init() )
-    {
 
-        
-        Player.stopCallback = function()
-        {
-            /* Return to windowed mode when video is stopped
-                (by choice or when it reaches the end) */
-            Main.setWindowMode();
-        }
+	$('#cardsView').hide();
+	$('#travelView').hide();
+	$('#videosView').show();
+	$('#recipesView').hide();
+	$('#termsView').hide();
 
-        // Start retrieving data from server
-        Server.dataReceivedCallback = function()
-            {
-                /* Use video information when it has arrived */
-                Main.updateCurrentVideo();
-            }
-        Server.fetchVideoList(); /* Request video information from server */
-
-        // Enable key event processing
-        this.enableKeys();
-
-        widgetAPI.sendReadyEvent();    
-    }
-    else
-    {
-        alert("Failed to initialise");
-    }
-    var WIDGET_ID = curWidget.id;
-    alert("#################################################################################");
-    alert("############################################################################WIDGET_ID =" + WIDGET_ID);
-    alert("#################################################################################");
-    alert("#################################################################################");
-	//Todo: move to common.js
-	$('#news_arrowleft').hide();
-
-	$('#panel1,#panel2_content, #panel4_content, #panel3_content').hide();
-	$('#inactive').hide();
-};
-
-showHandler = function()
-{
-	NNaviPlugin = document.getElementById("pluginObjectNNavi");
-	alert("[APPS] : setBannerstate : 2")
-	NNaviPlugin.SetBannerState(2);
-	pluginObj.unregistKey(tvKey.KEY_VOL_UP);
-	pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
-	pluginObj.unregistKey(tvKey.KEY_MUTE);
+	$('#videos_arrowleft').hide();
+	$('#videoMenu').css('height','0px');
+	$('#videos_arrowright').show();
+	$('#panel4,#panel2, #panel3,#panel5, #panel1_content').show();
+	$('#panel1,#panel2_content, #panel4_content, #panel3_content, #panel5_content').hide();
+	$('#currentVideoTitle').html($('#panel'+Main.NEWS_POS).attr('data-title'));
 }
 
-Main.onUnload = function()
-{
-	Player.deinit();
-};
-
-Main.updateCurrentVideo = function(move)
-{
-    Player.setVideoURL( Data.getVideoURL(this.selectedVideo) );
-}
-
-Main.enableKeys = function()
-{
-	document.getElementById("anchor").focus();
-};
-
-function slideRight(keyCode){
-	if($('#panel'+Number(NEWS_POS+1)+'_content').html()!=null){
-		$('.panelHeader').show();
-		$('#panel'+NEWS_POS).show();
-		$('#panel'+NEWS_POS+'_content').hide();
-		NEWS_POS = NEWS_POS+1;
-		$('#panel'+NEWS_POS+'_content').show();
-		$('#panel'+NEWS_POS).hide();
-		if (NEWS_POS > 1) {
-			//Show Left Arrow
-			$('#news_arrowleft').show();
-			//console.log(NEWS_POS)
-		};
-		if($('#panel'+Number(NEWS_POS+1)+'_content').html()==null){
-		$('#news_arrowright').hide();
-		}
-	}
-}
-
-function slideLeft(keyCode){
-	if(NEWS_POS > 0){
-		if($('#panel'+Number(NEWS_POS-1)+'_content').html()!=null){
-			$('#panel'+NEWS_POS).show();
-			$('#panel'+NEWS_POS+'_content').hide();
-			NEWS_POS = NEWS_POS-1;
-			$('#panel'+NEWS_POS+'_content').show();
-			$('#panel'+NEWS_POS).hide();
-			if (NEWS_POS > 0) {
-				//Show Right Arrow
-				$('#news_arrowright').show();
-				//console.log(NEWS_POS);
-			};
-			if($('#panel'+Number(NEWS_POS-1)+'_content').html()==null){
-			$('#news_arrowleft').hide();
-			}
-		}
-	}
-}
-
-Main.keyDown = function()
+Main.videosKeys = function()
 {
 	var keyCode = event.keyCode;
 
@@ -162,157 +37,180 @@ Main.keyDown = function()
 		case tvKey.KEY_RETURN:
         case tvKey.KEY_PANEL_RETURN:
             alert("RETURN");
-            Player.stopVideo();
-            widgetAPI.sendReturnEvent(); 
-            break;    
-            break;
+            event.preventDefault();
+            if(Main.curLevel == Main.level.VIDEO){
+            	$('#pluginPlayer').css('z-index','0');
+	            Player.stopVideo();
+	            Main.curLevel = Main.prevLevel;
+            }else{
+            	Main.travelLoad();
+            }
+            //widgetAPI.sendReturnEvent(); 
+            break;  
 		case tvKey.KEY_PLAY:
             alert("PLAY");
 			$('#pluginPlayer').css('z-index','13000');
-            this.handlePlayKey();
+			Main.prevLevel = Main.curLevel;
+            Main.handlePlayKey();
+
             break;
             
         case tvKey.KEY_STOP:
             alert("STOP");
+            if(Main.curLevel == Main.level.VIDEO){
 			$('#pluginPlayer').css('z-index','0');
             Player.stopVideo();
+            Main.curLevel = Main.prevLevel;
+            }
             break;
             
         case tvKey.KEY_PAUSE:
             alert("PAUSE");
-            this.handlePauseKey();
+            Main.handlePauseKey();
+            $('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
             break;
             
         case tvKey.KEY_FF:
             alert("FF");
-          //  if(Player.getState() != Player.PAUSED)
-           //     Player.skipForwardVideo();
+            if(Player.getState() != Player.PAUSED)
+                Player.skipForwardVideo();
             break;
         
         case tvKey.KEY_RW:
             alert("RW");
-           // if(Player.getState() != Player.PAUSED)
-            //    Player.skipBackwardVideo();
+           if(Player.getState() != Player.PAUSED)
+            	Player.skipBackwardVideo();
             break;
-
         case tvKey.KEY_VOL_UP:
         case tvKey.KEY_PANEL_VOL_UP:
             alert("VOL_UP");
-            if ((Audio.GetOutputDevice() != "PL_AUDIO_OUTPUT_DEVICE_EXTERNAL") || (Audio.GetOutputDevice() != "PL_AUDIO_OUTPUT_DEVICE_RECEIVER"))
-            {
-                if(this.mute == 0)
+                if(Main.mute == 0)
                     Audio.setRelativeVolume(0);
-            }
-            else
-             {
-                alert("External Speaker Set... No effect!!");
-             }
             break;
             
         case tvKey.KEY_VOL_DOWN:
         case tvKey.KEY_PANEL_VOL_DOWN:
             alert("VOL_DOWN");
-            if ((Audio.GetOutputDevice() != "PL_AUDIO_OUTPUT_DEVICE_EXTERNAL") || (Audio.GetOutputDevice() != "PL_AUDIO_OUTPUT_DEVICE_RECEIVER"))
-            {
-                if(this.mute == 0)
+                if(Main.mute == 0)
                     Audio.setRelativeVolume(1);
-             }
-             else
-             {
-                alert("External Speaker Set... No effect!!");
-             }
             break;      
 
 		case tvKey.KEY_LEFT:
-			if (curLevel == level.MENU) {
-				if (MENU_POS > 0){
+			if (Main.curLevel == Main.level.MENU) {
+				if (Main.MENU_POS > 0){
 					//Move left
-					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-					MENU_POS = MENU_POS-1;
-					clearActive();
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					Main.MENU_POS = Main.MENU_POS-1;
+					Main.clearActive();
+					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					//}
 				}
 			}
-			if (curLevel == level.NEWS) {
-				$('#news_arrowleft').addClass('activeImage');
-				$('#news_arrowright').removeClass('activeImage');
-				setTimeout(function(){$('#news_arrowleft').removeClass('activeImage');},200);
-				slideLeft('left');
-				this.selectPreviousVideo(this.UP);
-				
+			if (Main.curLevel == Main.level.NEWS) {
+				$('#videos_arrowleft').addClass('activeImage');
+				$('#videos_arrowright').removeClass('activeImage');
+				setTimeout(function(){$('#videos_arrowleft').removeClass('activeImage');},200);
+				Main.slideVideosLeft('left');
+				Main.selectPreviousVideo('up');
+			}else if(Main.curLevel == Main.level.VIDEO){
+				$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			}
 			break;
 		case tvKey.KEY_RIGHT:
-			alert("RIGHT");
-			if (curLevel == level.MENU) {
-				if (MENU_POS < 2){
+			alert("RIGHT!");
+			if (Main.curLevel == Main.level.MENU) {
+				if (Main.MENU_POS < 2){
 					//Move Right
-					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-					MENU_POS = MENU_POS+1;
-					clearActive();
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					Main.MENU_POS = Main.MENU_POS+1;
+					Main.clearActive();
+					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					//}
 				}
-			}else if (curLevel == level.NEWS) {
-				$('#news_arrowright').addClass('activeImage');
-				$('#news_arrowleft').removeClass('activeImage');
-				setTimeout(function(){$('#news_arrowright').removeClass('activeImage');},200);
-				slideRight('right');
-				this.selectNextVideo(this.DOWN);
-			}else{
-				curLevel = level.NEWS;
+			}else if (Main.curLevel == Main.level.NEWS) {
+				$('#videos_arrowright').addClass('activeImage');
+				$('#videos_arrowleft').removeClass('activeImage');
+				setTimeout(function(){$('#videos_arrowright').removeClass('activeImage');},200);
+				Main.slideVideosRight('right');
+				Main.selectNextVideo('down');
+			}else if(Main.curLevel == Main.level.VIDEO){
+				$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			}
 			break;
 		case tvKey.KEY_UP:
 			alert("UP");
-			if (curLevel == level.MENU) {
+			if (Main.curLevel == Main.level.MENU) {
 				//return to matrix
-				$('#inactive').hide();
-				if(NEWS_POS > 4){
-					$('#news_arrowleft').show();
-				}else if(NEWS_POS == 1){
-					$('#news_arrowright').show();
+				Main.clearActive();
+				if(Main.NEWS_POS > 4){
+					$('#videos_arrowleft').show();
+				}else if(Main.NEWS_POS == 1){
+					$('#videos_arrowright').show();
 				}else{
-					$('#news_arrowright').show();
-					$('#news_arrowleft').show();
+					$('#videos_arrowright').show();
+					$('#videos_arrowleft').show();
 				}
-					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-					curLevel = level.NEWS;
-					clearActive();
+				$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+				Main.curLevel = Main.level.NEWS;
 				
+				
+			}else if(Main.curLevel == Main.level.VIDEO){
+				$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			}
 			break;
 		case tvKey.KEY_DOWN:
-			alert("DOWN");
-			if (curLevel == level.MENU) {
+			alert("DOWN!");
+			if (Main.curLevel == Main.level.MENU) {
 				//chill
-			}
-			if (curLevel == level.NEWS) {
+			}else if (Main.curLevel == Main.level.NEWS) {
 				//On Terms, go to Menu
 				$('#inactive').show();
-				curLevel = level.MENU;
-				$('.navbar').show();
+				Main.curLevel = Main.level.MENU;
+				$('#videosNav').show();
 				$('.arrows').hide();
 				$('.arrows').removeClass('activeImage');
-				$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+				$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+			}else if(Main.curLevel == Main.level.VIDEO){
+				$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			}
 			break;
 		case tvKey.KEY_ENTER:
 		case tvKey.KEY_PANEL_ENTER:
 			alert("ENTER");
 			//added as ux change
-			if (curLevel == level.MENU) {
-				var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-				window.location =goto;
+			if (Main.curLevel == Main.level.MENU) {
+				var g = $('#videosNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
+				if(g == 'travel'){
+		  			Main.travelLoad();
+				}else if(g == 'cards'){
+					Main.cardsLoad();
+				}else if(g == 'recipes'){
+					Main.recipesLoad();
+				}
 			}else{
 				$('#pluginPlayer').css('z-index','13000');
-				this.handlePlayKey();
+				Main.prevLevel = Main.curLevel;
+				Main.handlePlayKey();
 			}
 			break;
 		 case tvKey.KEY_MUTE:
             alert("MUTE");
-            this.muteMode();
+            Main.muteMode();
             break;
 		default:
 			alert("Unhandled key");
@@ -320,13 +218,42 @@ Main.keyDown = function()
 	}
 };
 
+
+
+Main.showHandler = function()
+{
+	var NNaviPlugin = document.getElementById("pluginObjectNNavi");
+	alert("[APPS] : setBannerstate : 2")
+	NNaviPlugin.SetBannerState(2);
+	pluginObj.unregistKey(tvKey.KEY_VOL_UP);
+	pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
+	pluginObj.unregistKey(tvKey.KEY_MUTE);
+}
+
+Main.updateCurrentVideo = function(move)
+{
+    Player.setVideoURL( Data.getVideoURL(Main.selectedVideo) );
+}
+
+Main.OnBufferingProgress = function(percent) {
+    //Draing buffering progress bar
+    $('#videoPlayState').html('Buffering '+percent+"%");
+}
+
 Main.handlePlayKey = function()
 {
     switch ( Player.getState() )
     {
         case Player.STOPPED:
-			Main.updateCurrentVideo(NEWS_POS-1);
+			Main.updateCurrentVideo(Main.NEWS_POS-1);
             Player.playVideo();
+			Main.curLevel = Main.level.VIDEO;
+			$('#mainMenu').hide();
+			
+			$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			Main.setFullScreenMode();
             break;
             
@@ -358,54 +285,54 @@ Main.selectNextVideo = function(down)
 {
     Player.stopVideo();
     
-    this.selectedVideo = (this.selectedVideo + 1) % Data.getVideoCount();
+    Main.selectedVideo = (Main.selectedVideo + 1) % Data.getVideoCount();
 
-    this.updateCurrentVideo(down);
+    Main.updateCurrentVideo(down);
 }
 
 Main.selectPreviousVideo = function(up)
 {
     Player.stopVideo();
     
-    if (--this.selectedVideo < 0)
+    if (--Main.selectedVideo < 0)
     {
-        this.selectedVideo += Data.getVideoCount();
+        Main.selectedVideo += Data.getVideoCount();
     }
 
-    this.updateCurrentVideo(up);
+    Main.updateCurrentVideo(up);
 }
 
 Main.setFullScreenMode = function()
 {
-    if (this.mode != this.FULLSCREEN)
+    if (Main.mode != Main.FULLSCREEN)
     {
         
         Player.setFullscreen();
         
-        this.mode = this.FULLSCREEN;
+        Main.mode = Main.FULLSCREEN;
     }
 }
 
 Main.setWindowMode = function()
 {
-    if (this.mode != this.WINDOW)
+    if (Main.mode != Main.WINDOW)
     {
         Player.setWindow();
         
-        this.mode = this.WINDOW;
+        Main.mode = Main.WINDOW;
     }
 }
 
 Main.toggleMode = function()
 {
-    switch (this.mode)
+    switch (Main.mode)
     {
-        case this.WINDOW:
-            this.setFullScreenMode();
+        case Main.WINDOW:
+            Main.setFullScreenMode();
             break;
             
-        case this.FULLSCREEN:
-            this.setWindowMode();
+        case Main.FULLSCREEN:
+            Main.setWindowMode();
             break;
             
         default:
@@ -417,39 +344,82 @@ Main.toggleMode = function()
 
 Main.setMuteMode = function()
 {
-    if (this.mute != this.YMUTE)
+    if (Main.mute != Main.YMUTE)
     {
-        var volumeElement = document.getElementById("volumeInfo");
-        Audio.plugin.SetSystemMute(true);
-        widgetAPI.putInnerHTML(volumeElement, "MUTE");
-        this.mute = this.YMUTE;
+        //var volumeElement = document.getElementById("volumeInfo");
+        Audio.plugin.SetUserMute(true);
+        $('#videoPlayStatus').html('MUTED');
+        Main.mute = Main.YMUTE;
     }
 }
 
 Main.noMuteMode = function()
 {
-    if (this.mute != this.NMUTE)
+    if (Main.mute != Main.NMUTE)
     {
-        Audio.plugin.SetSystemMute(false); 
+        Audio.plugin.SetUserMute(false); 
         Display.setVolume( Audio.getVolume() );
-        this.mute = this.NMUTE;
+        Main.mute = Main.NMUTE;
     }
 }
 
 Main.muteMode = function()
 {
-    switch (this.mute)
+    switch (Main.mute)
     {
-        case this.NMUTE:
-            this.setMuteMode();
+        case Main.NMUTE:
+            Main.setMuteMode();
             break;
             
-        case this.YMUTE:
-            this.noMuteMode();
+        case Main.YMUTE:
+            Main.noMuteMode();
             break;
             
         default:
             alert("ERROR: unexpected mode in muteMode");
             break;
     }
+}
+
+Main.slideVideosLeft = function (keyCode){
+	if(Main.NEWS_POS > 0){
+		if($('#panel'+Number(Main.NEWS_POS-1)+'_content').html()!=null){
+			$('#panel'+Main.NEWS_POS).show();
+			$('#panel'+Main.NEWS_POS+'_content').hide();
+			Main.NEWS_POS = Main.NEWS_POS-1;
+			$('#panel'+Main.NEWS_POS+'_content').show();
+			$('#panel'+Main.NEWS_POS).hide();
+			if (Main.NEWS_POS > 0) {
+				//Show Right Arrow
+				$('#videos_arrowright').show();
+				console.log(Main.NEWS_POS);
+			};
+			if($('#panel'+Number(Main.NEWS_POS-1)+'_content').html()==null){
+			$('#videos_arrowleft').hide();
+			}
+			$('#currentVideoTitle').html($('#panel'+Main.NEWS_POS).attr('data-title'));
+		}
+	//logger.keys.push("news-"+Main.NEWS_POS+":"+keyCode);
+	}
+}
+
+Main.slideVideosRight = function (keyCode){
+	alert('Sliding Right!');
+	if($('#panel'+Number(Main.NEWS_POS+1)+'_content').html()!=null){
+		$('.panelHeader').show();
+		$('#panel'+Main.NEWS_POS).show();
+		$('#panel'+Main.NEWS_POS+'_content').hide();
+		Main.NEWS_POS = Main.NEWS_POS+1;
+		$('#panel'+Main.NEWS_POS+'_content').show();
+		$('#panel'+Main.NEWS_POS).hide();
+		if (Main.NEWS_POS > 1) {
+			//Show Left Arrow
+			$('#videos_arrowleft').show();
+			console.log(Main.NEWS_POS)
+		};
+		if($('#panel'+Number(Main.NEWS_POS+1)+'_content').html()==null){
+		$('#videos_arrowright').hide();
+		}
+		$('#currentVideoTitle').html($('#panel'+Main.NEWS_POS).attr('data-title'));
+	}
 }

@@ -1,6 +1,6 @@
 
 
-	<div id="videoMenu" style="z-index:3000;background-color: rgba(20, 20,20, .5);color:#ffffff;position:absolute;bottom:0px;left:0px;width:1280px;height:60px;">
+	<div id="videoMenu" style="z-index:14000;background-color: rgba(20, 20,20, .5);color:#ffffff;position:absolute;bottom:0px;left:0px;width:1280px;height:60px;">
 	<h2 class="left" id="currentVideoTitle">FOODIE GETAWAYS <span id="status"></span></h2>
 	<h3 class="right" id="videoPlayStatus"> / </h3>
 	</div>
@@ -20,7 +20,7 @@
 			<section id="content-new" class="row">
 				
 					<div id="showcase-container">
-						<div class="gallery-arrow-l arrows" id="news_arrowleft">
+						<div class="gallery-arrow-l arrows" id="videos_arrowleft">
 							<img src="{$BaseHref}assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 
@@ -28,7 +28,7 @@
 
 							<div id="image-scroller">
 							<% loop videoPanels %>
-								<div id="panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$Title.RAW">
+								<div id="panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$PlainTitle">
 								
 									<h3 class="video-panel-text" style="$CustomStyles"><span class="headerText">$Title.RAW</span></h3>
 									<div class="video-panel-icon"><p><img src="$PanelIcon.AbsoluteURL" alt="icon" /></p></div>
@@ -41,7 +41,7 @@
 							</div>
 						</div>
 
-						<div class="gallery-arrow-r arrows" id="news_arrowright">
+						<div class="gallery-arrow-r arrows" id="videos_arrowright">
 						<img src="{$BaseHref}assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 
@@ -50,15 +50,15 @@
 				
 			</section>
 		</div>
-		<div id="mainMenu" class="navbar navbar-fixed-bottom">
+		<div id="videosNav" class="navbar navbar-fixed-bottom">
 			
 			<div class="menubar-inner">
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" href="travel.html">Travel Tips</a>
-				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
-				<li><a class="navbtn" href="cards.html">See Cards</a>
+				<li><a class="navbtn" data-page="travel" href="travel.html">Travel Ideas</a>
+				<li class="center"><a class="navbtn" data-page="recipes" href="recipes.html">Party Recipes</a>
+				<li><a class="navbtn" data-page="cards" href="cards.html">See Cards</a>
 			</ul>
 				
 			<div style="clear: both;"></div>

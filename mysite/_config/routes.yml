@@ -1,0 +1,6 @@
+---
+Name: myroutes
+---
+Director:
+  rules:
+    'lg/$Action': 'LgPage_Controller'

@@ -4,6 +4,7 @@ class VideoPanel extends DataObject {
 	public static $db = array(
 		'PanelNumber' => 'Varchar',
 		'Title' => 'Varchar',
+		'PlainTitle' => 'Varchar',
 		'CustomStyles' => 'Text',
 		'Filename' => 'Varchar(120)'
 	);

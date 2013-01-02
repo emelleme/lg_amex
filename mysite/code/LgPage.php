@@ -165,5 +165,3 @@ class LgPage_Controller extends Page_Controller
 	}
 
 }
-###
-###
