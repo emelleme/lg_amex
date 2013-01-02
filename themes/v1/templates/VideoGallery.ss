@@ -49,7 +49,7 @@
 
 							<div id="image-scroller">
 							<% loop videoPanels %>
-								<div id="panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$Title.RAW">
+								<div id="panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$PlainTitle.RAW">
 								
 									<h3 class="video-panel-text" style="$CustomStyles"><span class="headerText">$Title.RAW</span></h3>
 									<div class="video-panel-icon"><p>$PanelIcon</p></div>
