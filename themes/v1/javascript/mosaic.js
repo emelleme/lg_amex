@@ -195,6 +195,9 @@ $(document).ready(function() {
 			CUR_ROW = Number(pos[0]);
 			CUR_COL = Number(pos[1]);
 			//console.log(CUR_COL);
+			//Send tracking event to GA
+			var t = _gaq.push(['_trackEvent', 'Image_Mosaic', 'Magic_Remote', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
+			console.log(t);
 		}else{
 			//Check if the First item is active
 			var t = $(this).attr('id');
@@ -278,6 +281,8 @@ function keyDown(event) {
 						curIndex--;
 					}
 				}
+				//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Left_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
 			}else if(curLevel == level.DIAG){
 				$('.ui-dialog-buttonpane button').last().addClass('ui-state-hover');
 				$('.ui-dialog-buttonpane button').first().removeClass('ui-state-hover');
@@ -431,7 +436,8 @@ function keyDown(event) {
 					}
 
 				} 
-				
+				//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Right_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
 			}else if(curLevel == level.DIAG){
 				$('.ui-dialog-buttonpane button').first().addClass('ui-state-hover');
 				$('.ui-dialog-buttonpane button').last().removeClass('ui-state-hover');
@@ -508,7 +514,8 @@ function keyDown(event) {
 					}
 				}
 			}
-			logKey(event.keyCode);
+			//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Down_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
 			break;
 		}
 		case VK_UP:
@@ -591,7 +598,8 @@ function keyDown(event) {
 					}
 				}
 			}
-			logKey(event.keyCode);
+			//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Up_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
 			break;
 		}
 		case VK_ENTER:
@@ -641,6 +649,8 @@ function keyDown(event) {
 		}
 		case VK_BACK:
 		{
+			//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Travel', 'Back_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
 			window.NetCastSetPageLoadingIcon('enabled');
 					//window.history.back();
 				window.NetCastBack();

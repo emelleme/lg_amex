@@ -28,7 +28,7 @@
 			<ul>
 				<li><a class="navbtn" data-page="travel" href="travel.html">Travel Ideas</a>
 				<li class="center"><a class="navbtn" data-page="recipes" href="recipes.html">Party Recipes</a>
-				<li><a class="navbtn" data-page="cards" href="videos.html">Video Gallery</a>
+				<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
 			</ul>
 				
 			<div style="clear: both;"></div>

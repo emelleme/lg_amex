@@ -15,9 +15,9 @@ var Player =
 
 String.prototype.toMMSS = function(){
     sec_numb = parseInt(this);
-    var hours = Math.floor(sec_numb / 3600);
-    var minutes = Math.floor((sec_numb - (hours * 3600)) / 60);
-    var seconds = sec_numb - (hours * 3600) - (minutes * 60);
+    var hours = Math.floor(sec_numb / 3600000);
+    var minutes = Math.floor((sec_numb - (hours * 3600000)) / 60000);
+    var seconds = sec_numb - (hours * 3600000) - (minutes * 60000);
 
     if (hours < 10) {hours="0"+hours;};
     if (minutes < 10) {minutes="0"+minutes;};
@@ -91,17 +91,17 @@ Player.NetworkDisconnected = function()
 }
 Player.deinit = function()
 {
-        var mwPlugin = document.getElementById("pluginObjectTVMW");
-        
-        if (mwPlugin && (this.originalSource != null) )
-        {
-            // If you use the srcctl by config.xml, don't need the source change in source code.
-            /**
-            // Restore original TV source before closing the widget 
-            mwPlugin.SetSource(this.originalSource);
-            alert("Restore source to " + this.originalSource);
-            **/
-        }
+    var mwPlugin = document.getElementById("pluginObjectTVMW");
+    
+    if (mwPlugin && (this.originalSource != null) )
+    {
+        // If you use the srcctl by config.xml, don't need the source change in source code.
+        /**
+        // Restore original TV source before closing the widget 
+        mwPlugin.SetSource(this.originalSource);
+        alert("Restore source to " + this.originalSource);
+        **/
+    }
 }
 
 Player.setWindow = function()
@@ -171,7 +171,7 @@ Player.stopVideo = function()
         this.state = this.STOPPED;
         this.plugin.Stop();
         $('#videoMenu').css('height','0px');
-        Main.curLevel = Main.prevLevel;
+        Main.curLevel = Main.level.NEWS;
         Display.setTime(0);
         if (this.stopCallback)
         {
@@ -256,6 +256,7 @@ Player.onBufferingComplete = function()
 }
 
 Player.setCurTime = function(time) {
+	Main.curLevel = Main.level.VIDEO;
     if(time != Player.plugin.GetDuration()){
         Display.setTime(time);
     }else{
@@ -265,7 +266,9 @@ Player.setCurTime = function(time) {
 }
 
 Player.setTotalTime = function() {
+	
     Display.setTotalTime(Player.plugin.GetDuration());
+    
     alert('Total time set')
 }
 
@@ -310,63 +313,6 @@ Display.setTotalTime = function(total) {
 }
 
 Display.setTime = function(time) {
-
-    var timePercent = (100 * time) / Display.totalTime,
-        timeElement = document.getElementById("videoPlayStatus"),
-        timeHTML = "",
-        timeHour = 0,
-        timeMinute = 0,
-        timeSecond = 0,
-        totalTimeHour = 0,
-        totalTimeMinute = 0,
-        totalTimesecond = 0;
-
-    if (Player.state == Player.PLAYING) {
-
-        totalTimeHour = Math.floor(Display.totalTime / 3600000);
-        timeHour = Math.floor(time / 3600000);
-        totalTimeMinute = Math.floor((Display.totalTime % 3600000) / 60000);
-        timeMinute = Math.floor((time % 3600000) / 60000);
-        totalTimeSecond = Math.floor((Display.totalTime % 60000) / 1000);
-        timeSecond = Math.floor((time % 60000) / 1000);
-        timeHTML = timeHour + ":";
-
-        if (timeMinute == 0) {
-            timeHTML += "00:";
-        } else if (timeMinute < 10) {
-             timeHTML += "0" + timeMinute + ":";
-        } else {
-             timeHTML += timeMinute + ":";
-        }
-
-        if (timeSecond == 0) {
-            timeHTML += "00/";
-        } else if (timeSecond < 10) {
-             timeHTML += "0" + timeSecond + "/";
-        } else {
-             timeHTML += timeSecond + "/";
-        }
-        //timeHTML += totalTimeHour + ":";
-
-        if (totalTimeMinute == 0) {
-             timeHTML += "00:";
-        } else if (totalTimeMinute < 10)
-            timeHTML += "" + totalTimeMinute + ":";
-        else {
-             timeHTML += totalTimeMinute;
-
-        }
-
-        if (totalTimeSecond == 0) {
-             timeHTML += "00";
-        } else if (totalTimeSecond < 10) {
-            timeHTML += "0" + totalTimeSecond;
-        } else
-            timeHTML += totalTimeSecond;
-
-    } else {
-         timeHTML = "0:00:00/0:00:00";
-    }
-    $('#videoPlayStatus').html(timeHTML);
-    $("#videoDuration").html(this.GetDuration());
+    $('#videoPlayStatus').html(time.toMMSS()+' / '+Display.totalTime.toMMSS());
+    //$("#videoDuration").html(this.GetDuration());
 }

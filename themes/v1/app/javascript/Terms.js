@@ -6,7 +6,7 @@ Main.termsLoad = function(){
 	Main.PREV_COL = Main.PREV_COL;
 	Main.NEWS_POS = 1;
 	Main.clearActive();
-	Main.curLevel = Main.level.TERMS;
+	Main.curLevel = Main.level.TERMSPAGE;
 	document.getElementById('anchor').onkeydown = Main.termsKeys; 
 	$('#cardsView').hide();
 	$('#travelView').hide();
@@ -47,7 +47,7 @@ Main.termsKeys = function(event) {
 				}
 			}
 
-			if (Main.curLevel == Main.level.TERMS) {
+			if (Main.curLevel == Main.level.TERMSPAGE) {
 				// Do nada
 			}
 			break;
@@ -62,7 +62,7 @@ Main.termsKeys = function(event) {
 					$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 				}
 			}
-			if (Main.curLevel == Main.level.TERMS) {
+			if (Main.curLevel == Main.level.TERMSPAGE) {
 				$('#termsconditions').addClass('hover');
 				CUR_POS = 2;
 			}
@@ -70,7 +70,7 @@ Main.termsKeys = function(event) {
 		case tvKey.KEY_DOWN:
 			if (Main.curLevel == Main.level.MENU) {
 				//chill
-			}else if (Main.curLevel == Main.level.TERMS) {
+			}else if (Main.curLevel == Main.level.TERMSPAGE) {
 				Main.curLevel = Main.level.MENU;
 				Main.clearActive();
 				$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
@@ -91,9 +91,11 @@ Main.termsKeys = function(event) {
 			//added as ux change
 			if (Main.curLevel == Main.level.MENU) {
 				var g = $('#termsNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
+				alert(g);
 				if(g == 'travel'){
 		  			Main.travelLoad();
 				}else if(g == 'videos'){
+					alert('VIDEOS!!');
 					Main.videosLoad();
 				}else if(g == 'recipes'){
 					Main.recipesLoad();

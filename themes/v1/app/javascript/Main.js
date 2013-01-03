@@ -1,5 +1,6 @@
 var widgetAPI = new Common.API.Widget();
 var tvKey = new Common.API.TVKeyValue();
+var pluginObj = new Common.API.Plugin();
 var leftCount = 0;
 var rightCount = 0;
 var upCount = 0;
@@ -13,7 +14,9 @@ var Main =
 		VIDEO: 4,
 		CARDS: 5,
 		TERMS: 6,
-		MENU: 7
+		TERMSPAGE:7,
+		MENU: 8,
+		NOSTATE: 9
 	},
 	MENU_POS: 0,
 	MAX_ITEMS:5,
@@ -89,6 +92,15 @@ var Main =
 
 var hideDiv = function(){
 	this.hide();
+}
+Main.showHandler = function()
+{
+	var NNaviPlugin = document.getElementById("pluginObjectNNavi");
+	alert("[APPS] : setBannerstate : 2")
+	NNaviPlugin.SetBannerState(2);
+	pluginObj.unregistKey(tvKey.KEY_VOL_UP);
+	pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
+	pluginObj.unregistKey(tvKey.KEY_MUTE);
 }
 
 Main.onLoad = function()

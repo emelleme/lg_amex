@@ -34,7 +34,11 @@ String.prototype.toMMSS = function(){
 	if (hours < 10) {hours="0"+hours;};
 	if (minutes < 10) {minutes="0"+minutes;};
 	if (seconds < 10) {seconds="0"+seconds;};
-	var t = minutes+":"+seconds;
+	if(minutes == '00' && seconds == '00'){
+		var t = '--:--';
+	}else{
+		var t = minutes+":"+seconds;
+	}
 	return t;
 };
 function playCurrentVideo(){
@@ -72,9 +76,6 @@ function stopCurrentVideo(){
 curLevel = level.NEWS;
 logger.page = 'news';
 $(document).ready(function() {
-	//window.NetCastSetPageLoadingIcon('disabled');
-	
-	//Todo: move to common.js
 	$('#videos_arrowleft').hide();
 	$('#fullPlayer').hide();
 	$('#videoMenu').hide();
@@ -202,7 +203,13 @@ $(document).ready(function() {
 
 	$('#videos_arrowright').on('click', function(){
 		slideRight('click');
-	})
+	});
+	
+	$('.termsbtn').hover(function(){
+		clearActive();
+		$('.termsconditions a').addClass('hover');
+		curLevel = level.TERMS;
+	});
 });
 
 function processPlayStateChange(){

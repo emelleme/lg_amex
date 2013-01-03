@@ -30,7 +30,6 @@ var keyCode = event.keyCode;
 		case tvKey.KEY_RETURN:
 		case tvKey.KEY_PANEL_RETURN:
 			alert("RETURN");
-			event.preventDefault();
 			widgetAPI.sendReturnEvent();
 			break;
 		case tvKey.KEY_LEFT:

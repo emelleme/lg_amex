@@ -26,24 +26,23 @@ Main.videosLoad = function(){
 	$('#panel4,#panel2, #panel3,#panel5, #panel1_content').show();
 	$('#panel1,#panel2_content, #panel4_content, #panel3_content, #panel5_content').hide();
 	$('#currentVideoTitle').html($('#panel'+Main.NEWS_POS).attr('data-title'));
-}
+};
 
 Main.videosKeys = function()
 {
 	var keyCode = event.keyCode;
-
 	switch(keyCode)
 	{
 		case tvKey.KEY_RETURN:
         case tvKey.KEY_PANEL_RETURN:
             alert("RETURN");
             event.preventDefault();
-            if(Main.curLevel == Main.level.VIDEO){
+            if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
+            	Main.travelLoad();
+            }else{
             	$('#pluginPlayer').css('z-index','0');
 	            Player.stopVideo();
 	            Main.curLevel = Main.prevLevel;
-            }else{
-            	Main.travelLoad();
             }
             //widgetAPI.sendReturnEvent(); 
             break;  
@@ -60,42 +59,52 @@ Main.videosKeys = function()
             if(Main.curLevel == Main.level.VIDEO){
 			$('#pluginPlayer').css('z-index','0');
             Player.stopVideo();
-            Main.curLevel = Main.prevLevel;
+            Main.curLevel = Main.level.NEWS;
+            }else{
+            	alert('Nothing to Stop');
             }
             break;
             
         case tvKey.KEY_PAUSE:
             alert("PAUSE");
-            Main.handlePauseKey();
-            $('#videoMenu').css('height','60px');
-			setTimeout(function(){
-				$('#videoMenu').css('height','0px');
-			}, 15000);
+            if(Main.curLevel == Main.level.VIDEO){
+		        Main.handlePauseKey();
+		        $('#videoMenu').css('height','60px');
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
+			}else{
+            	alert('Nothing to Pause');
+            }
             break;
             
         case tvKey.KEY_FF:
             alert("FF");
-            if(Player.getState() != Player.PAUSED)
+            if(Player.getState() != Player.PAUSED){
                 Player.skipForwardVideo();
+            }
             break;
         
         case tvKey.KEY_RW:
             alert("RW");
-           if(Player.getState() != Player.PAUSED)
+           if(Player.getState() != Player.PAUSED){
             	Player.skipBackwardVideo();
+        	}
             break;
         case tvKey.KEY_VOL_UP:
         case tvKey.KEY_PANEL_VOL_UP:
             alert("VOL_UP");
-                if(Main.mute == 0)
+                if(Main.mute == 0){
                     Audio.setRelativeVolume(0);
+                }
             break;
             
         case tvKey.KEY_VOL_DOWN:
         case tvKey.KEY_PANEL_VOL_DOWN:
             alert("VOL_DOWN");
-                if(Main.mute == 0)
+                if(Main.mute == 0){
                     Audio.setRelativeVolume(1);
+                }
             break;      
 
 		case tvKey.KEY_LEFT:
@@ -172,9 +181,7 @@ Main.videosKeys = function()
 			break;
 		case tvKey.KEY_DOWN:
 			alert("DOWN!");
-			if (Main.curLevel == Main.level.MENU) {
-				//chill
-			}else if (Main.curLevel == Main.level.NEWS) {
+			if (Main.curLevel == Main.level.NEWS) {
 				//On Terms, go to Menu
 				$('#inactive').show();
 				Main.curLevel = Main.level.MENU;
@@ -202,10 +209,16 @@ Main.videosKeys = function()
 				}else if(g == 'recipes'){
 					Main.recipesLoad();
 				}
+			}else if(Main.curLevel == Main.level.VIDEO){
+				$('#videoMenu').css('height','60px');
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
 			}else{
 				$('#pluginPlayer').css('z-index','13000');
 				Main.prevLevel = Main.curLevel;
 				Main.handlePlayKey();
+				break;
 			}
 			break;
 		 case tvKey.KEY_MUTE:
@@ -218,22 +231,10 @@ Main.videosKeys = function()
 	}
 };
 
-
-
-Main.showHandler = function()
-{
-	var NNaviPlugin = document.getElementById("pluginObjectNNavi");
-	alert("[APPS] : setBannerstate : 2")
-	NNaviPlugin.SetBannerState(2);
-	pluginObj.unregistKey(tvKey.KEY_VOL_UP);
-	pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
-	pluginObj.unregistKey(tvKey.KEY_MUTE);
-}
-
 Main.updateCurrentVideo = function(move)
 {
     Player.setVideoURL( Data.getVideoURL(Main.selectedVideo) );
-}
+};
 
 Main.OnBufferingProgress = function(percent) {
     //Draing buffering progress bar
@@ -247,9 +248,9 @@ Main.handlePlayKey = function()
         case Player.STOPPED:
 			Main.updateCurrentVideo(Main.NEWS_POS-1);
             Player.playVideo();
-			Main.curLevel = Main.level.VIDEO;
+			Main.curLevel = Main.level.NOSTATE;
+			alert(Main.curLevel);
 			$('#mainMenu').hide();
-			
 			$('#videoMenu').css('height','60px');
 			setTimeout(function(){
 				$('#videoMenu').css('height','0px');

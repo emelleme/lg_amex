@@ -24,7 +24,6 @@ Main.recipesLoad = function(){
 Main.recipesKeys = function(){
 	var keyCode = event.keyCode;
 	alert("Key pressed: " + keyCode);
-
 	switch(keyCode)
 	{
 		case tvKey.KEY_RETURN:
