@@ -135,19 +135,9 @@ $(document).ready(function() {
 	$('.navbtn').on('click', function(e){
 		e.preventDefault();
 		var link = $(this);
-		$.post('lg/userData',logger,function(logger){
-			window.location = link.attr('href');
-			return false;
-		});
-		nowLoading(this);		
+		window.location = link.attr('href');
 	});
 
-	$('#wrapper').on('click', function(e){
-		if(leftCount == 2 && rightCount == 2 && upCount == 1){
-			window.location = "intro/sbs/";
-			console.log('test');
-		}	
-	});
 	
 	$('.mosaicImage').hover(function(){
 		

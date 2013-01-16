@@ -22,6 +22,7 @@ MENU_MATRIX = {
 MENU_POS = 0;
 NEWS_POS = 1;
 CDN='http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/',
+LIVETEST = 'http://rightsteru-i.akamaihd.net/205269/hls_test_u_1/master-high.m3u8';
 
 //Current Index
 curIndex = 1;
@@ -346,12 +347,11 @@ function keyDown(event) {
 				}, 5000);
 			}
 			else if (curLevel == level.NEWS) {
-				//On Gallery, go to Terms
-				//$('.inactive').show();
-				curLevel = level.TERMS;
+				clearActive();
+				curLevel = level.MENU;
 				$('.arrows').hide();
-				$('#icon-'+NEWS_POS).css('background-image',"url("+$('#icon-'+NEWS_POS).attr('data-thumbnailinactive')+")");
-				$('.termsconditions a').addClass('hover');
+				$('.arrows').removeClass('activeImage');
+				$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
 			}else if(curLevel == level.TERMS) {
 				clearActive();
 				curLevel = level.MENU;
@@ -364,12 +364,23 @@ function keyDown(event) {
 		case VK_UP:
 		{
 			if (curLevel == level.MENU) {
-				//return to terms
-				//$('.inactive').hide();
-				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
-				curLevel = level.TERMS;
-				$('.termsconditions a').addClass('hover');
-				$('.arrows').hide();
+				clearActive();
+				$('.arrows').show();
+				if(NEWS_POS == 1){
+					//Hide left arrow
+					$('#videos_arrowleft').hide();
+					$('#videos_arrowright').show();
+				}else if (NEWS_POS < 5) {
+					//show both arrows
+					$('#videos_arrowleft').show();
+					$('#videos_arrowright').show();
+				}else{
+					//hide right arrow
+					$('#videos_arrowright').hide();
+					$('#videos_arrowleft').show();
+				}
+					$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
+					curLevel = level.NEWS;
 				
 			}else if(curLevel == level.VIDEO){
 				window.clearTimeout(playBarTimeout);
@@ -445,6 +456,15 @@ function keyDown(event) {
 		{
 			if(curLevel == level.VIDEO){
 				document._video.pause();
+			}
+			break;
+		}
+		case VK_RED:
+		{
+			if(curLevel != level.VIDEO){
+				document._video.setAttribute("src", LIVETEST);
+				$('#currentVideoTitle').html('Live Stream Test');
+				playCurrentVideo();
 			}
 			break;
 		}
