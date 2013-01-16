@@ -35,18 +35,16 @@ switch(keyCode)
 		case tvKey.KEY_PANEL_RETURN:
 			//Return to Travel Page//
 			event.preventDefault();
-			
-			if(Main.prevPage == 'cards'){
-				Main.prevPage = 'cards';
-				Main.cardsLoad();
-			}else if(Main.prevPage == 'recipes'){
-				Main.prevPage = 'cards';
-				Main.recipesLoad();
-			}else if(Main.prevPage == 'travel'){
-				Main.prevPage = 'cards';
-				Main.travelLoad();
-			}
-			alert("RETURN");
+				var m = Main.prevPage.shift();
+				if(m == 'videos'){
+					Main.videosLoad();
+				}else if(m == 'recipes'){
+					Main.recipesLoad();
+				}else if(m == 'travel'){
+					alert(Main.prevPage[Main.pageDepth]);
+					Main.travelLoad();
+				}
+			alert(Main.prevPage);
 			//widgetAPI.sendReturnEvent();
 			break;
 		case tvKey.KEY_LEFT:
@@ -112,17 +110,23 @@ switch(keyCode)
 		case tvKey.KEY_PANEL_ENTER:
 			alert("ENTER");
 			if (Main.curLevel == Main.level.MENU) {
-				Main.prevPage = 'cards';
+				Main.prevPage.push('cards');
 				var g = $('#cardsNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
 				if(g == 'travel'){
+					Main.prevPage.unshift('cards');
+					Main.pageDepth += 1;
 		  			Main.travelLoad();
 				}else if(g == 'videos'){
+					Main.prevPage.unshift('cards');
+					Main.pageDepth += 1;
 					Main.videosLoad();
 				}else if(g == 'recipes'){
+					Main.prevPage.unshift('cards');
+					Main.pageDepth += 1;
 					Main.recipesLoad();
 				}
 			}else{
-				Main.prevPage = 'cards';
+				Main.prevPage.unshift('cards');
 				Main.termsLoad();
 			}
 		break;

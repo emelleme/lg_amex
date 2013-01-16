@@ -28,7 +28,8 @@ var Main =
 	NEWS_POS: 1,
 	curLevel: 1,
 	prevLevel: 1,
-	prevPage: 'travel',
+	prevPage: ["travel"],
+	pageDepth: 0,
 	selectedVideo : 0,
     mode : 0,
     mute : 0,
@@ -101,6 +102,7 @@ Main.showHandler = function()
 	pluginObj.unregistKey(tvKey.KEY_VOL_UP);
 	pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
 	pluginObj.unregistKey(tvKey.KEY_MUTE);
+	pluginObj.registKey(tvKey.KEY_EXIT);
 }
 
 Main.onLoad = function()

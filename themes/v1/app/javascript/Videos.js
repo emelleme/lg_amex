@@ -35,17 +35,40 @@ Main.videosKeys = function()
 	{
 		case tvKey.KEY_RETURN:
         case tvKey.KEY_PANEL_RETURN:
-            alert("RETURN");
-            event.preventDefault();
+            alert(Main.prevPage);
+            widgetAPI.blockNavigation(event);
+            if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
+		        
+		        	var m = Main.prevPage.shift();
+		        	if(m == 'cards'){
+						Main.cardsLoad();
+					}else if(m == 'recipes'){
+						Main.recipesLoad();
+					}else if(m == 'travel'){
+						Main.travelLoad();
+					}
+            }else{
+		    	if(Player.CONTROLSACTIVE){
+		        	$('#pluginPlayer').css('z-index','0');
+			        Player.stopVideo();
+			        Main.curLevel = Main.NEWS;
+		        }
+            }
+            //widgetAPI.sendReturnEvent(); 
+            break; 
+        case tvKey.KEY_EXIT: 
+        	widgetAPI.blockNavigation(event);
             if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
             	Main.travelLoad();
             }else{
-            	$('#pluginPlayer').css('z-index','0');
-	            Player.stopVideo();
-	            Main.curLevel = Main.prevLevel;
+		    	if(Player.CONTROLSACTIVE){
+		        	$('#pluginPlayer').css('z-index','0');
+			        Player.stopVideo();
+			        Main.curLevel = Main.prevLevel;
+		        }
             }
             //widgetAPI.sendReturnEvent(); 
-            break;  
+            break; 
 		case tvKey.KEY_PLAY:
             alert("PLAY");
 			$('#pluginPlayer').css('z-index','13000');
@@ -66,8 +89,8 @@ Main.videosKeys = function()
             break;
             
         case tvKey.KEY_PAUSE:
-            alert("PAUSE");
-            if(Main.curLevel == Main.level.VIDEO){
+            alert(Player.CONTROLSACTIVE);
+            if(Player.CONTROLSACTIVE){
 		        Main.handlePauseKey();
 		        $('#videoMenu').css('height','60px');
 				setTimeout(function(){
@@ -80,16 +103,24 @@ Main.videosKeys = function()
             
         case tvKey.KEY_FF:
             alert("FF");
-            if(Player.getState() != Player.PAUSED){
-                Player.skipForwardVideo();
+            if(Player.CONTROLSACTIVE){
+		        if(Player.getState() != Player.PAUSED){
+		            Player.skipForwardVideo();
+		        }
+            }else{
+            	alert('Nothing to FF');
             }
             break;
         
         case tvKey.KEY_RW:
             alert("RW");
-           if(Player.getState() != Player.PAUSED){
-            	Player.skipBackwardVideo();
-        	}
+			if(Player.CONTROLSACTIVE){
+				if(Player.getState() != Player.PAUSED){
+					Player.skipBackwardVideo();
+				}
+			}else{
+            	alert('Nothing to REW');
+            }
             break;
         case tvKey.KEY_VOL_UP:
         case tvKey.KEY_PANEL_VOL_UP:
@@ -117,14 +148,15 @@ Main.videosKeys = function()
 					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					//}
 				}
+				break;
 			}
-			if (Main.curLevel == Main.level.NEWS) {
+			if (Player.CONTROLSACTIVE != 1) {
 				$('#videos_arrowleft').addClass('activeImage');
 				$('#videos_arrowright').removeClass('activeImage');
 				setTimeout(function(){$('#videos_arrowleft').removeClass('activeImage');},200);
 				Main.slideVideosLeft('left');
 				Main.selectPreviousVideo('up');
-			}else if(Main.curLevel == Main.level.VIDEO){
+			}else{
 				$('#videoMenu').css('height','60px');
 			setTimeout(function(){
 				$('#videoMenu').css('height','0px');
@@ -142,58 +174,67 @@ Main.videosKeys = function()
 					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					//}
 				}
-			}else if (Main.curLevel == Main.level.NEWS) {
+				break;
+			}
+			if (Player.CONTROLSACTIVE != 1) {
 				$('#videos_arrowright').addClass('activeImage');
 				$('#videos_arrowleft').removeClass('activeImage');
 				setTimeout(function(){$('#videos_arrowright').removeClass('activeImage');},200);
 				Main.slideVideosRight('right');
 				Main.selectNextVideo('down');
-			}else if(Main.curLevel == Main.level.VIDEO){
+			}else{
 				$('#videoMenu').css('height','60px');
-			setTimeout(function(){
-				$('#videoMenu').css('height','0px');
-			}, 15000);
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
 			}
 			break;
 		case tvKey.KEY_UP:
 			alert("UP");
-			if (Main.curLevel == Main.level.MENU) {
-				//return to matrix
-				Main.clearActive();
-				if(Main.NEWS_POS > 4){
-					$('#videos_arrowleft').show();
-				}else if(Main.NEWS_POS == 1){
-					$('#videos_arrowright').show();
-				}else{
-					$('#videos_arrowright').show();
-					$('#videos_arrowleft').show();
-				}
-				$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
-				Main.curLevel = Main.level.NEWS;
-				
-				
-			}else if(Main.curLevel == Main.level.VIDEO){
+			
+			if(Player.CONTROLSACTIVE){
 				$('#videoMenu').css('height','60px');
-			setTimeout(function(){
-				$('#videoMenu').css('height','0px');
-			}, 15000);
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
+			}else{
+				if (Main.curLevel != Main.level.NEWS) {
+					//return to matrix
+					Main.clearActive();
+					if(Main.NEWS_POS > 4){
+						$('#videos_arrowleft').show();
+					}else if(Main.NEWS_POS == 1){
+						$('#videos_arrowright').show();
+					}else{
+						$('#videos_arrowright').show();
+						$('#videos_arrowleft').show();
+					}
+					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					Main.curLevel = Main.level.NEWS;
+					
+					break;
+				}
 			}
 			break;
 		case tvKey.KEY_DOWN:
 			alert("DOWN!");
-			if (Main.curLevel == Main.level.NEWS) {
-				//On Terms, go to Menu
-				$('#inactive').show();
-				Main.curLevel = Main.level.MENU;
-				$('#videosNav').show();
-				$('.arrows').hide();
-				$('.arrows').removeClass('activeImage');
-				$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
-			}else if(Main.curLevel == Main.level.VIDEO){
+			
+			if(Player.CONTROLSACTIVE){
 				$('#videoMenu').css('height','60px');
-			setTimeout(function(){
-				$('#videoMenu').css('height','0px');
-			}, 15000);
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
+			}else{
+				if (Main.curLevel != Main.level.VIDEO) {
+					//On Terms, go to Menu
+					$('#inactive').show();
+					Main.curLevel = Main.level.MENU;
+					$('#videosNav').show();
+					$('.arrows').hide();
+					$('.arrows').removeClass('activeImage');
+					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+					break;
+				}
 			}
 			break;
 		case tvKey.KEY_ENTER:
@@ -203,10 +244,16 @@ Main.videosKeys = function()
 			if (Main.curLevel == Main.level.MENU) {
 				var g = $('#videosNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
 				if(g == 'travel'){
+					Main.prevPage.unshift('videos');
+					Main.pageDepth += 1;
 		  			Main.travelLoad();
 				}else if(g == 'cards'){
+					Main.prevPage.unshift('videos');
+					Main.pageDepth += 1;
 					Main.cardsLoad();
 				}else if(g == 'recipes'){
+					Main.prevPage.unshift('videos');
+					Main.pageDepth += 1;
 					Main.recipesLoad();
 				}
 			}else if(Main.curLevel == Main.level.VIDEO){

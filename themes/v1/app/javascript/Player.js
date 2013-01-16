@@ -10,21 +10,11 @@ var Player =
     PLAYING : 1,
     PAUSED : 2,  
     FORWARD : 3,
-    REWIND : 4
+    REWIND : 4,
+    CONTROLSACTIVE : 0
 }
 
-String.prototype.toMMSS = function(){
-    sec_numb = parseInt(this);
-    var hours = Math.floor(sec_numb / 3600000);
-    var minutes = Math.floor((sec_numb - (hours * 3600000)) / 60000);
-    var seconds = sec_numb - (hours * 3600000) - (minutes * 60000);
 
-    if (hours < 10) {hours="0"+hours;};
-    if (minutes < 10) {minutes="0"+minutes;};
-    if (seconds < 10) {seconds="0"+seconds;};
-    var t = minutes+":"+seconds;
-    return t;
-};
 
 Player.init = function()
 {
@@ -166,6 +156,7 @@ Player.fastforward = function()
 
 Player.stopVideo = function()
 {
+	this.CONTROLSACTIVE = 0;
     if (this.state != this.STOPPED)
     {
         this.state = this.STOPPED;
@@ -207,6 +198,11 @@ Player.getState = function()
     return this.state;
 }
 
+Player.getControlsState = function()
+{
+    return this.CONTROLSACTIVE;
+}
+
 // Global functions called directly by the player 
 
 Player.onBufferingStart = function()
@@ -235,16 +231,7 @@ Player.onBufferingProgress = function(percent)
 
 Player.onBufferingComplete = function()
 {
-    switch(this.skipState)
-    {
-        case this.FORWARD:
-            //document.getElementById("forward").style.opacity = '1.0';
-            break;
-        
-        case this.REWIND:
-            //document.getElementById("rewind").style.opacity = '1.0';
-            break;
-    }
+    this.CONTROLSACTIVE = 1;
 
     playTimeInterval = setInterval(function(){
         //var c = String(Player.GetLiveDuration());
@@ -301,18 +288,6 @@ setTottalBuffer = function(buffer) { alert("setTottalBuffer " + buffer); }
 
 setCurBuffer = function(buffer) { alert("setCurBuffer " + buffer); }
 
-/** Display **/
-var Display = {};
 
-Display.init = function() {
-    return true;
-}
 
-Display.setTotalTime = function(total) {
-    Display.totalTime = total;
-}
 
-Display.setTime = function(time) {
-    $('#videoPlayStatus').html(time.toMMSS()+' / '+Display.totalTime.toMMSS());
-    //$("#videoDuration").html(this.GetDuration());
-}

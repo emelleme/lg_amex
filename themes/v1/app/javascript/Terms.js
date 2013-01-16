@@ -25,11 +25,12 @@ Main.termsKeys = function(event) {
 		case tvKey.KEY_PANEL_RETURN:
 			//Return to Travel Page//
 			event.preventDefault();
-			if(Main.prevLevel == 'cards'){
+			var m = Main.prevPage.shift();
+			if(m == 'cards'){
 				Main.cardsLoad();
-			}else if(Main.prevLevel == 'recipes'){
+			}else if(m == 'recipes'){
 				Main.recipesLoad();
-			}else if(Main.prevLevel == 'travel'){
+			}else if(m == 'travel'){
 				Main.travelLoad();
 			}
 			alert("RETURN");
@@ -68,9 +69,7 @@ Main.termsKeys = function(event) {
 			}
 			break;
 		case tvKey.KEY_DOWN:
-			if (Main.curLevel == Main.level.MENU) {
-				//chill
-			}else if (Main.curLevel == Main.level.TERMSPAGE) {
+			if (Main.curLevel == Main.level.TERMSPAGE) {
 				Main.curLevel = Main.level.MENU;
 				Main.clearActive();
 				$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
@@ -80,7 +79,7 @@ Main.termsKeys = function(event) {
 			if (Main.curLevel == Main.level.MENU) {
 				//return to matrix
 				$('#termsNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
-				Main.curLevel = Main.level.TERMS;
+				Main.curLevel = Main.level.TERMSPAGE;
 				Main.clearActive();
 				$('.backbtn').addClass('hover');
 				CUR_POS = 2;
@@ -101,11 +100,13 @@ Main.termsKeys = function(event) {
 					Main.recipesLoad();
 				}
 			}else{
-				if(Main.prevLevel == 'cards'){
+				alert('NOSD');
+				var m = Main.prevPage.shift();
+				if(m == 'cards'){
 					Main.cardsLoad();
-				}else if(Main.prevLevel == 'recipes'){
+				}else if(m == 'recipes'){
 					Main.recipesLoad();
-				}else if(Main.prevLevel == 'travel'){
+				}else if(m == 'travel'){
 					Main.travelLoad();
 				}
 			}

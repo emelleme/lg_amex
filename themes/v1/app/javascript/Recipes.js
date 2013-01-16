@@ -8,17 +8,19 @@ Main.recipesLoad = function(){
 	Main.NEWS_POS = 1;
 	Main.clearActive();
 	document.getElementById('anchor').onkeydown = Main.recipesKeys; 
-	$('#icon-1').addClass('mini-image-active');
-	$('.galleryContent').hide();
-	$('#gallery-'+Main.NEWS_POS).show();
-	$('#news_arrowright').show();
-	$('#news_arrowleft,#panel3,#panel2_content, #panel4_content, #panel1_content').hide();
-	$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
+	
 	$('#cardsView').hide();
 	$('#travelView').hide();
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#recipesView').show();
+	$('#icon-1').addClass('mini-image-active');
+	$('#main-area').show();
+	$('.galleryContent').hide();
+	$('#gallery-'+Main.NEWS_POS).show();
+	$('#news_arrowright').show();
+	$('#news_arrowleft,#panel3,#panel2_content, #panel4_content, #panel1_content').hide();
+	$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
 }
 
 Main.recipesKeys = function(){
@@ -41,19 +43,16 @@ Main.recipesKeys = function(){
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
 				setArrows();
 			}else{
-				
-				if(Main.prevPage == 'cards'){
-					Main.prevPage = 'recipes';
+				var m = Main.prevPage.shift();
+				if(m == 'cards'){
 					Main.cardsLoad();
-				}else if(Main.prevPage == 'recipes'){
-					Main.prevPage = 'recipes';
-					Main.recipesLoad();
-				}else if(Main.prevPage == 'travel'){
-					Main.prevPage = 'recipes';
+				}else if(m == 'videos'){
+					Main.videosLoad();
+				}else if(m == 'travel'){
 					Main.travelLoad();
 				}
 			}
-			alert("RETURN");
+			alert(Main.prevPage);
 			//widgetAPI.sendReturnEvent();
 			break;
 		case tvKey.KEY_LEFT:
@@ -154,17 +153,24 @@ Main.recipesKeys = function(){
 		case tvKey.KEY_PANEL_ENTER:
 			alert("ENTER");
 			if (Main.curLevel == Main.level.MENU) {
-				Main.prevPage = 'recipes';
+				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
 				var g = $('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
 				if(g == 'travel'){
+				Main.prevPage.unshift('recipes');
+					Main.pageDepth += 1;
 		  			Main.travelLoad();
 				}else if(g == 'videos'){
+				Main.prevPage.unshift('recipes');
+					Main.pageDepth += 1;
 					Main.videosLoad();
 				}else if(g == 'cards'){
+				Main.prevPage.unshift('recipes');
+					Main.pageDepth += 1;
 					Main.cardsLoad();
 				}
 			}else if(Main.curLevel == Main.level.TERMS){
-				Main.prevPage = 'recipes';
+				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
+				Main.prevPage.unshift('recipes');
 				Main.termsLoad();
 			}else if(Main.curLevel == Main.level.GALLERY){
 				//display Gallery Item

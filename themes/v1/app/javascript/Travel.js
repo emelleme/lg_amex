@@ -6,6 +6,8 @@ Main.travelLoad = function(){
 	Main.PREV_ROW = Main.CUR_ROW;
 	Main.PREV_COL = Main.PREV_COL;
 	Main.CUR_POS = 1;
+	Main.prevPage = ['travel'];
+	Main.pageDepth = 0;
 	Main.clearActive();
 	document.getElementById('anchor').onkeydown = Main.travelKeys; 
 	$('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
@@ -28,6 +30,7 @@ var keyCode = event.keyCode;
 	switch(keyCode)
 	{
 		case tvKey.KEY_RETURN:
+		case tvKey.KEY_EXIT:
 		case tvKey.KEY_PANEL_RETURN:
 			alert("RETURN");
 			widgetAPI.sendReturnEvent();
@@ -405,21 +408,17 @@ Main.clearActive();
 			//added as ux change
 			if(Main.curLevel == Main.level.MOSAIC){
 				if (Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL] == "6-3") {
-			  		Main.prevPage = 'travel';
 					Main.termsLoad();
 				}	
 			}else if (Main.curLevel == Main.level.MENU) {
 				
 				var g = $('#travelNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
 				if(g == 'recipes'){
-					Main.prevPage = 'travel';
 		  			Main.recipesLoad();
 				}else if(g == 'videos'){
 					alert('VIDEOS!');
-					Main.prevPage = 'travel';
 					Main.videosLoad();
 				}else if(g == 'cards'){
-					Main.prevPage = 'travel';
 					Main.cardsLoad();
 				}
 			} 
