@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<base href="http://dev.amxp.cc/"><!--[if lte IE 6]></base><![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Video Gallery</title>
+
+
+
+
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/flick/jquery-ui.css" type="text/css" />
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/themes/v1/css/bootstrap.css?m=1356193250" />
+<link rel="stylesheet" type="text/css" href="/themes/v1/css/layout.css?m=1356380589" />
+<link rel="stylesheet" type="text/css" href="/themes/v1/css/gallery.css?m=1356223090" />
+<link rel="stylesheet" type="text/css" href="/themes/v1/css/videos.css?m=1356193250" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/themes/v1/javascript/keycode.js?m=1356193250"></script>
+<script type="text/javascript" src="/themes/v1/javascript/preloadCssImages.jQuery_v5.js?m=1356193249"></script>
+<script type="text/javascript" src="/themes/v1/javascript/videos.js?m=1357148745"></script>
+<script type="text/javascript" src="/themes/v1/javascript/analytics.js?m=1356193249"></script>
+</head>
+<body style="margin: 0px;" onkeydown="keyDown(event);">
+	<!-- App Wrapper: 1280px x 720 (full application size) -->
+	<object type="application/x-netcast-av" id="fullPlayer" src="" width="1280" height="720">
+	</object>
+
+	
+
+	<div id="test" style="display:none;z-index:3000;background-color: rgba(20, 20,20, .5);color:#ffffff;position:absolute;top:10px;left:10px;width:300px;height:400px;">
+	<p></p>
+	</div>
+	<div id="wrapper" class="container">
+		<div>
+			<!-- header area (1024 x 80)-->
+			<section  style="padding-left:128px;" id="header-new" class="row">
+				<div id="header-title" class="span5">
+					<h1>Video Gallery.</h1>
+					<h3>Use your remote to select and play each video.</h3>
+				</div>
+
+								<div id="header-logo">
+					<img src="http://dev.amxp.cc/assets/images/logo.png" alt="American Express logo">
+				</div>
+
+			</section>
+
+			<section id="content-new" class="row">
+				
+					<div id="showcase-container">
+						<div class="gallery-arrow-l arrows" id="videos_arrowleft">
+							<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
+						</div>
+
+						<div style="width: 979px;height:400px;margin: 18px 0 0 36px; overflow: hidden;">
+
+							<div id="image-scroller">
+							
+								<div id="panel1" style="height:400px;" class="panelHeader" data-video="foodieGetaways_2Mbps.mp4" data-title="FOODIE GETAWAYS">
+								
+									<h3 class="video-panel-text" style=""><span class="headerText">FOODIE GETAWAYS</span></h3>
+									<div class="video-panel-icon"><p><img src="/assets/Uploads/iconcircle-plane3.png" alt="iconcircle plane3" /></p></div>
+								</div>
+								<div id="panel1_content" class="showcaseimage">
+									<img src="/assets/Uploads/foodiegetaways6.jpg" alt="image" />
+								</div>
+							
+								<div id="panel2" style="height:400px;" class="panelHeader" data-video="cherry1_2Mbps.mp4" data-title="How to Cut Cherry Tomatoes">
+								
+									<h3 class="video-panel-text" style=""><span class="headerText">How to Cut<br>Cherry Tomatoes</span></h3>
+									<div class="video-panel-icon"><p><img src="/assets/Uploads/iconcircle-chefhat2.png" alt="iconcircle chefhat2" /></p></div>
+								</div>
+								<div id="panel2_content" class="showcaseimage">
+									<img src="/assets/Uploads/2.jpg" alt="image" />
+								</div>
+							
+								<div id="panel3" style="height:400px;" class="panelHeader" data-video="romantic_2Mbps.mp4" data-title="Romantic Trips">
+								
+									<h3 class="video-panel-text" style=""><span class="headerText">Romantic Trips</span></h3>
+									<div class="video-panel-icon"><p><img src="/assets/Uploads/iconcircle-plane.png" alt="iconcircle plane" /></p></div>
+								</div>
+								<div id="panel3_content" class="showcaseimage">
+									<img src="/assets/Uploads/3.jpg" alt="image" />
+								</div>
+							
+								<div id="panel4" style="height:400px;" class="panelHeader" data-video="cherry2_2Mbps.mp4" data-title="World's Fastest Tomato Salad">
+								
+									<h3 class="video-panel-text" style=""><span class="headerText">World's Fastest<br>Tomato Salad</span></h3>
+									<div class="video-panel-icon"><p><img src="/assets/Uploads/iconcircle-chefhat3.png" alt="iconcircle chefhat3" /></p></div>
+								</div>
+								<div id="panel4_content" class="showcaseimage">
+									<img src="/assets/Uploads/4.jpg" alt="image" />
+								</div>
+							
+								<div id="panel5" style="height:400px;" class="panelHeader" data-video="bestFamilyHotels_2Mbps.mp4" data-title="Best Family Hotels">
+								
+									<h3 class="video-panel-text" style=""><span class="headerText">Best Family Hotels</span></h3>
+									<div class="video-panel-icon"><p><img src="/assets/Uploads/iconcircle-plane2.png" alt="iconcircle plane2" /></p></div>
+								</div>
+								<div id="panel5_content" class="showcaseimage">
+									<img src="/assets/Uploads/hotels.jpg" alt="image" />
+								</div>
+							
+								<div class="fix"></div>
+							</div>
+						</div>
+
+						<div class="gallery-arrow-r arrows" id="videos_arrowright">
+						<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
+						</div>
+						
+						<p class="termsconditions" style="float: right; margin: 18px 43px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p>
+
+					</div>
+					<!-- End showcase container -->
+				
+			</section>
+		</div>
+		<div id="mainMenu" class="navbar navbar-fixed-bottom">
+			
+			<div class="menubar-inner">
+			<div class="container">
+			  
+			<ul>
+				<li><a class="navbtn" href="travel.html">Travel Ideas</a>
+				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
+				<li><a class="navbtn" href="cards.html">See Cards</a>
+			</ul>
+				
+			<div style="clear: both;"></div>
+			
+			</div>
+			</div>
+		</div>
+
+			<div id="videoMenu" class="navbar navbar-fixed-bottom">
+				<div class="videobar-inner">
+				<div id="VideoMenuContent" class="container">
+					<h2 class="left" id="currentVideoTitle" style="padding-bottom:20px;padding-left:10px;width:400px">FOODIE GETAWAYS</h2>
+					<h2 class="right" id="videoPlayState"  style="padding-bottom:20px;padding-right:10px;width:180px">0:01 / 0:35</h2></div>
+					<div style="clear: both;"></div>
+				</div>
+				</div>
+			</div>
+		
+	</div>
+	<div id="loading" title="Dialog Title">Loading...</div>
+</body>
+</html>
