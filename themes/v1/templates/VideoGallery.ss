@@ -66,7 +66,7 @@
 						<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 						
-						<p class="termsconditions" style="float: right; margin: 18px 43px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p>
+						<!--p class="termsconditions" style="float: right; margin: 18px 43px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p-->
 
 					</div>
 					<!-- End showcase container -->
