@@ -58,7 +58,9 @@ Main.videosKeys = function()
             break; 
         case tvKey.KEY_EXIT: 
         	widgetAPI.blockNavigation(event);
-            if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
+            if(Main.curLevel != Main.level.VIDEO){
+            	widgetAPI.sendReturnEvent();
+            }else if(Main.curLevel != Main.level.NOSTATE){
             	Main.travelLoad();
             }else{
 		    	if(Player.CONTROLSACTIVE){

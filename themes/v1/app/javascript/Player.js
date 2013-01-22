@@ -227,6 +227,7 @@ Player.onBufferingProgress = function(percent)
 {
      $('#videoMenu').css('height','60px');
 	$('#videoPlayStatus').html('Buffering...');
+    Main.curLevel = Main.level.NOSTATE;
 }
 
 Player.onBufferingComplete = function()
