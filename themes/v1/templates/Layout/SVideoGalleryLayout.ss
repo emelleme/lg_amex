@@ -1,6 +1,6 @@
 
 
-	<div id="videoMenu" style="z-index:14000;background-color: rgba(20, 20,20, .5);color:#ffffff;position:absolute;bottom:0px;left:0px;width:1280px;height:60px;">
+	<div id="videoMenu" data-livestream="$LiveStream1" style="z-index:14000;background-color: rgba(20, 20,20, .5);color:#ffffff;position:absolute;bottom:0px;left:0px;width:1280px;height:60px;">
 	<h2 class="left" id="currentVideoTitle" style="padding-left:25px;">FOODIE GETAWAYS <span id="status"></span></h2>
 	<h3 class="right" id="videoPlayStatus" style="padding-right:25px;"> / </h3>
 	</div>

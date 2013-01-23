@@ -16,7 +16,8 @@ var Main =
 		TERMS: 6,
 		TERMSPAGE:7,
 		MENU: 8,
-		NOSTATE: 9
+		NOSTATE: 9,
+		BUFFERING: 10
 	},
 	MENU_POS: 0,
 	MAX_ITEMS:5,

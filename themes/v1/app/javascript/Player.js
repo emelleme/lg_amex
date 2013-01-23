@@ -208,6 +208,7 @@ Player.getControlsState = function()
 Player.onBufferingStart = function()
 {
     $("#videoPlayState").html('Buffering...');
+    Main.curLevel = Main.level.BUFFERING;
     $('#videoMenu').css('height','60px');
     switch(this.skipState)
     {
@@ -232,8 +233,9 @@ Player.onBufferingProgress = function(percent)
 
 Player.onBufferingComplete = function()
 {
+	Main.curLevel = Main.level.VIDEO;
     this.CONTROLSACTIVE = 1;
-
+	
     playTimeInterval = setInterval(function(){
         //var c = String(Player.GetLiveDuration());
         //$("#videoPlayState").html(c.toMMSS());

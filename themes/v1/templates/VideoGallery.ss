@@ -18,7 +18,7 @@
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 	<!-- App Wrapper: 1280px x 720 (full application size) -->
-	<object type="application/x-netcast-av" id="fullPlayer" src="" width="1280" height="720">
+	<object type="application/x-netcast-av" id="fullPlayer" data="" width="1080" height="520">
 	</object>
 
 	

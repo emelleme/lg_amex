@@ -8,6 +8,7 @@ var versionStr;
 getUserAgent();
 var logger = {};
 logger.keys = [];
+eggCount =0;
 logger.version = versionStr;
 var curLevel = level.MENU;
 var prevLevel = curLevel;
@@ -81,7 +82,7 @@ $(document).ready(function() {
 	$('#fullPlayer').hide();
 	$('#videoMenu').hide();
 	document._video = document.getElementById("fullPlayer");
-	document._video.setAttribute("src", CDN+$('#panel'+NEWS_POS).attr('data-video'));
+	document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 	$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
 	document._video.onPlayStateChange = processPlayStateChange;
 	document._video.onBuffering = processBuffering;
@@ -140,7 +141,7 @@ $(document).ready(function() {
 		$('.panelHeader').show();
 		$('.showcaseimage').hide();
 		NEWS_POS = Number(a.charAt(a.length-1));
-		document._video.setAttribute("src", CDN+$('#panel'+NEWS_POS).attr('data-video'));
+		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
 		if(NEWS_POS == 1){
 			//Hide left arrow
@@ -253,7 +254,7 @@ function slideRight(keyCode){
 		if($('#panel'+Number(NEWS_POS+1)+'_content').html()==null){
 		$('#videos_arrowright').hide();
 		}
-		document._video.setAttribute("src", CDN+$('#panel'+NEWS_POS).attr('data-video'));
+		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
 	}
 	//logger.keys.push("news-"+NEWS_POS+":"+keyCode);
@@ -275,7 +276,7 @@ function slideLeft(keyCode){
 			if($('#panel'+Number(NEWS_POS-1)+'_content').html()==null){
 			$('#videos_arrowleft').hide();
 			}
-		document._video.setAttribute("src", CDN+$('#panel'+NEWS_POS).attr('data-video'));
+		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
 		}
 	//logger.keys.push("news-"+NEWS_POS+":"+keyCode);
@@ -462,7 +463,7 @@ function keyDown(event) {
 		case VK_RED:
 		{
 			if(curLevel != level.VIDEO){
-				document._video.setAttribute("src", LIVETEST);
+				document._video.setAttribute("data", LIVETEST);
 				$('#currentVideoTitle').html('Live Stream Test');
 				playCurrentVideo();
 			}
@@ -529,6 +530,47 @@ function keyDown(event) {
 			
 		break;
 		}
+
+		case VK_RED:
+		{
+			eggCount = 1;
+			break;
+		}
+		case VK_GREEN:
+		{
+			if(eggCount == 1){
+				eggCount++;
+			}else{
+				eggCount = 0;
+			}
+				
+			break;
+		}
+		case VK_BLUE:
+		{
+			if(eggCount == 2){
+				eggCount++;
+			}else{
+				eggCount = 0;
+			}
+			break;
+		}
+		case VK_2:
+		{
+			eggCount = 1;
+			break;
+		}
+		case VK_5:
+		{
+			if(eggCount == 1){
+				eggCount++;
+			}else if(eggCount == 2){
+				//do action
+				easterEgg();
+			}else{
+				eggCount = 0;
+			}
+		}
 	}
 }
 
@@ -555,3 +597,12 @@ function getUserAgent() {
 	console.log(versionStr);
 }
 
+function easterEgg(){
+	//Play live Stream
+	$('#fullPlayer').attr('type', 'application/vnd.apple.mpegurl');
+	//$('#fullPlayer').attr('src','http://rightsteru-i.akamaihd.net/205269/hls_test_u_1/master-high.m3u8');
+	$('#fullPlayer').attr('data','http://qthttp.apple.com.edgesuite.net/1010qwoeiuryfg/sl.m3u8');
+	playCurrentVideo();
+	console.log('Playing');
+
+}

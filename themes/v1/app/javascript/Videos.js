@@ -6,6 +6,7 @@ Main.videosLoad = function(){
 	Main.PREV_COL = Main.PREV_COL;
 	Main.NEWS_POS = 1;
 	Main.selectedVideo = 0;
+	Main.eggCount = 0;
 	Main.updateCurrentVideo(Main.NEWS_POS);
 	Main.clearActive();
 
@@ -58,15 +59,21 @@ Main.videosKeys = function()
             break; 
         case tvKey.KEY_EXIT: 
         	widgetAPI.blockNavigation(event);
-            if(Main.curLevel != Main.level.VIDEO){
-            	widgetAPI.sendReturnEvent();
-            }else if(Main.curLevel != Main.level.NOSTATE){
-            	Main.travelLoad();
+            if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
+		        
+		        	var m = Main.prevPage.shift();
+		        	if(m == 'cards'){
+						Main.cardsLoad();
+					}else if(m == 'recipes'){
+						Main.recipesLoad();
+					}else if(m == 'travel'){
+						Main.travelLoad();
+					}
             }else{
 		    	if(Player.CONTROLSACTIVE){
 		        	$('#pluginPlayer').css('z-index','0');
 			        Player.stopVideo();
-			        Main.curLevel = Main.prevLevel;
+			        widgetAPI.sendExitEvent(); 
 		        }
             }
             //widgetAPI.sendReturnEvent(); 
@@ -81,7 +88,7 @@ Main.videosKeys = function()
             
         case tvKey.KEY_STOP:
             alert("STOP");
-            if(Main.curLevel == Main.level.VIDEO){
+            if(Main.curLevel == Main.level.VIDEO || Main.curLevel == Main.level.BUFFERING){
 			$('#pluginPlayer').css('z-index','0');
             Player.stopVideo();
             Main.curLevel = Main.level.NEWS;
@@ -274,12 +281,49 @@ Main.videosKeys = function()
             alert("MUTE");
             Main.muteMode();
             break;
+         /*case tvKey.KEY_RED: 
+         	eggCount = 1;
+			break;
+		case tvKey.KEY_GREEN:
+			if(eggCount == 1){
+				eggCount++;
+			}else{
+				eggCount = 0;
+			}
+			break;
+		case tvKey.KEY_BLUE:
+			if(eggCount == 2){
+				eggCount++;
+			}else{
+				eggCount = 0;
+			}
+			break;*/
+		case tvKey.KEY_2:
+			Main.eggCount = 1;
+			break;
+		case tvKey.KEY_5:
+			if(Main.eggCount == 1){
+				Main.eggCount++;
+			}else if(Main.eggCount == 2){
+				//do action
+				Main.easterEgg();
+			}else{
+				Main.eggCount = 0;
+			}
+			break;
 		default:
 			alert("Unhandled key");
 			break;
 	}
 };
 
+Main.easterEgg = function(){
+	$('#currentVideoTitle').html('Stream Test');
+	
+	$('#pluginPlayer').css('z-index','13000');
+	Main.prevLevel = Main.curLevel;
+	Main.handleLivePlayKey();
+}
 Main.updateCurrentVideo = function(move)
 {
     Player.setVideoURL( Data.getVideoURL(Main.selectedVideo) );
@@ -296,6 +340,34 @@ Main.handlePlayKey = function()
     {
         case Player.STOPPED:
 			Main.updateCurrentVideo(Main.NEWS_POS-1);
+            Player.playVideo();
+			Main.curLevel = Main.level.NOSTATE;
+			alert(Main.curLevel);
+			$('#mainMenu').hide();
+			$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
+			Main.setFullScreenMode();
+            break;
+            
+        case Player.PAUSED:
+            Player.resumeVideo();
+            break;
+            
+        default:
+            alert("Ignoring play key, not in correct state");
+            break;
+    }
+}
+
+Main.handleLivePlayKey = function()
+{
+    switch ( Player.getState() )
+    {
+        case Player.STOPPED:
+        	var d = $('#videoMenu').attr('data-livestream');
+			Player.setVideoURL( d );
             Player.playVideo();
 			Main.curLevel = Main.level.NOSTATE;
 			alert(Main.curLevel);
