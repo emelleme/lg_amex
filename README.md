@@ -26,6 +26,8 @@ and [installation from source](http://doc.silverstripe.org/framework/en/installa
 
 * Samsung Video Streaming url requires special formatting. See http://www.samsungdforum.com/Guide/art00098/index.html
 * m3u8 Streaming format supported by Samsung and LG. See ietf http://tools.ietf.org/html/draft-pantos-http-live-streaming-10
+* LG Video Streaming has a few minor quirks. See http://developer.lgappstv.com/TV_HELP/topic/lge.tvsdk.developing.book/html/Developing%20Web%20App/Developing%20Web%20App/Streaming%20Method.htm?resultof=%22%73%74%72%65%61%6d%69%6e%67%22%20%22%73%74%72%65%61%6d%22%20
+* 
 
 ## License ##
 
