@@ -22,6 +22,10 @@ and [installation from source](http://doc.silverstripe.org/framework/en/installa
  * [Forums](http://silverstripe.org/forums)
  * [Developer Mailinglist](https://groups.google.com/forum/#!forum/silverstripe-dev)
 
+## Application Notes ##
+
+Samsung Video Streaming url requires special formatting. See http://www.samsungdforum.com/Guide/art00098/index.html
+
 ## License ##
 
 	Copyright (c) 2007-2011, SilverStripe Limited - www.silverstripe.com
