@@ -1,11 +1,7 @@
 Main.recipesLoad = function(){
 	Main.MENU_POS = 0;
-	Main.curLevel = Main.level.GALLERY;
-	Main.CUR_ROW = 4;
-	Main.CUR_COL = 1;
-	Main.PREV_ROW = Main.CUR_ROW;
-	Main.PREV_COL = Main.PREV_COL;
-	Main.NEWS_POS = 1;
+	
+
 	Main.clearActive();
 	document.getElementById('anchor').onkeydown = Main.recipesKeys; 
 	
@@ -14,13 +10,24 @@ Main.recipesLoad = function(){
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#recipesView').show();
-	$('#icon-1').addClass('mini-image-active');
-	$('#main-area').show();
-	$('.galleryContent').hide();
-	$('#gallery-'+Main.NEWS_POS).show();
-	$('#news_arrowright').show();
-	$('#news_arrowleft,#panel3,#panel2_content, #panel4_content, #panel1_content').hide();
-	$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
+
+	if(Main.GALLERYITEMACTIVE == false){
+		Main.curLevel = Main.level.GALLERY;
+		$('#icon-1').addClass('mini-image-active');
+		$('#main-area').show();
+		$('.galleryContent').hide();
+		$('#gallery-'+Main.NEWS_POS).show();
+		setArrows();
+		$('#news_arrowleft,#panel3,#panel2_content, #panel4_content, #panel1_content').hide();
+
+	}else{
+		Main.curLevel = Main.level.GALLERYITEM;
+		$('#main-area').hide();
+		$('#gallery-area').show();
+		$('.galleryContent').hide();
+		$('#gallery-item-'+Main.NEWS_POS).show();
+		$('.backbtn').addClass('hover');
+	}
 }
 
 Main.recipesKeys = function(){
@@ -123,9 +130,6 @@ Main.recipesKeys = function(){
 			break;
 		case tvKey.KEY_DOWN:
 			alert("DOWN");
-			if (Main.curLevel == Main.level.MENU) {
-				//chill
-			}
 			if (Main.curLevel == Main.level.TERMS) {
 				//On Terms, go to Menu
 				Main.curLevel = Main.level.MENU;
@@ -134,8 +138,7 @@ Main.recipesKeys = function(){
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
 				$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 				$('.termsconditions a').removeClass('hover');
-			}
-			if (Main.curLevel == Main.level.GALLERY){
+			}else if (Main.curLevel == Main.level.GALLERY){
 				//Go to terms
 				Main.curLevel = Main.level.TERMS;
 				$('.arrows').hide();
@@ -181,11 +184,11 @@ Main.recipesKeys = function(){
 					$('#gallery-area').show();
 					$('.galleryContent').hide();
 					$('#gallery-item-'+Main.NEWS_POS).show();
-				
+					$('.backbtn').addClass('hover');
 					Main.GALLERYITEMACTIVE = true;
 					console.log(Main.curLevel);
 				
-					$('.backbtn').addClass('hover');
+					
 				}
 			}else if(Main.curLevel == Main.level.GALLERYITEM){
 				//return to gallery
