@@ -9,10 +9,23 @@ class VideoGalleryPage extends Page
 {
 	#	internal variables
 	public static $db = array(
+			'LiveStream1' => 'Text',
+			'LGLiveStream' => 'Text',
+			'SamsungLiveStream' => 'Text'
 	);
 
 	public static $has_one = array(
 	);
+
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
+		$fields->removeFieldFromTab('Root.Main', 'Content');
+		$fields->addFieldToTab('Root.Main', new TextField('LiveStream1','LiveStream1'));
+		$fields->addFieldToTab('Root.Main', new TextField('LGLiveStream','LGLiveStream'));
+		$fields->addFieldToTab('Root.Main', new TextField('SamsungLiveStream','SamsungLiveStream'));
+		return $fields;
+		
+	}
 
 }
 #doc
