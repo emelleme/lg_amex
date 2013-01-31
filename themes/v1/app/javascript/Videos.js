@@ -60,20 +60,16 @@ Main.videosKeys = function()
         case tvKey.KEY_EXIT: 
         	widgetAPI.blockNavigation(event);
             if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
-		        
-		        	var m = Main.prevPage.shift();
-		        	if(m == 'cards'){
-						Main.cardsLoad();
-					}else if(m == 'recipes'){
-						Main.recipesLoad();
-					}else if(m == 'travel'){
-						Main.travelLoad();
-					}
+		        	widgetAPI.sendExitEvent(); 
             }else{
 		    	if(Player.CONTROLSACTIVE){
 		        	$('#pluginPlayer').css('z-index','0');
 			        Player.stopVideo();
 			        widgetAPI.sendExitEvent(); 
+		        }else{
+		        	$('#pluginPlayer').css('z-index','0');
+		            Player.stopVideo();
+		            Main.curLevel = Main.level.NEWS;
 		        }
             }
             //widgetAPI.sendReturnEvent(); 

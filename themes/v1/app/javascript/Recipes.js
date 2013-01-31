@@ -1,29 +1,34 @@
 Main.recipesLoad = function(){
 	Main.MENU_POS = 0;
-	
-
-	Main.clearActive();
 	document.getElementById('anchor').onkeydown = Main.recipesKeys; 
-	
+	if(Main.GOBACK == 0){
+		//Refresh page
+		Main.CUR_ROW = 4;
+		Main.CUR_COL = 1;
+		Main.PREV_ROW = Main.CUR_ROW;
+		Main.PREV_COL = Main.PREV_COL;
+		Main.NEWS_POS = 1;
+	}else{
+		//Return Back to previous state
+		Main.GOBACK == 0;
+	}
 	$('#cardsView').hide();
 	$('#travelView').hide();
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#recipesView').show();
 
-	if(Main.GALLERYITEMACTIVE == false){
+	if(!Main.GALLERYITEMACTIVE){
 		Main.curLevel = Main.level.GALLERY;
 		$('#icon-1').addClass('mini-image-active');
 		$('#main-area').show();
 		$('.galleryContent').hide();
 		$('#gallery-'+Main.NEWS_POS).show();
 		setArrows();
-		$('#news_arrowleft,#panel3,#panel2_content, #panel4_content, #panel1_content').hide();
 
 	}else{
 		Main.curLevel = Main.level.GALLERYITEM;
 		$('#main-area').hide();
-		$('#gallery-area').show();
 		$('.galleryContent').hide();
 		$('#gallery-item-'+Main.NEWS_POS).show();
 		$('.backbtn').addClass('hover');

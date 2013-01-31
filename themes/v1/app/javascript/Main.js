@@ -27,6 +27,8 @@ var Main =
 	PREV_ROW:4,
 	PREV_COL:1,
 	NEWS_POS: 1,
+	GALLERYITEMACTIVE:0,
+	GOBACK: 0,
 	curLevel: 1,
 	prevLevel: 1,
 	prevPage: ["travel"],

@@ -1,10 +1,5 @@
 Main.termsLoad = function(){
 	Main.MENU_POS = 0;
-	Main.CUR_ROW = 4;
-	Main.CUR_COL = 1;
-	Main.PREV_ROW = Main.CUR_ROW;
-	Main.PREV_COL = Main.PREV_COL;
-	Main.NEWS_POS = 1;
 	Main.clearActive();
 	Main.curLevel = Main.level.TERMSPAGE;
 	document.getElementById('anchor').onkeydown = Main.termsKeys; 
@@ -25,6 +20,7 @@ Main.termsKeys = function(event) {
 		case tvKey.KEY_PANEL_RETURN:
 			//Return to Travel Page//
 			event.preventDefault();
+			Main.GOBACK = 1;
 			var m = Main.prevPage.shift();
 			if(m == 'cards'){
 				Main.cardsLoad();
@@ -101,6 +97,7 @@ Main.termsKeys = function(event) {
 				}
 			}else{
 				alert('NOSD');
+				Main.GOBACK = 1;
 				var m = Main.prevPage.shift();
 				if(m == 'cards'){
 					Main.cardsLoad();
