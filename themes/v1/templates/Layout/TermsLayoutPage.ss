@@ -26,9 +26,9 @@
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" data-page="travel" href="travel.html">Travel Ideas</a>
-				<li class="center"><a class="navbtn" data-page="recipes" href="recipes.html">Party Recipes</a>
-				<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
+				<li><a class="navbtn" data-page="tipstrends" href="travel.html">Travel Ideas</a>
+				<li class="center"><a class="navbtn" data-page="designerspotlight" href="designerspotlight.html">Designer Spotlight</a>
+				<li><a class="navbtn" data-page="shopsmall" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
 			</ul>
 				
 			<div style="clear: both;"></div>

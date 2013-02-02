@@ -2,8 +2,8 @@
 	<!-- header area (1024 x 80)-->
 	<section  style="padding-left:128px;" id="header-new" class="row">
 		<div id="header-title" class="span6">
-			<h1>New Year's Resolution Trips.</h1>
-			<h3>Use your remote to find great travel locations.</h3>
+			<h1>Joe Zee's Fashion Trends.</h1>
+			<h3>Explore trends and more at venteprivee.com/AmexTV</h3>
 		</div>
 
 		<div id="header-logo" style="margin:0px 0px 0px 0px" class="span6">
@@ -38,7 +38,7 @@
 				<span><a href="admin/benefits/Benefit/EditForm/field/Benefit/item/$ID" target="_blank" style="background-color:#0063B2;color:#fff">$Position<img src="http://dev.amxp.cc/assets/images/edit.png" /></a></span>
 				<% end_if %>
 					<div class="inner">
-						<div id="benefit_$Position" class="hidden">
+						<div id="benefit_$Position" class="hidden" data-title="$Title">
 							<div class="benefit-title">
 								<h2 style="color: $BoxColor;">$Title.RAW</h2>
 							</div>
@@ -66,7 +66,7 @@
 			<div id="image_6-3" style="" data-wingcolor="$WingColor">
 				<a class="termsbtn" href="terms.html">Terms &#38; Conditions</a>
 				
-				<div id="benefit_6-3" class="hidden">
+				<div id="benefit_6-3" class="hidden" data-title="$Title">
 					<div class="benefit-title">
 						<!--<img alt="Welcome In." src="http://dev.amxp.cc/assets/images/entertainmentaccess.png"/>-->
 						<h2 style="color: $BoxColor;">$Title.RAW</h2>
@@ -98,8 +98,8 @@
 			<div class="container">
 			<ul>
 				<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
-				<li class="center"><a data-page="recipes" class="navbtn" href="recipes.html">Party Recipes</a>
-				<li><a data-page="cards" class="navbtn" href="cards.html">See Cards</a>
+				<li class="center"><a data-page="designerspotlight" class="navbtn" href="designerspotlight.html">Designer Spotlight</a>
+				<li><a data-page="shopsmall" class="navbtn" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
 			</ul>
 				
 			<div style="clear: both;"></div>

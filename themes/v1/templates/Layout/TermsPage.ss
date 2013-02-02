@@ -26,9 +26,9 @@
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" href="travel.html">Travel Ideas</a>
-				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
-				<li><a class="navbtn" href="video.html">Video Gallery</a>
+				<li><a class="navbtn" href="tipstrends.html">Tips &amp; Trends</a>
+				<li class="center"><a class="navbtn" href="designerspotlight.html">Designer Spotlight</a>
+				<li><a class="navbtn" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
 			</ul>
 				
 			<div style="clear: both;"></div>

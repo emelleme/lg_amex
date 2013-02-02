@@ -140,27 +140,27 @@ width: 1240px;
 
 
 
-a.navbtn {width: 345px; height: 46px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 20px/46px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+a.navbtn {width: 345px; height: 46px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #000000; color: #fff; font: 20px/46px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 
-a.navbtn.active {background: #782170; color: #fff;}
+a.navbtn.active {background: #3ba3df; color: #fff;}
 
-a.navbtn.hover {background: #782170; color: #fff; height: 46px; width: 345px; line-height: 46px;}
-
-
-
-a.navbtn.noHover {width: 345px; height: 46px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 20px/40px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+a.navbtn.hover {background: #3ba3df; color: #fff; height: 46px; width: 345px; line-height: 46px;}
 
 
 
-a.termsbtn {width: 176px; height: 33px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 15px/39px BentonSansBold; text-decoration: none; text-transform: uppercase; display: inline-block; text-align:center;}
-
-a.termsbtn.hover {background: #782170; color: #fff;}
+a.navbtn.noHover {width: 345px; height: 46px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #000000; color: #fff; font: 20px/40px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 
 
 
-a.backbtn {width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #172a75; color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+a.termsbtn {width: 176px; height: 33px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #474747; color: #fff; font: 15px/39px BentonSansBold; text-decoration: none; text-transform: uppercase; display: inline-block; text-align:center;}
 
-a.backbtn.hover{background: #782170; width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+a.termsbtn.hover {background: #3ba3df; color: #fff;}
+
+
+
+a.backbtn {width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #000000; color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+
+a.backbtn.hover{background: #3ba3df; width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 
 
 
@@ -617,7 +617,7 @@ color: #999;
 
 	font-size: 41px;
 
-	color: #172a75;
+	color: #000000;
 
 	font-weight: normal;
 
@@ -1856,7 +1856,7 @@ animation: blinkButton 0.7s;
 
 
 
-sup {top: -0.25em !important;}
+sup {top: -0.5em !important;}
 
 
 
