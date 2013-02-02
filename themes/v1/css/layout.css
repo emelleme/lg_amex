@@ -120,6 +120,9 @@ a, a > *,div, div > img {
 
 
 
+img.bg {min-height: 100%; min-width: 720px; width: 100%; height: auto; position: fixed; top: 0; left: 0; z-index: -1;}
+
+
 .navbar-fixed-top .container, .navbar-fixed-bottom .container {
 
 width: 1240px;
@@ -185,6 +188,8 @@ a.backbtn.hover{background: #3ba3df; width: 116px; height: 32px; -webkit-border-
 margin-right: auto;
 
 margin-left: 0px;
+
+z-index: 2;
 
 }
 
@@ -442,10 +447,6 @@ padding-right: 20px;
 
 padding-left: 20px;
 
-background-color: #FFF;
-
-background-repeat: repeat-x;
-
 -webkit-border-radius: 4px;
 
 -moz-border-radius: 4px;
@@ -457,7 +458,6 @@ border-top: 1px solid rgba(0, 0, 0, 0.2);
 box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5);
 
 }
-
 
 
 .menubar-inner {
@@ -473,6 +473,9 @@ padding-left: 120px;
 border-radius: 0;
 
 }
+
+.navbar-home .menubar-inner {-webkit-box-shadow: 0px 0px 0px;
+box-shadow: 0px 0px 0px; border-top: 0px;}
 
 .navbar{
 	color:#ddd;
@@ -595,8 +598,6 @@ color: #999;
 
 #header-title{
 
-	background:#ffffff;
-
 	position: absolute; 
 
 	height: 80px;
@@ -623,19 +624,25 @@ color: #999;
 
 }
 
+#header-title h1.header-home  {color: #1e99c6;}
+
 #header-title h3{
 
 	margin-top: 8px;
+	
+	margin-bottom: -8px;
 
 	font-family: BentonSans;
 
-	font-size: 24px;
+	font-size: 21px;
+	
+	line-height: 24px;
+	
+	width: 810px;
 
-	color: #636363;
+	color: #ffffff;
 
 	font-weight: normal;
-
-	width: 600px;
 
 }
 
@@ -1302,9 +1309,9 @@ line-height: auto;
 
 .mosaicImage{
 
-	opacity: .5;
+	opacity: .75;
 
-	background: #ddd;
+	background: #ffffff;
 
 	text-indent: -9999px;
 
@@ -1314,7 +1321,7 @@ line-height: auto;
 
 .mosaicImagehover{
 
-	opacity: 0.85;
+	opacity: 0.90;
 
 }
 
@@ -1332,7 +1339,7 @@ div.mosaicImage:hover{
 
 	/*background: #ddd;*/
 
-		opacity: .2;
+		opacity: .75;
 
 }
 
@@ -1368,12 +1375,11 @@ display: none;
 
 #image_1-1{
 
-	position: absolute;left:111px;top:37px;width:110px;height:53px;
+	position: absolute;left:18px;top:10px;width:203px;height:79px;
 
-	background-image: url('../images/tips-1-1.png');
+	background-image: url('../images/logo-ch.jpg');
 
 	background-repeat: no-repeat;
-
 }
 
 
@@ -1632,6 +1638,8 @@ animation: blinkButton 0.7s;
 
 #image_6-2{
 
+	display: none;
+
 	position: absolute;left:119px;top:378px;width:143px;height:101px;
 
 	background-image: url('../images/tips-6-2.jpg');
@@ -1722,6 +1730,8 @@ animation: blinkButton 0.7s;
 
 #image_6-3 a{
 
+	display: none;
+
 	position: absolute;left:282px;top:424px;
 
 	/*background-image: url('../images/termsandconditions.png');
@@ -1742,7 +1752,7 @@ animation: blinkButton 0.7s;
 
 
 
-	#image_6-3.activeImage a	{background: #782170; color: #fff;}
+	#image_6-3.activeImage a	{background: ##3ba3df; color: #fff;}
 
 
 
@@ -2800,3 +2810,5 @@ margin-right: 49px;
 
 #sync-footer .syncoffersgreen {color: #19a699; font-family: BentonSansBold;}
 #sync-footer .syncofferspurple {color: #782170; font-family: BentonSansBold;}
+
+.home-toapply {font: 18px/18px BentonSansBold; color: #ffffff;}
