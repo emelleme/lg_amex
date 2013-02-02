@@ -9,15 +9,53 @@ class BenefitsPage extends Page
 {
 	#	internal variables
 	public static $db = array(
+		'CurrentPhase' => "Enum('voting, pre, live, post')"
 	);
 
-	public static $has_one = array(
+	public static $many_many = array(
+		'VotingMosaic' => 'Benefit',
+		 'PreStreamMosaic' => 'Benefit',
+		 'LiveStreamMosaic' => 'Benefit',
+		 'PostStreamMosaic' => 'Benefit'
+	);
+
+	public static $defaults = array(
+		'CurrentPhase' => 'voting'
 	);
 	
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->removeFieldFromTab('Root.Main', 'Content');
-		$fields->addFieldToTab('Root.Main', new LiteralField('BenefitManager','<h2><a href="/admin/benefits/">Click Here to manage Benefits</a></h2>'));
+		$fields->addFieldToTab("Root.Main", new DropdownField('CurrentPhase', 'CurrentPhase',$this->dbObject('CurrentPhase')->enumValues('BenefitsPage')),'MenuTitle');
+		//$fields->addFieldToTab('Root.Main', new LiteralField('BenefitManager','<h2><a href="/admin/benefits/">Click Here to manage Benefits</a></h2>'));
+
+		$voting = new GridField(
+			'VotingMosaic',
+			'Voting Mosiac Items',
+			$this->VotingMosaic(),
+			GridFieldConfig_RelationEditor::create());
+		$fields->addFieldToTab('Root.VotingPhase',$voting);
+
+		$pre = new GridField(
+			'PreStreamMosaic',
+			'Pre-Stream Mosiac Items',
+			$this->PreStreamMosaic(),
+			GridFieldConfig_RelationEditor::create());
+		$fields->addFieldToTab('Root.PreStreamPhase',$pre);
+
+		$live = new GridField(
+			'LiveStreamMosaic',
+			'Live Stream Mosiac Items',
+			$this->PreStreamMosaic(),
+			GridFieldConfig_RelationEditor::create());
+		$fields->addFieldToTab('Root.LiveStreamPhase',$live);
+
+		$post = new GridField(
+			'PostStreamPhase',
+			'Post-Stream Mosiac Items',
+			$this->PostStreamMosaic(),
+			GridFieldConfig_RelationEditor::create());
+		$fields->addFieldToTab('Root.PostStreamPhase',$post);
 		return $fields;
 		
 	}
@@ -49,20 +87,53 @@ class BenefitsPage_Controller extends Page_Controller
 		$data = Benefit::get();
 		return $data;
 	}
+
+	function test(){
+		$d = $this->getUrlParams();
+		$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('VotingMosaic');
+		var_dump($benefits->first());
+	}
 	
-	public function index($arguments){
+	public function index(){
 		return $this->renderWith('BenefitsPage');
 	}
 
-	public function layout($arguments){
+	public function layout(){
 		return $this->renderWith('BenefitsLayoutPage');
 	}
 
-	public function samsung($arguments){
+	public function samsung(){
 		return $this->renderWith('SBenefitsPage');
 	}
 
-	public function all($arguments){
+	public function displayItems($phase = 'voting'){
+		$d = $this->getUrlParams();
+		$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']));
+		switch ($phase) {
+			case 'voting':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('VotingMosaic');
+				break;
+			case 'pre':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('PreStreamMosaic');
+				break;
+			case 'live':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('LiveStreamMosaic');
+				break;
+			case 'post':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('PostStreamMosaic');
+				break;
+			default:
+				# code...
+				break;
+		}
+		return $benefits;
+	}
+
+	public function all(){
 		/* return all benefit data in json format for angular */
 		$id = Director::URLParam('ID');
 		$benefits = Benefit::get();

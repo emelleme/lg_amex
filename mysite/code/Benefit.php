@@ -14,6 +14,13 @@ class Benefit extends DataObject {
 	);
 
 	public static $has_one = array(
+		'MosaicTileOn' => 'Image',
+		'MosaicTileOff' => 'Image'
+	);
+
+	public static$belongs_many_many = array(
+		'VotingMosaics' => 'BenefitsPage',
+		'PreStreamMosaics' => 'BenefitsPage',
 	);
 
 	static $summary_fields = array(
