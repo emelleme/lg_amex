@@ -45,7 +45,7 @@
 							<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 
-						<div style="width: 809px; height:400px; margin: 18px 0 0 121px; overflow: hidden;">
+						<div style="width: 809px; height:400px; margin: 27px 0 0 121px; overflow: hidden;">
 
 							<div id="image-scroller">
 							<% loop videoPanels %>

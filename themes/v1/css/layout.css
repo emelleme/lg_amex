@@ -137,9 +137,9 @@ width: 1240px;
 
 .navbar ul {margin-left: -14px;}
 
-.navbar ul li {float: left; margin: 12px 0 42px 0; list-style: none;}
+.navbar ul li {float: left; margin: 12px 0 36px 0; list-style: none;}
 
-.navbar ul li.center {margin: 12px 9px 42px 9px;}
+.navbar ul li.center {margin: 12px 9px 36px 9px;}
 
 
 
@@ -716,7 +716,7 @@ color: #999;
 	position: absolute;
 	width: 500;
 	left: 180px;
-	top: 147px;
+	top: 177px;
 
 }
 
@@ -1177,7 +1177,7 @@ line-height: auto;
 
 #main-mosaic{
 
-	top: 110px;
+	top: 127px;
 	float: right;
 	position: absolute;
 	width: 525px;
@@ -2751,7 +2751,7 @@ margin-right: 49px;
 #sync-footer .syncoffersgreen {color: #19a699; font-family: BentonSansBold;}
 #sync-footer .syncofferspurple {color: #782170; font-family: BentonSansBold;}
 
-#home-toapply {font: 16px/33px BentonSansMedium; color: #ffffff; position: absolute; height: 33px; width: 815px; top: 576px; left: 219px; text-shadow: 0px 0px 5px #000000; -moz-text-shadow: 0px 0px 5px #000000;}
+#home-toapply {font: 16px/33px BentonSansMedium; color: #ffffff; position: absolute; height: 33px; width: 815px; top: 573px; left: 219px; text-shadow: 0px 0px 5px #000000; -moz-text-shadow: 0px 0px 5px #000000;}
 #home-toapply .termsconditions {margin: 0; text-shadow: 0px 0px 0px #000000; -moz-text-shadow: 0px 0px 0px #000000;}
 
 
