@@ -32,7 +32,7 @@
 			<section  style="padding-left:128px;" id="header-new" class="row">
 				<div id="header-title" class="span5">
 					<h1>Video Gallery.</h1>
-					<h3>Use your remote to select and play each video.</h3>
+					<h3 class="gray">Use your remote to select and play each video.</h3>
 				</div>
 
 				<% include Logo %>
@@ -45,14 +45,12 @@
 							<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 
-						<div style="width: 979px;height:400px;margin: 18px 0 0 36px; overflow: hidden;">
+						<div style="width: 809px; height:400px; margin: 18px 0 0 121px; overflow: hidden;">
 
 							<div id="image-scroller">
 							<% loop videoPanels %>
 								<div id="panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$PlainTitle.RAW">
-								
-									<h3 class="video-panel-text" style="$CustomStyles"><span class="headerText">$Title.RAW</span></h3>
-									<div class="video-panel-icon"><p>$PanelIcon</p></div>
+									<div class="video-panel-icon">$PanelIcon</div>
 								</div>
 								<div id="panel{$PanelNumber}_content" class="showcaseimage">
 									<img src="$PanelImage.Url" alt="image" />
@@ -66,11 +64,11 @@
 						<img src="assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 						</div>
 						
-						<!--p class="termsconditions" style="float: right; margin: 18px 43px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p-->
+						<p class="termsconditions" style="float: right; margin: 18px 124px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p>
 
 					</div>
 					<!-- End showcase container -->
-				
+
 			</section>
 		</div>
 		<div id="mainMenu" class="navbar navbar-fixed-bottom">
@@ -79,9 +77,9 @@
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" href="travel.html">Travel Ideas</a>
-				<li class="center"><a class="navbtn" href="recipes.html">Party Recipes</a>
-				<li><a class="navbtn" href="cards.html">See Cards</a>
+				<li><a class="navbtn" href="tipstrends.html">Tips &amp Trends</a>
+				<li class="center"><a class="navbtn" href="designerspotlight.html">Designer Spotlight</a>
+				<li><a class="navbtn" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
 			</ul>
 				
 			<div style="clear: both;"></div>
