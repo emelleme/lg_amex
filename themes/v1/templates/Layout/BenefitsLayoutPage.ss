@@ -3,7 +3,7 @@
 	<section  style="padding-left:128px;" id="header-new" class="row">
 		<div id="header-title" class="span10">
 			<h1 class="header-home">On the Runway.</h1>
-			<h3>Explore these looks and vote for your favorite at www.harpersbazaar.com</h3>
+			<h3>Explore these looks and vote for your favorite at www.harpersbazaar.com.</h3>
 			<h3>Return 2/14 to see the winning look LIVE.</h3>
 		</div>
 
@@ -26,7 +26,7 @@
 				<div id="image_disabled" class="disabledmosaicImage" style="">
 				</div>
 
-			<% loop displayItems %>
+			<% loop allBenefits %>
 				<div id="image_$Position" class="mosaicImage" data-wingcolor="$WingColor" style="">
 				$Position
 				<% if CurrentMember %>
@@ -34,16 +34,16 @@
 				<% end_if %>
 					<div class="inner">
 						<div id="benefit_$Position" class="hidden" data-title="$Title">
-							
+							$BoxText
 						</div>
 					</div>
 				</div>
 			<% end_loop %>
 
 				
-			<% loop displayItems %>
+			<% loop allBenefits %>
 				<% if Position = 6-2 %>
-			<div id="image_6-3" style="" data-wingcolor="$WingColor">
+			<div id="image_6-3" style="">
 				<a class="termsbtn" href="terms.html">Terms &#38; Conditions</a>
 				<div id="benefit_6-3" class="hidden" data-title="$Title">
 				</div>
@@ -51,12 +51,13 @@
 				<% end_if %>
 			<% end_loop %>
 		</div>
-		
-		<div class="home-toapply">Find the American Express<sup>&reg;</sup> Card that suits your style. Call 866-848-1297 to apply. <p class="termsconditions" style="float: right; margin: -43px 27px 0 0;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p></div>
-				
+
 	</div>
 	</section>
 </div>
+
+<div id="home-toapply">Find the American Express<sup>&reg;</sup> Card that suits your style. Call 866-848-1297 to apply. <p class="termsconditions" style="float: right;"><a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p></div>
+
 <div id="travelNav" class="navbar navbar-fixed-bottom navbar-home">
 			<div class="menubar-inner">
 			<div class="container">

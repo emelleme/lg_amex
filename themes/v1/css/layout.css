@@ -634,9 +634,9 @@ color: #999;
 
 	font-family: BentonSans;
 
-	font-size: 21px;
+	font-size: 20px;
 	
-	line-height: 24px;
+	line-height: 23px;
 	
 	width: 810px;
 
@@ -681,70 +681,6 @@ color: #999;
 
 
 
-#wing-low{
-
-	background:#ffffff;
-
-	position: absolute; 
-
-	width:119px; 
-
-	height: 318px;
-
-	top: 209px;
-
-	left:0px;
-
-}
-
-
-
-#wing-high{
-
-	background:#ffffff;
-
-	position: absolute; 
-
-	width:119px; 
-
-	height: 318px;
-
-	top: 94px;
-
-	left:0px;
-
-}
-
-
-
-.uguu {
-
-    line-height: 0%;
-
-    width: 0px;
-
-    border-top: 130px solid transparent;
-
-    border-left: 100px solid rgb(241, 175, 1);
-
-}
-
-
-
-.uguv {
-
-    line-height: 0%;
-
-    width: 0px;
-
-    border-top: 130px solid rgb(241, 175, 1);
-
-    border-left: 100px solid transparent;
-
-}
-
-
-
 .ugum {
 
     line-height: 0%;
@@ -777,11 +713,10 @@ color: #999;
 }
 
 #main-copy{
-	background: #ffffff;
 	position: absolute;
 	width: 500;
-	left: 130px;
-	top: 140px;
+	left: 180px;
+	top: 147px;
 
 }
 
@@ -1309,9 +1244,9 @@ line-height: auto;
 
 .mosaicImage{
 
-	opacity: .75;
+	opacity: .90;
 
-	background: #ffffff;
+	background: #000000;
 
 	text-indent: -9999px;
 
@@ -1321,7 +1256,7 @@ line-height: auto;
 
 .mosaicImagehover{
 
-	opacity: 0.90;
+	opacity: 1;
 
 }
 
@@ -1339,7 +1274,7 @@ div.mosaicImage:hover{
 
 	/*background: #ddd;*/
 
-		opacity: .75;
+		opacity: .90;
 
 }
 
@@ -1390,7 +1325,7 @@ display: none;
 
 	position: absolute;left:231px;top:37px;width:186px;height:120px;
 
-	background-image: url('../images/tips-1-2.jpg');
+	background-image: url('../images/fashionweek-1-2.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1398,7 +1333,7 @@ display: none;
 
 #image_1-2.activeImage{
 
-	background-image: url('../images/tips-1-2_active.jpg');
+	background-image: url('../images/fashionweek-1-2_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1420,7 +1355,7 @@ display: none;
 
 	position: absolute;left:20px;top:100px;width:201px;height:143px;
 
-	background-image: url('../images/tips-2-1.jpg');
+	background-image: url('../images/fashionweek-2-1.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1430,7 +1365,7 @@ display: none;
 
 #image_2-1.activeImage{
 
-	background-image: url('../images/tips-2-1_active.jpg');
+	background-image: url('../images/fashionweek-2-1_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1502,7 +1437,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:231px;top:166px;width:115px;height:77px;
 
-	background-image: url('../images/tips-3-2.jpg');
+	background-image: url('../images/fashionweek-3-2.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1510,7 +1445,7 @@ animation: blinkButton 0.7s;
 
 #image_3-2.activeImage{
 
-	background-image: url('../images/tips-3-2_active.jpg');
+	background-image: url('../images/fashionweek-3-2_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1532,7 +1467,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:357px;top:166px;width:113px;height:143px;
 
-	background-image: url('../images/tips-3-4.jpg');
+	background-image: url('../images/fashionweek-3-4.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1540,7 +1475,7 @@ animation: blinkButton 0.7s;
 
 #image_3-4.activeImage{
 
-	background-image: url('../images/tips-3-4_active.jpg');
+	background-image: url('../images/fashionweek-3-4_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1562,7 +1497,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:71px;top:251px;width:188px;height:117px;
 
-	background-image: url('../images/tips-4-1.jpg');
+	background-image: url('../images/fashionweek-4-1.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1570,7 +1505,7 @@ animation: blinkButton 0.7s;
 
 #image_4-1.activeImage{
 
-	background-image: url('../images/tips-4-1_active.jpg');
+	background-image: url('../images/fashionweek-4-1_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1592,7 +1527,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:269px;top:251px;width:79px;height:58px;
 
-	background-image: url('../images/tips-4-2.jpg');
+	background-image: url('../images/fashionweek-4-2.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1642,7 +1577,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:119px;top:378px;width:143px;height:101px;
 
-	background-image: url('../images/tips-6-2.jpg');
+	background-image: url('../images/fashionweek-6-2.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1650,7 +1585,7 @@ animation: blinkButton 0.7s;
 
 #image_6-2.activeImage{
 
-	background-image: url('../images/tips-6-2_active.jpg');
+	background-image: url('../images/fashionweek-6-2_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1672,7 +1607,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:271px;top:318px;width:117px;height:86px;
 
-	background-image: url('../images/tips-4-3.jpg');
+	background-image: url('../images/fashionweek-4-3.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1680,7 +1615,7 @@ animation: blinkButton 0.7s;
 
 #image_4-3.activeImage{
 
-	background-image: url('../images/tips-4-3_active.jpg');
+	background-image: url('../images/fashionweek-4-3_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1702,7 +1637,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:398px;top:318px;width:110px;height:86px;
 
-	background-image: url('../images/tips-4-4.jpg');
+	background-image: url('../images/fashionweek-4-4.jpg');
 
 	background-repeat: no-repeat;
 
@@ -1710,7 +1645,7 @@ animation: blinkButton 0.7s;
 
 #image_4-4.activeImage{
 
-	background-image: url('../images/tips-4-4_active.jpg');
+	background-image: url('../images/fashionweek-4-4_active.jpg');
 
 	background-repeat: no-repeat;
 
@@ -2811,4 +2746,12 @@ margin-right: 49px;
 #sync-footer .syncoffersgreen {color: #19a699; font-family: BentonSansBold;}
 #sync-footer .syncofferspurple {color: #782170; font-family: BentonSansBold;}
 
-.home-toapply {font: 18px/18px BentonSansBold; color: #ffffff;}
+#home-toapply {font: 16px/33px BentonSansMedium; color: #ffffff; position: absolute; height: 33px; width: 815px; top: 576px; left: 219px; text-shadow: 0px 0px 5px #000000; -moz-text-shadow: 0px 0px 5px #000000;}
+#home-toapply .termsconditions {margin: 0; text-shadow: 0px 0px 0px #000000; -moz-text-shadow: 0px 0px 0px #000000;}
+
+
+.countdown-clock {background: url('/assets/Uploads/clock-back.png') no-repeat; width: 404px; height: 92px; margin: 0; padding: 0;}
+
+.text-to-watch {background: #ebebeb; font: 27px/33px BentonSans; width: margin: 0; padding: 3px 0 0 0; text-align: center; width: 404px; height: 70px;}
+.text-to-watch span.bentonbold {font: 27px/33px BentonSansBold;}
+.max-messages {font: 17px/24px TradeGothic; color: #ffffff; text-shadow: 0px 0px 5px #000000; -moz-text-shadow: 0px 0px 5px #000000;}
