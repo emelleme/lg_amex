@@ -3,7 +3,7 @@
 <head lang="en">
 <% base_tag %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Holiday Travel Made Easy</title>
+<title>$Title</title>
 <% require themedCSS(bootstrap) %>
 <% require themedCSS(layout) %>
 <% require themedCSS(countdown-mosaic) %>

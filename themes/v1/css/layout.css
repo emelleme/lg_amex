@@ -2441,7 +2441,7 @@ width: 75px;
 }
 
 #panel5{
-
+width: 67px;
 }
 
 .video-panel-text {
@@ -2767,3 +2767,7 @@ margin-right: 49px;
 .ss-one {margin: 30px 0px 0px 27px; font: 18px/21px BentonSans;}
 .ss-two {color: #127fc3; margin: 18px 0px 0px 27px;  font: 18px/21px BentonSansMedium;}
 .ss-three {margin: 9px 0px 0px 17px;}
+
+/* - - - - - - - - DESIGNER SPOTLIGHT - - - - - - - - */
+
+.bazaar-footer {font: 17px/30px BentonSansMedium; color: #3ba3df;}
