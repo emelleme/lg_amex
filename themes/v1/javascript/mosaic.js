@@ -57,10 +57,10 @@ IMAGE_MATRIX = {
 	}
 }
 
-CUR_ROW = 4;
+CUR_ROW = 2;
 CUR_COL = 1;
-PREV_ROW = 4;
-PREV_COL = 1;
+PREV_ROW = CUR_ROW;
+PREV_COL = CUR_COL;
 MAX_ROW = 4;
 MAX_COL = 4;
 MENU_POS = 0;
@@ -83,10 +83,10 @@ $(document).ready(function() {
 	$('#main-copy').hide().html($('#benefit_'+CUR_ROW+'-'+CUR_COL).html()).show();
 
 	//Wing Color
-	$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+	/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 	$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 	$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-	$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+	$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 
 	//$('body').css('padding-top','0px');
 	$('#livePlayer').hide();
@@ -131,6 +131,12 @@ $(document).ready(function() {
 	},function(){
 		NAV_HOVER = false;
 	});
+
+	$('.termsbtn').hover(function(){
+		clearActive();
+		$('.termsconditions a').addClass('hover');
+		curLevel = level.TERMS;
+	});
 	
 	$('.navbtn').on('click', function(e){
 		e.preventDefault();
@@ -172,10 +178,10 @@ $(document).ready(function() {
 			$('#main-copy').hide().html($('#'+t).html()).show();
 			
 			//Wing Color
-			$('.uguu').css('border-left','100px solid '+$(this).attr('data-wingcolor'));
+			/*$('.uguu').css('border-left','100px solid '+$(this).attr('data-wingcolor'));
 			$('.ugum').css('border-top','76px solid '+$(this).attr('data-wingcolor'));
 			$('.ugum').css('border-left','100px solid '+$(this).attr('data-wingcolor'));
-			$('.uguv').css('border-top','130px solid '+$(this).attr('data-wingcolor'));
+			$('.uguv').css('border-top','130px solid '+$(this).attr('data-wingcolor'));*/
 			//Set active.
 			clearActive();
 			$(this).addClass('activeImage');
@@ -186,8 +192,9 @@ $(document).ready(function() {
 			CUR_COL = Number(pos[1]);
 			//console.log(CUR_COL);
 			//Send tracking event to GA
-			var t = _gaq.push(['_trackEvent', 'Image_Mosaic', 'Magic_Remote', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
-			console.log(t);
+
+			_gaq.push(['_trackEvent', 'Image Mosaic', 'Magic Remote', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+			console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 		}else{
 			//Check if the First item is active
 			var t = $(this).attr('id');
@@ -225,10 +232,10 @@ function keyDown(event) {
 					$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 					
 					//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 					console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 				}
 					
@@ -243,10 +250,10 @@ function keyDown(event) {
 					$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 					
 					//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 					var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
@@ -260,10 +267,10 @@ function keyDown(event) {
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 						
 						//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
@@ -272,13 +279,13 @@ function keyDown(event) {
 					}
 				}
 				//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Left_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Left Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 			}else if(curLevel == level.DIAG){
 				$('.ui-dialog-buttonpane button').last().addClass('ui-state-hover');
 				$('.ui-dialog-buttonpane button').first().removeClass('ui-state-hover');
 				EXIT_ACTIVE = false;
 			}
-			logKey(event.keyCode);
 			break;
 		}
 		case VK_RIGHT:
@@ -313,10 +320,10 @@ function keyDown(event) {
 					$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 					
 					//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 					var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 					CUR_ROW = Number(spl[0]);
 					CUR_COL = Number(spl[1]);
@@ -335,10 +342,10 @@ function keyDown(event) {
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 						
 						//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
@@ -378,10 +385,10 @@ function keyDown(event) {
 								$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 								
 								//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 								var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 								CUR_ROW = Number(spl[0]);
 								CUR_COL = Number(spl[1]);
@@ -396,10 +403,10 @@ function keyDown(event) {
 							$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 							
 							//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 							var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 							CUR_ROW = Number(spl[0]);
 							CUR_COL = Number(spl[1]);
@@ -413,10 +420,10 @@ function keyDown(event) {
 							$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 							
 							//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 							var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 							CUR_ROW = Number(spl[0]);
 							CUR_COL = Number(spl[1]);
@@ -427,40 +434,29 @@ function keyDown(event) {
 
 				} 
 				//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Right_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Right Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
 			}else if(curLevel == level.DIAG){
 				$('.ui-dialog-buttonpane button').first().addClass('ui-state-hover');
 				$('.ui-dialog-buttonpane button').last().removeClass('ui-state-hover');
 				EXIT_ACTIVE = true;
 			}
-			logKey(event.keyCode);
 			break;
 		}
 		case VK_DOWN:
 		{
-			if (curLevel == level.MENU) {
-				//chill
+			if (curLevel == level.TERMS) {
+				clearActive();
+				curLevel = level.MENU;
+				$('#travelNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
 			}
 			if (curLevel == level.MOSAIC) {
 			$('.mosaicImage').removeClass('mosaicImagehover');
-				if(CUR_ROW == 6){
-					clearActive();
-					CUR_ROW = CUR_ROW;
-					curLevel = level.MENU;
-					$('#travelNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
-				}else if (CUR_ROW == 5){
+				if (CUR_ROW >= MAX_ROW){
 					//At the bottom, move to the footer or terms of service
-					if(CUR_COL > 2){
-						clearActive();
-						CUR_ROW = CUR_ROW + 1;
-						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
-					}else{
-						clearActive();
-						CUR_ROW = CUR_ROW;
-						curLevel = level.MENU;
-						$('.termsbtn').removeClass('hover');
-						$('#travelNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
-					}
+					clearActive();
+					curLevel = level.TERMS;
+					//$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
+					$('.termsbtn').addClass('hover');
 				}else{
 					//Move to next Postion
 					console.log(CUR_ROW);
@@ -469,43 +465,43 @@ function keyDown(event) {
 					}else if(IMAGE_MATRIX[CUR_ROW+1][CUR_COL] == IMAGE_MATRIX[CUR_ROW][CUR_COL]){
 						//Same as current. move two positions down
 						clearActive();
-						
 						CUR_ROW = CUR_ROW + 2;
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
-						$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
 						PREV_COL = CUR_COL;
 						PREV_ROW = CUR_ROW;
-						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
-						
+						//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 					}else{
 						clearActive();
 						CUR_ROW = CUR_ROW + 1;
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
-						$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
 						PREV_COL = CUR_COL;
 						PREV_ROW = CUR_ROW;
 						//console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
-						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
+						//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
 						curIndex--;
 					}
 				}
 			}
-			//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Down_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
 			break;
 		}
 		case VK_UP:
@@ -517,6 +513,12 @@ function keyDown(event) {
 				rightCount = 0;
 			}
 			if (curLevel == level.MENU) {
+				//return to matrix
+				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
+				curLevel = level.MOSAIC;
+				clearActive();
+				$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
+			}else if(curLevel == level.TERMS){
 				//return to matrix
 				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
 				curLevel = level.MOSAIC;
@@ -557,20 +559,21 @@ function keyDown(event) {
 							CUR_COL = 2;
 							$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 							$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
-							$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						}
 					}else{
 						clearActive();
 						CUR_ROW = CUR_ROW - 1;
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
+						/*
 						$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						
 							CUR_ROW = Number(spl[0]);
@@ -589,7 +592,8 @@ function keyDown(event) {
 				}
 			}
 			//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image_Mosaic', 'Up_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Up Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 			break;
 		}
 		case VK_ENTER:
@@ -606,7 +610,7 @@ function keyDown(event) {
 				
 			  if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == "2-1"){
 			  	//Open video modal
-			  	
+			  	window.location = 'live.html';
 			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
 			  		var g = $('#image_6-3 a').attr('href');
 					window.location =g;
@@ -640,7 +644,7 @@ function keyDown(event) {
 		case VK_BACK:
 		{
 			//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Travel', 'Back_Controller', IMAGE_MATRIX[CUR_ROW][CUR_COL]]);
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Back Button', 'Back Button']);
 			window.NetCastSetPageLoadingIcon('enabled');
 					//window.history.back();
 				window.NetCastBack();
@@ -648,12 +652,4 @@ function keyDown(event) {
 		}
 	}
 	
-}
-
-function logKey(keyCode){
-	if(curLevel == level.MENU){
-		logger.keys.push("footer-"+MENU_POS+":"+VK_CODES[keyCode]);
-	}else{
-		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]+":"+VK_CODES[keyCode]);
-	}
 }

@@ -9,10 +9,29 @@ class LivePage extends Page
 {
 	#	internal variables
 	public static $db = array(
+		"CDN" => "Varchar(150)",
+		"Filename" => "Varchar(150)"
+	);
+
+	public static $defaults = array(
+		"CDN" => "http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/"
 	);
 
 	public static $has_one = array(
+		"StaticImage" => "Image"
 	);
+
+	public function getCMSFields() {
+		$fields = parent::getCMSFields();
+		$fields = parent::getCMSFields();
+		$fields->removeFieldFromTab('Root.Main', 'Content');
+		$fields->addFieldToTab('Root.Main', new TextField('CDN','Custom CDN'));
+		$fields->addFieldToTab('Root.Main', new TextField('Filename','Filename (including extension)'));
+		$fields->addFieldToTab('Root.Main', new UploadField('StaticImage','Static Image (Only visible if no video file)'));
+
+		
+		return $fields;
+	}
 
 }
 #doc

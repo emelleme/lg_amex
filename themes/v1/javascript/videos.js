@@ -22,6 +22,7 @@ MENU_MATRIX = {
 
 MENU_POS = 0;
 NEWS_POS = 1;
+MAX_ITEMS = 3;
 CDN='http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/',
 LIVETEST = 'http://rightsteru-i.akamaihd.net/205269/hls_test_u_1/master-high.m3u8';
 
@@ -147,7 +148,7 @@ $(document).ready(function() {
 			//Hide left arrow
 			$('#videos_arrowleft').hide();
 			$('#videos_arrowright').show();
-		}else if (NEWS_POS < 5) {
+		}else if (NEWS_POS < MAX_ITEMS) {
 			//show both arrows
 			$('#videos_arrowleft').show();
 			$('#videos_arrowright').show();
@@ -164,7 +165,7 @@ $(document).ready(function() {
 			//Hide left arrow
 			$('#videos_arrowleft').hide();
 			$('#videos_arrowright').show();
-		}else if (NEWS_POS < 5) {
+		}else if (NEWS_POS < MAX_ITEMS) {
 			//show both arrows
 			$('#videos_arrowleft').show();
 			$('#videos_arrowright').show();
@@ -186,7 +187,7 @@ $(document).ready(function() {
 				//Hide left arrow
 				$('#videos_arrowleft').hide();
 				$('#videos_arrowright').show();
-			}else if (NEWS_POS < 5) {
+			}else if (NEWS_POS < MAX_ITEMS) {
 				//show both arrows
 				$('#videos_arrowleft').show();
 				$('#videos_arrowright').show();

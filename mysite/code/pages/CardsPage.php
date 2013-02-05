@@ -37,11 +37,11 @@ class CardsPage_Controller extends Page_Controller
 		Requirements::set_write_js_to_body(false);
 	}
 	
-	public function index($arguments){
+	public function index(){
 		return $this->renderWith('CardsPage');
 	}
 
-	public function layout($arguments){
+	public function layout(){
 		return $this->renderWith('CardsLayoutPage');
 	}
 

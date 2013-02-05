@@ -55,19 +55,19 @@ class VideoGalleryPage_Controller extends Page_Controller
 		return $data;
 	}
 	
-	public function index($arguments){
+	public function index(){
 		return $this->renderWith('VideoGallery');
 	}
 
-	public function samsung($arguments){
+	public function samsung(){
 		return $this->renderWith(array('VideoGalleryLayout','SVideoGallery'));
 	}
 
-	public function items($arguments){
+	public function items(){
 		return $this->renderWith('VideoGalleryLayout');
 	}
 
-	public function layout($arguments){
+	public function layout(){
 		return $this->renderWith('SVideoGalleryLayout');
 	}
 

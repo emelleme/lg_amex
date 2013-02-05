@@ -80,7 +80,47 @@ class BenefitsPage_Controller extends Page_Controller
 		// Note: you should use SS template require tags inside your templates 
 		// instead of putting Requirements calls here.  However these are 
 		// included so that our older themes still work
+		$phase = 'voting';
 		Requirements::set_write_js_to_body(false);
+		$d = $this->getUrlParams();
+		$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']));
+		switch ($phase) {
+			case 'voting':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('VotingMosaic');
+				foreach ($benefits as $v) {
+					$position=$v->Position;
+					$on =$v->getComponent('MosaicTileOn')->Filename;
+					$off = $v->getComponent('MosaicTileOff')->Filename;
+				if($v->getComponent('MosaicTileOn')->Name){
+					Requirements::customCSS(<<<CSS
+					  #image_$position {
+					    background-image: url($off);
+					  }
+					  #image_$position.activeImage {
+					    background-image: url($on);
+					  }
+CSS
+					);
+				}
+				}
+				break;
+			case 'pre':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('PreStreamMosaic');
+				break;
+			case 'live':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('LiveStreamMosaic');
+				break;
+			case 'post':
+				# code...
+				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('PostStreamMosaic');
+				break;
+			default:
+				# code...
+				break;
+		}
 	}
 	
 	public function allBenefits(){

@@ -48,18 +48,18 @@ class TermsPage_Controller extends Page_Controller
 		Requirements::set_write_js_to_body(false);
 	}
 	
-	public function index($arguments){
+	public function index(){
 		return $this->renderWith('TermsPage');
 	}
-	public function samsung($arguments){
+	public function samsung(){
 		return $this->renderWith('STermsPage');
 	}
 
-	public function items($arguments){
+	public function items(){
 		return $this->renderWith('TermsLayoutPage');
 	}
 
-	public function layout($arguments){
+	public function layout(){
 		return $this->renderWith('TermsLayoutPage');
 	}
 

@@ -1,0 +1,1 @@
+<p class="termsconditions" style="margin: 18px 90px 0 0;"><span class="bazaar-footer">Find the American Express<sup>&reg;</sup> Card that suits your style. Call 866-848-1297 to apply.</span>&nbsp;&nbsp;&nbsp;<a class="termsbtn" href="terms.html">Terms &amp; Conditions</a></p>

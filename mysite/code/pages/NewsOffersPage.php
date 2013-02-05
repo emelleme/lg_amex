@@ -42,7 +42,7 @@ class NewsOffersPage_Controller extends Page_Controller
 		return $data;
 	}
 	
-	public function index($arguments){
+	public function index(){
 		return $this->renderWith('NewsPage');
 	}
 
