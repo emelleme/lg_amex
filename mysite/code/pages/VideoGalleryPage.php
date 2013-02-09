@@ -60,7 +60,7 @@ class VideoGalleryPage_Controller extends Page_Controller
 	}
 
 	public function samsung(){
-		return $this->renderWith(array('VideoGalleryLayout','SVideoGallery'));
+		return $this->renderWith('VideoGallery');
 	}
 
 	public function items(){
@@ -71,6 +71,9 @@ class VideoGalleryPage_Controller extends Page_Controller
 		return $this->renderWith('SVideoGalleryLayout');
 	}
 
+	public function lglayout(){
+		return $this->renderWith('VideoGalleryLayout');
+	}
 }
 ###
 ###

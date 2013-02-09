@@ -11,6 +11,7 @@ class VideoPanel extends DataObject {
 
 	public static $has_one = array(
 		"PanelImage" => "Image",
+		"PanelImageBW" => "Image",
 		"PanelIcon" => "Image"
 	);
 
