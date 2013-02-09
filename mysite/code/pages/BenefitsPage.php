@@ -143,7 +143,7 @@ CSS
 	}
 
 	public function samsung(){
-		return $this->renderWith('SBenefitsPage');
+		return $this->renderWith('BenefitsPage');
 	}
 
 	public function displayItems($phase = 'voting'){
