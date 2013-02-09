@@ -1,10 +1,13 @@
 Main.videosLoad = function(){
 	Main.MENU_POS = 0;
+	Main.CUR_ROW = 4;
+	Main.CUR_POS = 1;
+	Main.PREV_ROW = Main.CUR_ROW;
+	Main.PREV_COL = Main.PREV_COL;
 	Main.VIDEO_POS = 1;
 	Main.selectedVideo = 0;
 	Main.eggCount = 0;
-	Player.setVideoURL(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-	alert(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
+	Player.setVideoURL(Main.CDN+$('#panel'+Main.VIDEO_POS).attr('data-filename'));
 	Main.clearActive();
 
 	Main.curLevel = Main.level.NEWS;
@@ -21,9 +24,9 @@ Main.videosLoad = function(){
 	$('#videos_arrowleft').hide();
 	$('#videoMenu').css('height','0px');
 	$('#videos_arrowright').show();
-	$('#video-panel4,#video-panel2, #video-panel3,#video-panel5, #video-panel1_content').show();
-	$('#video-panel1,#video-panel2_content, #video-panel4_content, #video-panel3_content, #video-panel5_content').hide();
-	$('#videoMenu .currentVideoTitle').html($('#video-panel'+Main.VIDEO_POS).attr('data-title'));
+	$('#panel4,#panel2, #panel3,#panel5, #panel1_content').show();
+	$('#panel1,#panel2_content, #panel4_content, #panel3_content, #panel5_content').hide();
+	$('#currentVideoTitle').html($('#panel'+Main.VIDEO_POS).attr('data-title'));
 };
 
 Main.videosKeys = function()
@@ -38,11 +41,11 @@ Main.videosKeys = function()
             if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
 		        
 		        	var m = Main.prevPage.shift();
-		        	if(m == 'shopsmall'){
+		        	if(m == 'cards'){
 						Main.cardsLoad();
-					}else if(m == 'designerspotlight'){
+					}else if(m == 'recipes'){
 						Main.recipesLoad();
-					}else if(m == 'tipstrends'){
+					}else if(m == 'travel'){
 						Main.travelLoad();
 					}
             }else{
@@ -76,7 +79,9 @@ Main.videosKeys = function()
 			$('#pluginPlayer').css('z-index','13000');
 			Main.prevLevel = Main.curLevel;
             Main.handlePlayKey();
+
             break;
+            
         case tvKey.KEY_STOP:
             alert("STOP");
             if(Main.curLevel == Main.level.VIDEO || Main.curLevel == Main.level.BUFFERING){
@@ -93,17 +98,19 @@ Main.videosKeys = function()
             if(Player.CONTROLSACTIVE){
 		        Main.handlePauseKey();
 		        $('#videoMenu').css('height','60px');
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
 			}else{
             	alert('Nothing to Pause');
             }
             break;
             
         case tvKey.KEY_FF:
-            
+            alert("FF");
             if(Player.CONTROLSACTIVE){
 		        if(Player.getState() != Player.PAUSED){
 		            Player.skipForwardVideo();
-		            alert("FF");
 		        }
             }else{
             	alert('Nothing to FF');
@@ -111,11 +118,10 @@ Main.videosKeys = function()
             break;
         
         case tvKey.KEY_RW:
-            
+            alert("RW");
 			if(Player.CONTROLSACTIVE){
 				if(Player.getState() != Player.PAUSED){
 					Player.skipBackwardVideo();
-					alert("RW");
 				}
 			}else{
             	alert('Nothing to REW');
@@ -155,6 +161,11 @@ Main.videosKeys = function()
 				$('#videos_arrowright').removeClass('activeImage');
 				setTimeout(function(){$('#videos_arrowleft').removeClass('activeImage');},200);
 				Main.slideVideosLeft('left');
+			}else{
+				$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			}
 		}
 			break;
@@ -177,6 +188,11 @@ Main.videosKeys = function()
 				$('#videos_arrowleft').removeClass('activeImage');
 				setTimeout(function(){$('#videos_arrowright').removeClass('activeImage');},200);
 				Main.slideVideosRight('right');
+			}else{
+				$('#videoMenu').css('height','60px');
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
 			}
 		}
 			break;
@@ -185,11 +201,12 @@ Main.videosKeys = function()
 			
 			if(Player.CONTROLSACTIVE){
 				$('#videoMenu').css('height','60px');
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
 			}else{
-				if (Main.curLevel == Main.level.TERMS || Main.curLevel == Main.level.MENU) {
+				if (Main.curLevel != Main.level.NEWS) {
 					//return to matrix
-					$('#video-panel'+Main.VIDEO_POS+'_content img').attr('src',$('#video-panel'+Main.VIDEO_POS+'_content').attr('data-image'));
-					
 					Main.clearActive();
 					if(Main.VIDEO_POS > 4){
 						$('#videos_arrowleft').show();
@@ -207,25 +224,23 @@ Main.videosKeys = function()
 			}
 			break;
 		case tvKey.KEY_DOWN:
-			
+			alert("DOWN!");
 			
 			if(Player.CONTROLSACTIVE){
 				$('#videoMenu').css('height','60px');
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
 			}else{
-				alert("DOWN!");
-				if (Main.curLevel == Main.level.NEWS) {
-					Main.curLevel = Main.level.TERMS;
-					$('#video-panel'+Main.VIDEO_POS+'_content img').attr('src',$('#video-panel'+Main.VIDEO_POS+'_content').attr('data-bwimage'));
-					$('.arrows').hide();
-					$('.arrows').removeClass('activeImage');
-					$('.termsbtnblk').addClass('hover');
-				}else{
+				if (Main.curLevel != Main.level.VIDEO) {
 					//On Terms, go to Menu
+					$('#inactive').show();
 					Main.curLevel = Main.level.MENU;
+					$('#videosNav').show();
 					$('.arrows').hide();
 					$('.arrows').removeClass('activeImage');
-					$('.termsbtnblk').removeClass('hover');
 					$('#videosNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+					break;
 				}
 			}
 			break;
@@ -235,27 +250,25 @@ Main.videosKeys = function()
 			//added as ux change
 			if (Main.curLevel == Main.level.MENU) {
 				var g = $('#videosNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
-				Main.prevPage.unshift('videos');
-				if(g == 'tipstrends'){
+				if(g == 'travel'){
 					Main.prevPage.unshift('videos');
 					Main.pageDepth += 1;
 		  			Main.travelLoad();
-				}else if(g == 'shopsmall'){
+				}else if(g == 'cards'){
 					Main.prevPage.unshift('videos');
 					Main.pageDepth += 1;
 					Main.cardsLoad();
-				}else if(g == 'designerspotlight'){
+				}else if(g == 'recipes'){
 					Main.prevPage.unshift('videos');
 					Main.pageDepth += 1;
 					Main.recipesLoad();
 				}
 			}else if(Main.curLevel == Main.level.VIDEO){
 				$('#videoMenu').css('height','60px');
-			}else if(Main.curLevel == Main.level.TERMS){
-				Main.prevPage.unshift('videos');
-				Main.termsLoad();
-			}
-			else{
+				setTimeout(function(){
+					$('#videoMenu').css('height','0px');
+				}, 15000);
+			}else{
 				$('#pluginPlayer').css('z-index','13000');
 				Main.curLevel = Main.level.NOSTATE;
 				Main.handlePlayKey();
@@ -303,7 +316,7 @@ Main.videosKeys = function()
 };
 
 Main.easterEgg = function(){
-	$('.currentVideoTitle').html('Stream Test');
+	$('#currentVideoTitle').html('Stream Test');
 	
 	$('#pluginPlayer').css('z-index','13000');
 	Main.prevLevel = Main.curLevel;
@@ -324,14 +337,16 @@ Main.handlePlayKey = function()
     switch ( Player.getState() )
     {
         case Player.STOPPED:
-			Player.setVideoURL(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-			$('#videoMenu .currentVideoTitle').html($('#video-panel'+Main.VIDEO_POS).attr('data-title'));
-			alert(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
+			Player.setVideoURL(Main.CDN+$('#panel'+Main.VIDEO_POS).attr('data-filename'));
+			alert(Main.CDN+$('#panel'+Main.VIDEO_POS).attr('data-filename'));
             Player.playVideo();
 			Main.curLevel = Main.level.NOSTATE;
 			alert(Main.curLevel);
 			$('#mainMenu').hide();
 			$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			Main.setFullScreenMode();
             break;
             
@@ -357,6 +372,9 @@ Main.handleLivePlayKey = function()
 			alert(Main.curLevel);
 			$('#mainMenu').hide();
 			$('#videoMenu').css('height','60px');
+			setTimeout(function(){
+				$('#videoMenu').css('height','0px');
+			}, 15000);
 			Main.setFullScreenMode();
             break;
             
@@ -484,12 +502,12 @@ Main.muteMode = function()
 
 Main.slideVideosLeft = function (keyCode){
 	if(Main.VIDEO_POS > 1){
-    	Player.setVideoURL(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-		$('#video-panel'+Main.VIDEO_POS).show();
-		$('#video-panel'+Main.VIDEO_POS+'_content').hide();
+    	Player.setVideoURL(Main.CDN+$('#panel'+Main.VIDEO_POS).attr('data-filename'));
+		$('#panel'+Main.VIDEO_POS).show();
+		$('#panel'+Main.VIDEO_POS+'_content').hide();
 		Main.VIDEO_POS = Main.VIDEO_POS-1;
-		$('#video-panel'+Main.VIDEO_POS+'_content').show();
-		$('#video-panel'+Main.VIDEO_POS).hide();
+		$('#panel'+Main.VIDEO_POS+'_content').show();
+		$('#panel'+Main.VIDEO_POS).hide();
 		$('#videos_arrowright').show();
 		if(Main.VIDEO_POS-1 == 0)
 			$('#videos_arrowleft').hide();
@@ -498,12 +516,12 @@ Main.slideVideosLeft = function (keyCode){
 
 Main.slideVideosRight = function (keyCode){
 	if(Main.VIDEO_POS < Main.MAX_VIDEO){
-		Player.setVideoURL(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-		$('#video-panel'+Main.VIDEO_POS).show();
-		$('#video-panel'+Main.VIDEO_POS+'_content').hide();
+		Player.setVideoURL(Main.CDN+$('#panel'+Main.VIDEO_POS).attr('data-filename'));
+		$('#panel'+Main.VIDEO_POS).show();
+		$('#panel'+Main.VIDEO_POS+'_content').hide();
 		Main.VIDEO_POS = Main.VIDEO_POS+1;
-		$('#video-panel'+Main.VIDEO_POS+'_content').show();
-		$('#video-panel'+Main.VIDEO_POS).hide();
+		$('#panel'+Main.VIDEO_POS+'_content').show();
+		$('#panel'+Main.VIDEO_POS).hide();
 		$('#videos_arrowleft').show();
 		if(Main.VIDEO_POS+1 > Main.MAX_VIDEO)
 			$('#videos_arrowright').hide();

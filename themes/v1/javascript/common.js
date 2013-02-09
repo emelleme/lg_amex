@@ -5,7 +5,7 @@
 NAV_HOVER = false;
 $(document).ready(function() {
 	$('#versionInfo').html(versionStr);
-	//$.preloadCssImages();
+	$.preloadCssImages();
 	$('.termsbtn').hover(function(){
 		clearActive();
 		$('#termsconditions a').addClass('hover');

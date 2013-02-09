@@ -8,6 +8,7 @@
 <% require themedCSS(layout) %>
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>
 <% require javascript(themes/v1/javascript/keycode.js) %>
+<% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
 <% require javascript(themes/v1/javascript/terms.js) %>
 <% require javascript(themes/v1/javascript/analytics.js) %>
 </head>

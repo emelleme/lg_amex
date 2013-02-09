@@ -1,0 +1,129 @@
+      .galleryContent {
+          width: 942px;
+        height: 400px;
+        margin: 27px 0 0 45px;
+        overflow: hidden;
+        }
+        .galleryContent a.backbtn{
+          position: absolute;
+        top: 380px;
+        left: 60px;
+        }
+
+
+        #gallery-item-1 {
+          background-image: url(/assets/Uploads/neen-full2.jpg);
+          width:942px;
+          height:400px;
+        }
+
+
+        #panel1-content{
+           background-image: url(/assets/Uploads/neen-panel2.jpg);
+           width:642px;
+           height:400px;
+      }
+
+
+        #gallery-item-2 {
+          background-image: url(/assets/Uploads/simmons-full2.jpg);
+          width:942px;
+          height:400px;
+        }
+
+
+        #panel2-content{
+           background-image: url(/assets/Uploads/simmons-panel.jpg);
+           width:642px;
+           height:400px;
+      }
+
+
+        #gallery-item-3 {
+          background-image: url(/assets/Uploads/illesteva-full2.jpg);
+          width:942px;
+          height:400px;
+        }
+
+
+        #panel3-content{
+           background-image: url(/assets/Uploads/illesteva-panel.jpg);
+           width:642px;
+           height:400px;
+      }
+
+
+        #gallery-item-4 {
+          background-image: url(/assets/Uploads/fisher-full2.jpg);
+          width:942px;
+          height:400px;
+        }
+
+
+        #panel4-content{
+           background-image: url(/assets/Uploads/fisher-panel.jpg);
+           width:642px;
+           height:400px;
+      }
+
+
+        #panel5-content{
+           background-image: url(/assets/Uploads/ds-purchaseprotection.jpg);
+           width:642px;
+           height:400px;
+      }
+
+      #image_1-2 {
+              background-image: url(/assets/Uploads/fashionweek-1-2.jpg);
+            }
+            #image_1-2.activeImage {
+              background-image: url(/assets/Uploads/fashionweek-1-2-active.jpg);
+            }
+
+
+            #image_2-1 {
+              background-image: url(/assets/Uploads/fashionweek-2-1.jpg);
+            }
+            #image_2-1.activeImage {
+              background-image: url(/assets/Uploads/fashionweek-2-1-active.jpg);
+            }
+
+
+            #image_3-2 {
+              background-image: url(/assets/Uploads/fashionweek-3-2.jpg);
+            }
+            #image_3-2.activeImage {
+              background-image: url(/assets/Uploads/fashionweek-3-2-active.jpg);
+            }
+
+
+            #image_3-4 {
+              background-image: url(/assets/Uploads/fashionweek-3-4.jpg);
+            }
+            #image_3-4.activeImage {
+              background-image: url(/assets/Uploads/fashionweek-3-4-active.jpg);
+            }
+
+
+            #image_4-1 {
+              background-image: url(/assets/Uploads/fashionweek-4-1.jpg);
+            }
+            #image_4-1.activeImage {
+              background-image: url(/assets/Uploads/fashionweek-4-1-active.jpg);
+            }
+
+
+            #image_4-3 {
+              background-image: url(/assets/Uploads/fashionweek-4-3.jpg);
+            }
+            #image_4-3.activeImage {
+              background-image: url(/assets/Uploads/fashionweek-4-3-active.jpg);
+            }
+
+
+            #image_4-4 {
+              background-image: url(/assets/Uploads/fashionweek-4-4.jpg);
+            }
+            #image_4-4.activeImage {
+              background-image: url(/assets/Uploads/4-4-active.jpg);
+            }

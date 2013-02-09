@@ -120,7 +120,7 @@ a, a > *,div, div > img {
 
 
 
-img.bg {min-height: 100%; min-width: 720px; width: 100%; height: auto; position: fixed; top: 0; left: 0; z-index: -1;}
+img.bg {min-height: 100%; min-width: 720px; width: 100%; height: auto; position: fixed; top: 0; left: 0; z-index: -1; background-color: #000000;}
 
 
 .navbar-fixed-top .container, .navbar-fixed-bottom .container {
@@ -159,6 +159,9 @@ a.termsbtn {width: 176px; height: 33px; -webkit-border-radius: 3px; -moz-border-
 
 a.termsbtn.hover {background: #3ba3df; color: #fff;}
 
+a.termsbtnblk {width: 176px; height: 33px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #000000; color: #fff; font: 15px/39px BentonSansBold; text-decoration: none; text-transform: uppercase; display: inline-block; text-align:center;}
+
+a.termsbtnblk.hover {background: #3ba3df; color: #fff;}
 
 
 a.backbtn {width: 116px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #000000; color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
@@ -203,7 +206,7 @@ z-index: 2;
 
 	height:720px;
 
-	z-index: 1040;
+	z-index: 1000;
 
 }
 
@@ -1577,7 +1580,7 @@ animation: blinkButton 0.7s;
 
 	position: absolute;left:119px;top:378px;width:143px;height:101px;
 
-	background-image: url('../images/fashionweek-6-2.jpg');
+	/*background-image: url('../images/fashionweek-6-2.jpg');*/
 
 	background-repeat: no-repeat;
 
@@ -1585,7 +1588,7 @@ animation: blinkButton 0.7s;
 
 #image_6-2.activeImage{
 
-	background-image: url('../images/fashionweek-6-2_active.jpg');
+	/*background-image: url('../images/fashionweek-6-2_active.jpg');*/
 
 	background-repeat: no-repeat;
 
@@ -1859,7 +1862,7 @@ sup {top: -0.5em !important;}
 
 	width: 1280px;
 
-	height:720px;
+	height:666px;
 
 	z-index: 1020;
 
@@ -2301,7 +2304,7 @@ margin: -15px 162px 0 0;
 
 }
 
-#videos_arrowleft {
+#videos_arrowleft, #gallery_arrowleft {
 
 	background-image: url('../images/arrow-left.png');
 
@@ -2313,7 +2316,7 @@ margin: -15px 162px 0 0;
 
 
 
-#videos_arrowleft:hover, #videos_arrowleft.activeImage{
+#videos_arrowleft:hover, #videos_arrowleft.activeImage, #gallery_arrowleft:hover, #gallery_arrowleft.activeImage{
 
 		background-image: url('../images/arrow-left_active.png');
 
@@ -2323,7 +2326,7 @@ margin: -15px 162px 0 0;
 
 
 
-#videos_arrowright {
+#videos_arrowright, #gallery_arrowright {
 
 	background-image: url('../images/arrow-right.png');
 
@@ -2333,7 +2336,7 @@ margin: -15px 162px 0 0;
 
 
 
-#videos_arrowright:hover, #videos_arrowright.activeImage{
+#videos_arrowright:hover, #videos_arrowright.activeImage,#gallery_arrowright:hover, #gallery_arrowright.activeImage{
 
 		background-image: url('../images/arrow-right_active.png');
 
@@ -2755,21 +2758,45 @@ margin-right: 49px;
 #home-toapply .termsconditions {margin: 0; text-shadow: 0px 0px 0px #000000; -moz-text-shadow: 0px 0px 0px #000000;}
 
 
-.countdown-clock {background: url('/assets/Uploads/clock-back.png') no-repeat; width: 404px; height: 92px; margin: 0; padding: 0;}
+.countdown-clock {background: #ffffff url('/assets/Uploads/clock-back.png') no-repeat; width: 404px; height: 72px; margin: 0; padding: 0;} /* height of full countdown clock is 92px */
 
-.text-to-watch {background: #ebebeb; font: 27px/33px BentonSans; width: margin: 0; padding: 3px 0 0 0; text-align: center; width: 404px; height: 70px;}
+.clock-left {width: 75px;}
+.clock-right {width: 75px;}
+.clock-top {height: 15px !important; font-size: 6px; line-height: 6px;}
+.clock-bottom {height: 9px !important; font-size: 9px; line-height: 9px;}
+
+.num-days {font: 39px/39px BentonSansBold; text-align: center; height: 45px;}
+.days {font: 18px/18px BentonSans; text-align: center; height: 26px;}
+
+.num-hours {font: 39px/39px BentonSansBold; text-align: center;}
+.hours {font: 18px/18px BentonSans; text-align: center;}
+
+.num-mins {font: 39px/39px BentonSansBold; text-align: center;}
+.mins {font: 18px/18px BentonSans; text-align: center;}
+
+.colon {font: 39px/39px BentonSansBold; text-align: center;}
+
+.text-to-watch {background: #ffffff; font: 27px/33px BentonSans; width: margin: 0; padding: 3px 0 0 0; text-align: center; width: 404px; height: 70px;}
 .text-to-watch span.bentonbold {font: 27px/33px BentonSansBold;}
 .max-messages {font: 17px/24px TradeGothic; color: #ffffff; text-shadow: 0px 0px 5px #000000; -moz-text-shadow: 0px 0px 5px #000000;}
+
 
 /* - - - - - - - - SHOP SMALL - - - - - - - - */
 
 #shopsmall-agnostic {margin: 135px 0 0 186px; width: 885px; height: 450px; position: relative;}
 .ss-one {margin: 30px 0px 0px 27px; font: 18px/21px BentonSans;}
-.ss-two {color: #127fc3; margin: 18px 0px 0px 27px;  font: 18px/21px BentonSansMedium;}
-.ss-three {margin: 9px 0px 0px 17px;}
+.ss-two {color: #127fc3; margin: 36px 0px 0px 27px;  font: 21px/24px BentonSansMedium;}
+.ss-three {margin: 9px 0px 0px 27px; font: 21px/24px BentonSans; color: #a3a4a4;}
+
 
 /* - - - - - - - - DESIGNER SPOTLIGHT - - - - - - - - */
 
 .bazaar-footer {font: 17px/30px BentonSansMedium; color: #3ba3df;}
 a.viewcollection {width: 200px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background: #000000; color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
 a.viewcollection.hover{background: #3ba3df; width: 200px; height: 32px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;color: #fff; font: 18px/32px BentonSansBold; text-decoration: none; text-transform: uppercase; display: block; text-align:center;}
+
+#panel1-content {height: 400px; width: 650px !important;}
+#panel2-content {height: 400px; width: 650px !important;}
+#panel3-content {height: 400px; width: 650px !important;}
+#panel4-content {height: 400px; width: 650px !important;}
+#panel5-content {height: 400px; width: 642px !important;}

@@ -1,34 +1,36 @@
 Main.recipesLoad = function(){
 	Main.MENU_POS = 0;
 	document.getElementById('anchor').onkeydown = Main.recipesKeys; 
-	if(Main.GOBACK == 0){
+	alert(Main.GOBACK);
+	if(!Main.GOBACK){
 		//Refresh page
-		Main.CUR_ROW = 4;
-		Main.CUR_COL = 1;
-		Main.PREV_ROW = Main.CUR_ROW;
-		Main.PREV_COL = Main.PREV_COL;
 		Main.NEWS_POS = 1;
 	}else{
 		//Return Back to previous state
-		Main.GOBACK == 0;
+		Main.GOBACK = 0;
 	}
 	$('#cardsView').hide();
 	$('#travelView').hide();
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#recipesView').show();
-
+	
+	//Hide Terms Text
+	$('span.bazaar-footer').css('display','none');
 	if(!Main.GALLERYITEMACTIVE){
 		Main.curLevel = Main.level.GALLERY;
-		$('#icon-1').addClass('mini-image-active');
-		$('#main-area').show();
-		$('.galleryContent').hide();
-		$('#gallery-'+Main.NEWS_POS).show();
+		$('#gallery_arrowleft').hide();
+		$('#gallery-area').hide();
+		$('#gallery-content-new').show();
+		$('.panelHeader').show();
+		$('#panel1-content,#panel2-content, #panel4-content, #panel3-content').hide();
+		$('.viewcollection').addClass('hover');
+		$('#panel'+Main.NEWS_POS).hide();
+		$('#panel'+Main.NEWS_POS+'-content').show();
 		setArrows();
-
 	}else{
 		Main.curLevel = Main.level.GALLERYITEM;
-		$('#main-area').hide();
+		$('#gallery-content-new').hide();
 		$('.galleryContent').hide();
 		$('#gallery-item-'+Main.NEWS_POS).show();
 		$('.backbtn').addClass('hover');
@@ -45,8 +47,9 @@ Main.recipesKeys = function(){
 			//Return to Previous Page//
 			event.preventDefault();
 			if(Main.curLevel == Main.level.GALLERYITEM){
+				alert('REturn to gallery')
 				$('#gallery-area').hide();
-				$('#main-area').show();
+				$('#gallery-content-new').show();
 				$('.galleryContent').hide();
 				$('#gallery-'+Main.NEWS_POS).show();
 				Main.curLevel = Main.level.GALLERY;
@@ -56,15 +59,16 @@ Main.recipesKeys = function(){
 				setArrows();
 			}else{
 				var m = Main.prevPage.shift();
-				if(m == 'cards'){
+				if(m == 'shopsmall'){
 					Main.cardsLoad();
 				}else if(m == 'videos'){
 					Main.videosLoad();
-				}else if(m == 'travel'){
+				}else if(m == 'tipstrends'){
 					Main.travelLoad();
 				}
+				alert(Main.prevPage);
 			}
-			alert(Main.prevPage);
+			
 			//widgetAPI.sendReturnEvent();
 			break;
 		case tvKey.KEY_LEFT:
@@ -72,10 +76,10 @@ Main.recipesKeys = function(){
 			if (Main.curLevel == Main.level.MENU) {
 				if (Main.MENU_POS > 0){
 					//Move left
-					$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					$('#designerNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
 					Main.MENU_POS = Main.MENU_POS-1;
 					Main.clearActive();
-					$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+					$('#designerNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					//}
 				}
 			}
@@ -91,10 +95,10 @@ Main.recipesKeys = function(){
 			if (Main.curLevel == Main.level.MENU) {
 				if (Main.MENU_POS < 2){
 					//Move Right
-					$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+					$('#designerNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
 					Main.MENU_POS = Main.MENU_POS+1;
 					Main.clearActive();
-					$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+					$('#designerNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 					//}
 				}
 			}
@@ -107,30 +111,26 @@ Main.recipesKeys = function(){
 			break;
 		case tvKey.KEY_UP:
 			alert("UP");
-			if (Main.curLevel == Main.level.MENU) {
-				$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
-				if(Main.GALLERYITEMACTIVE == true){
-				Main.curLevel = Main.level.GALLERYITEM;
-				$('.backbtn').addClass('hover');
+			if (Main.curLevel == Main.level.MENU || Main.curLevel == Main.level.TERMS) {
+				Main.clearActive();
+				$('.arrows').show();
+				if(Main.NEWS_POS == 1){
+					//Hide left arrow
+					$('#gallery_arrowleft').hide();
+					$('#gallery_arrowright').show();
+				}else if (Main.NEWS_POS < Main.MAX_ITEMS) {
+					//show both arrows
+					$('#gallery_arrowleft').show();
+					$('#gallery_arrowright').show();
 				}else{
-				Main.curLevel = Main.level.TERMS;
-				$('.termsconditions a').addClass('hover');
+					//hide right arrow
+					$('#gallery_arrowright').hide();
+					$('#gallery_arrowleft').show();
 				}
-				$('.arrows').hide();
+				$('.navbar .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+				$('.backbtn, .viewcollection').addClass('hover');
+				Main.curLevel = Main.prevLevel;
 				
-			}else if(Main.curLevel == Main.level.TERMS){
-				//return to matrix
-				if(Main.GALLERYITEMACTIVE == true){
-				Main.curLevel = Main.level.GALLERYITEM;
-				$('.backbtn').addClass('hover');
-				$('.termsconditions a').removeClass('hover');
-				}else{
-					$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
-					$('.termsconditions a').removeClass('hover');
-					$('.arrows').show();
-					setArrows();
-					Main.curLevel = Main.level.GALLERY;
-				}
 			}
 			break;
 		case tvKey.KEY_DOWN:
@@ -138,68 +138,62 @@ Main.recipesKeys = function(){
 			if (Main.curLevel == Main.level.TERMS) {
 				//On Terms, go to Menu
 				Main.curLevel = Main.level.MENU;
+				Main.clearActive();
 				$('.arrows').hide();
 				$('.arrows').removeClass('activeImage');
-				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
-				$('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
 				$('.termsconditions a').removeClass('hover');
-			}else if (Main.curLevel == Main.level.GALLERY){
+				$('#designerNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
+			}else if (Main.curLevel == Main.level.GALLERY || Main.curLevel == Main.level.GALLERYITEM){
 				//Go to terms
+				$('.backbtn, .viewcollection').removeClass('hover');
+				Main.prevLevel = Main.curLevel;
 				Main.curLevel = Main.level.TERMS;
 				$('.arrows').hide();
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
 				$('.termsconditions a').addClass('hover');
-			}else if(Main.curLevel == Main.level.GALLERYITEM){
-				//Move Down to menu
-				Main.curLevel = Main.level.TERMS;
-				$('.backbtn').removeClass('hover');
-				$('.termsconditions a').addClass('hover');
-				
 			}
 			break;
 		case tvKey.KEY_ENTER:
 		case tvKey.KEY_PANEL_ENTER:
 			alert("ENTER");
 			if (Main.curLevel == Main.level.MENU) {
+				Main.GOBACK = 0;
+				Main.GALLERYITEMACTIVE = 0;
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
-				var g = $('#recipesNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
-				if(g == 'travel'){
-				Main.prevPage.unshift('recipes');
+				var g = $('#designerNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
+				if(g == 'tipstrends'){
+				Main.prevPage.unshift('designerspotlight');
 					Main.pageDepth += 1;
 		  			Main.travelLoad();
 				}else if(g == 'videos'){
-				Main.prevPage.unshift('recipes');
+				Main.prevPage.unshift('designerspotlight');
 					Main.pageDepth += 1;
 					Main.videosLoad();
-				}else if(g == 'cards'){
-				Main.prevPage.unshift('recipes');
+				}else if(g == 'shopsmall'){
+				Main.prevPage.unshift('designerspotlight');
 					Main.pageDepth += 1;
 					Main.cardsLoad();
 				}
 			}else if(Main.curLevel == Main.level.TERMS){
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
-				Main.prevPage.unshift('recipes');
+				Main.prevPage.unshift('designerspotlight');
 				Main.termsLoad();
 			}else if(Main.curLevel == Main.level.GALLERY){
 				//display Gallery Item
-				if(Main.NEWS_POS != 5){
+				if(Main.NEWS_POS != Main.MAX_ITEMS){
 					Main.curLevel = Main.level.GALLERYITEM;
-					
-					$('#main-area').hide();
+					alert('Item')
+					$('#gallery-content-new').hide();
 					$('#gallery-area').show();
 					$('.galleryContent').hide();
 					$('#gallery-item-'+Main.NEWS_POS).show();
 					$('.backbtn').addClass('hover');
 					Main.GALLERYITEMACTIVE = true;
-					console.log(Main.curLevel);
-				
-					
 				}
 			}else if(Main.curLevel == Main.level.GALLERYITEM){
 				//return to gallery
-				
 				$('#gallery-area').hide();
-				$('#main-area').show();
+				$('#gallery-content-new').show();
 				$('.galleryContent').hide();
 				$('#gallery-'+Main.NEWS_POS).show();
 				Main.curLevel = Main.level.GALLERY;
@@ -216,60 +210,43 @@ Main.recipesKeys = function(){
 };
 
 function slideRight(keyCode){
-	if((Main.NEWS_POS+1) <= Main.MAX_ITEMS){
-		var a = $('#icon-'+Main.NEWS_POS).attr('id');
-		$('#gallery-'+Main.NEWS_POS).hide();
-		$('.mini-image-active').removeClass('mini-image-active').addClass('mini-image');
-		
-		$('.showcaseimage').hide();
-		$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
-		Main.NEWS_POS = Main.NEWS_POS + 1;
-		$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
-		//Change Content
-		$('#gallery-'+Main.NEWS_POS).show();
-		
-		if(Main.NEWS_POS == 1){
-			//Hide left arrow
-			$('#news_arrowleft').hide();
-			$('#news_arrowright').show();
-		}else if (Main.NEWS_POS < 5) {
-			//show both arrows
+	if($('#panel'+Number(Main.NEWS_POS+1)+'-content').html()!=null){
+		$('.panelHeader').show();
+		$('#panel'+Main.NEWS_POS).show();
+		$('#panel'+Main.NEWS_POS+'-content').hide();
+		Main.NEWS_POS = Main.NEWS_POS+1;
+		$('#panel'+Main.NEWS_POS+'-content').show();
+		$('#panel'+Main.NEWS_POS).hide();
+		if (Main.NEWS_POS > 1) {
+			//Show Left Arrow
 			$('#news_arrowleft').show();
-			$('#news_arrowright').show();
-		}else{
-			//hide right arrow
-			$('#news_arrowright').hide();
-			$('#news_arrowleft').show();
+		};
+		if(Main.NEWS_POS >= Main.MAX_ITEMS){
+		$('#news_arrowright').hide();
+		$('span.bazaar-footer').css('display','inline-block');
 		}
 	}
-	//logger.keys.push("news-"+Main.NEWS_POS+":"+keyCode);
 }
 
 function slideLeft(keyCode){
-	if((Main.NEWS_POS-1) > 0){
-		var a = $('#icon-'+Main.NEWS_POS).attr('id');
-		$('.showcaseimage').hide();
-		$('#gallery-'+Main.NEWS_POS).hide();
-		$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
-		Main.NEWS_POS = Main.NEWS_POS - 1;
-		$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
-		$('#gallery-'+Main.NEWS_POS).show();
-		
-		if(Main.NEWS_POS == 1){
-			//Hide left arrow
+	if(Main.NEWS_POS > 0){
+		if($('#panel'+Number(Main.NEWS_POS-1)+'-content').html()!=null){
+			$('#panel'+Main.NEWS_POS).show();
+			$('#panel'+Main.NEWS_POS+'-content').hide();
+			Main.NEWS_POS = Main.NEWS_POS-1;
+			alert(Main.NEWS_POS);
+			$('#panel'+Main.NEWS_POS+'-content').show();
+			$('#panel'+Main.NEWS_POS).hide();
+			if (Main.NEWS_POS > 0) {
+				//Show Right Arrow
+				$('#news_arrowright').show();
+				$('span.bazaar-footer').css('display','none');
+			};
+			if(Main.NEWS_POS == 1){
 			$('#news_arrowleft').hide();
-			$('#news_arrowright').show();
-		}else if (Main.NEWS_POS < 5) {
-			//show both arrows
-			$('#news_arrowleft').show();
-			$('#news_arrowright').show();
-		}else{
-			//hide right arrow
-			$('#news_arrowright').hide();
-			$('#news_arrowleft').show();
+			}
 		}
 	}
-	//logger.keys.push("news-"+Main.NEWS_POS+":"+keyCode);
 }
 
 function setArrows(){
@@ -279,6 +256,7 @@ function setArrows(){
 		//Hide left arrow
 		$('#news_arrowleft').hide();
 		$('#news_arrowright').show();
+
 	}else if (Main.NEWS_POS < 5) {
 		//show both arrows
 		$('#news_arrowleft').show();
@@ -287,5 +265,6 @@ function setArrows(){
 		//hide right arrow
 		$('#news_arrowright').hide();
 		$('#news_arrowleft').show();
+		$('span.bazaar-footer').css('display','inline-block');
 	}
 }

@@ -8,6 +8,7 @@ CUR_POS = 1;
 //Current Level
 curLevel = level.TERMS;
 $(document).ready(function() {
+	$.preloadCssImages();
 	$('a.backbtn').on('click', function(e){
 		window.history.back();
 		return false;

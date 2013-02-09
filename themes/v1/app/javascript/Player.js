@@ -135,7 +135,6 @@ Player.playVideo = function()
     else
     {
         this.state = this.PLAYING;
-        
         this.plugin.Play( this.url );
         this.setFullscreen();
 
@@ -161,8 +160,8 @@ Player.stopVideo = function()
     {
         this.state = this.STOPPED;
         this.plugin.Stop();
-        $('#videoMenu').css('height','0px');
-        Main.curLevel = Main.level.NEWS;
+        $('.videoDetails').css('height','0px');
+        Main.curLevel = Main.prevLevel;
         Display.setTime(0);
         if (this.stopCallback)
         {
@@ -207,9 +206,9 @@ Player.getControlsState = function()
 
 Player.onBufferingStart = function()
 {
-    $("#videoPlayState").html('Buffering...');
+    $("h3.videoPlayState").html('Buffering...');
     Main.curLevel = Main.level.BUFFERING;
-    $('#videoMenu').css('height','60px');
+    $('.videoDetails').css('height','60px');
     switch(this.skipState)
     {
         case this.FORWARD:
@@ -226,8 +225,8 @@ Player.onBufferingStart = function()
 
 Player.onBufferingProgress = function(percent)
 {
-     $('#videoMenu').css('height','60px');
-	$('#videoPlayStatus').html('Buffering...');
+     $('.videoDetails').css('height','60px');
+	$('h3.videoPlayStatus').html('Buffering...');
     Main.curLevel = Main.level.NOSTATE;
 }
 
@@ -241,7 +240,7 @@ Player.onBufferingComplete = function()
         //$("#videoPlayState").html(c.toMMSS());
         //alert('Playing');
     },500);
-    $("#videoPlayState").html('Playing');
+    $(".videoPlayState").html('Playing');
     
 }
 
@@ -252,6 +251,8 @@ Player.setCurTime = function(time) {
     }else{
         $('#pluginPlayer').css('z-index','0');
         Player.stopVideo();
+        alert('End of Video');
+        Main.curLevel = Main.prevLevel;
     }
 }
 

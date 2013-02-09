@@ -7,16 +7,15 @@
 <% require themedCSS(bootstrap) %>
 <% require themedCSS(layout) %>
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>
-<% require javascript(themes/v1/javascript/lge/framework/VideoPlayer/api/api.js) %>
-<% require javascript(themes/v1/javascript/lge/framework/VideoPlayer/util/keycode.js) %>
+<% require javascript(themes/v1/javascript/keycode.js) %>
 <% require javascript(themes/v1/javascript/live.js) %>
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 	<!-- App Wrapper: 1280px x 720 (full application size) -->
 	
 		<% if Filename != '' %>
-		<div class="fullscrn">
-		<object id="videoPlayer" style="width:1280px; height:720px" data-title="$MenuTitle" src="{$CDN}{$Filename}">
+		<div class="fullscrn" style="background:#000000;">
+		<object type="application/x-netcast-av" id="fullPlayer" style="width:1280px; height:660px" data-title="$MenuTitle" data="{$CDN}{$Filename}">
 		</object>
 		</div>
 		<div id="videoMenu" class="navbar navbar-fixed-bottom">

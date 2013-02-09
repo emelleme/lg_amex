@@ -90,6 +90,7 @@ $(document).ready(function() {
 	
 	$('.panelHeader').on('hover', function(e){
 		//console.log($(this).children('h3'));
+		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
 		$(this).children('h3').children('span').toggleClass('panelHover');
 		
 	});
@@ -111,6 +112,7 @@ $(document).ready(function() {
 	
 	$('.navbtn').hover(function(){
 		clearActive();
+		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0.85)');
 		NAV_HOVER = true;
 		
 		curLevel = level.MENU;
@@ -122,11 +124,6 @@ $(document).ready(function() {
 		curLevel = level.NEWS;
 	});
 	
-	$('.navbar').hover(function(){
-		$('.inactive').show();
-	},function(){
-		$('.inactive').hide();
-	});
 	
 	$('.navbtn').on('click', function(e){
 		e.preventDefault();
@@ -180,7 +177,7 @@ $(document).ready(function() {
 		//Play Video
 		playCurrentVideo();
 	}).on('hover',function(){
-		
+		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
 		if(curLevel != level.VIDEO){
 			clearActive();
 			if(NEWS_POS == 1){
@@ -208,8 +205,9 @@ $(document).ready(function() {
 		slideRight('click');
 	});
 	
-	$('.termsbtn').hover(function(){
+	$('.termsbtnblk').hover(function(){
 		clearActive();
+		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0.85)');
 		$('.termsconditions a').addClass('hover');
 		curLevel = level.TERMS;
 	});
@@ -240,47 +238,35 @@ function processBuffering(isStarted){
 }
 
 function slideRight(keyCode){
-	if($('#panel'+Number(NEWS_POS+1)+'_content').html()!=null){
+	if(NEWS_POS < MAX_ITEMS){
 		$('.panelHeader').show();
 		$('#panel'+NEWS_POS).show();
 		$('#panel'+NEWS_POS+'_content').hide();
 		NEWS_POS = NEWS_POS+1;
 		$('#panel'+NEWS_POS+'_content').show();
 		$('#panel'+NEWS_POS).hide();
-		if (NEWS_POS > 1) {
-			//Show Left Arrow
-			$('#videos_arrowleft').show();
-			console.log(NEWS_POS)
-		};
-		if($('#panel'+Number(NEWS_POS+1)+'_content').html()==null){
-		$('#videos_arrowright').hide();
-		}
+		$('#videos_arrowleft').show();
+		console.log(NEWS_POS);
+		if(NEWS_POS+1 > MAX_ITEMS)
+			$('#videos_arrowright').hide();
 		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
 	}
-	//logger.keys.push("news-"+NEWS_POS+":"+keyCode);
 }
 
 function slideLeft(keyCode){
-	if(NEWS_POS > 0){
-		if($('#panel'+Number(NEWS_POS-1)+'_content').html()!=null){
-			$('#panel'+NEWS_POS).show();
-			$('#panel'+NEWS_POS+'_content').hide();
-			NEWS_POS = NEWS_POS-1;
-			$('#panel'+NEWS_POS+'_content').show();
-			$('#panel'+NEWS_POS).hide();
-			if (NEWS_POS > 0) {
-				//Show Right Arrow
-				$('#videos_arrowright').show();
-				console.log(NEWS_POS);
-			};
-			if($('#panel'+Number(NEWS_POS-1)+'_content').html()==null){
+	if(NEWS_POS > 1){
+		$('#panel'+NEWS_POS).show();
+		$('#panel'+NEWS_POS+'_content').hide();
+		NEWS_POS = NEWS_POS-1;
+		$('#panel'+NEWS_POS+'_content').show();
+		$('#panel'+NEWS_POS).hide();
+		$('#videos_arrowright').show();
+		console.log(NEWS_POS);
+		if(NEWS_POS-1 == 0)
 			$('#videos_arrowleft').hide();
-			}
 		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
-		}
-	//logger.keys.push("news-"+NEWS_POS+":"+keyCode);
 	}
 }
 
@@ -350,10 +336,11 @@ function keyDown(event) {
 			}
 			else if (curLevel == level.NEWS) {
 				clearActive();
-				curLevel = level.MENU;
+				curLevel = level.TERMS;
+				$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0.85)');
 				$('.arrows').hide();
 				$('.arrows').removeClass('activeImage');
-				$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
+				$('.termsbtnblk').addClass('hover');
 			}else if(curLevel == level.TERMS) {
 				clearActive();
 				curLevel = level.MENU;
@@ -367,6 +354,7 @@ function keyDown(event) {
 		{
 			if (curLevel == level.MENU) {
 				clearActive();
+				$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
 				$('.arrows').show();
 				if(NEWS_POS == 1){
 					//Hide left arrow
@@ -392,6 +380,7 @@ function keyDown(event) {
 				}, 5000);
 			}else if(curLevel == level.TERMS){
 				clearActive();
+				$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
 				$('.arrows').show();
 				if(NEWS_POS == 1){
 					//Hide left arrow

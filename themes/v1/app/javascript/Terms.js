@@ -22,12 +22,14 @@ Main.termsKeys = function(event) {
 			event.preventDefault();
 			Main.GOBACK = 1;
 			var m = Main.prevPage.shift();
-			if(m == 'cards'){
+			if(m == 'shopsmall'){
 				Main.cardsLoad();
-			}else if(m == 'recipes'){
+			}else if(m == 'designerspotlight'){
 				Main.recipesLoad();
-			}else if(m == 'travel'){
+			}else if(m == 'tipstrends'){
 				Main.travelLoad();
+			}else if(m == 'videos'){
+				Main.videosLoad();
 			}
 			alert("RETURN");
 			//widgetAPI.sendReturnEvent();
@@ -87,24 +89,29 @@ Main.termsKeys = function(event) {
 			if (Main.curLevel == Main.level.MENU) {
 				var g = $('#termsNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
 				alert(g);
-				if(g == 'travel'){
+				if(g == 'tipstrends'){
 		  			Main.travelLoad();
 				}else if(g == 'videos'){
 					alert('VIDEOS!!');
 					Main.videosLoad();
-				}else if(g == 'recipes'){
+				}else if(g == 'designerspotlight'){
 					Main.recipesLoad();
+				}else if(g == 'shopsmall'){
+					Main.cardsLoad();
 				}
 			}else{
 				alert('NOSD');
 				Main.GOBACK = 1;
 				var m = Main.prevPage.shift();
-				if(m == 'cards'){
+				alert(m);
+				if(m == 'shopsmall'){
 					Main.cardsLoad();
-				}else if(m == 'recipes'){
+				}else if(m == 'designerspotlight'){
 					Main.recipesLoad();
-				}else if(m == 'travel'){
+				}else if(m == 'tipstrends'){
 					Main.travelLoad();
+				}else if(m == 'videos'){
+					Main.videosLoad();
 				}
 			}
 			break;

@@ -1,10 +1,5 @@
 Main.cardsLoad = function(){
 	Main.MENU_POS = 0;
-	Main.CUR_ROW = 4;
-	Main.CUR_COL = 1;
-	Main.PREV_ROW = Main.CUR_ROW;
-	Main.PREV_COL = Main.PREV_COL;
-	Main.NEWS_POS = 1;
 	Main.clearActive();
 
 	Main.curLevel = Main.level.MENU;
@@ -16,13 +11,13 @@ Main.cardsLoad = function(){
 	$('#termsView').hide();
 
 	$('#cardsNav .container ul li:eq('+Main.MENU_POS+') a').addClass('hover');
-	CUR_POS = 2;
+	Main.CUR_POS = 1;
 	
-	$('.termsbtn').hover(function(){
+	/*$('.termsbtn').hover(function(){
 		clearActive();
 		$('.termsconditions a').addClass('hover');
 		curLevel = level.CARD;
-	})
+	})*/
 	
 }
 
@@ -38,9 +33,9 @@ switch(keyCode)
 				var m = Main.prevPage.shift();
 				if(m == 'videos'){
 					Main.videosLoad();
-				}else if(m == 'recipes'){
+				}else if(m == 'designerspotlight'){
 					Main.recipesLoad();
-				}else if(m == 'travel'){
+				}else if(m == 'tipstrends'){
 					alert(Main.prevPage[Main.pageDepth]);
 					Main.travelLoad();
 				}
@@ -110,23 +105,23 @@ switch(keyCode)
 		case tvKey.KEY_PANEL_ENTER:
 			alert("ENTER");
 			if (Main.curLevel == Main.level.MENU) {
-				Main.prevPage.push('cards');
+				Main.prevPage.push('shopsmall');
 				var g = $('#cardsNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');
-				if(g == 'travel'){
-					Main.prevPage.unshift('cards');
+				if(g == 'tipstrends'){
+					Main.prevPage.unshift('shopsmall');
 					Main.pageDepth += 1;
 		  			Main.travelLoad();
 				}else if(g == 'videos'){
-					Main.prevPage.unshift('cards');
+					Main.prevPage.unshift('shopsmall');
 					Main.pageDepth += 1;
 					Main.videosLoad();
-				}else if(g == 'recipes'){
-					Main.prevPage.unshift('cards');
+				}else if(g == 'designerspotlight'){
+					Main.prevPage.unshift('shopsmall');
 					Main.pageDepth += 1;
 					Main.recipesLoad();
 				}
 			}else{
-				Main.prevPage.unshift('cards');
+				Main.prevPage.unshift('shopsmall');
 				Main.termsLoad();
 			}
 		break;

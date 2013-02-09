@@ -2,6 +2,7 @@
 level = {};
 level.CARD = 1;
 level.MENU = 2;
+level.TERMS = 2;
 
 MENU_MATRIX = {
 	1: "1,2,3,4"
@@ -20,21 +21,37 @@ CUR_POS = 1;
 curIndex = 1;
 ACTIVE_PAGE = 2;
 //Current Level
-curLevel = level.CARD;
+curLevel = level.MENU;
+function CardsController($scope,$http,$location){
 $(document).ready(function() {
 	//Todo: move to common.js
-	$('.termsconditions a').addClass('hover');
+	$('#cardsNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
+	//$('.termsconditions a').addClass('hover');
 	CUR_POS = 2;
 	$('.backButton').on('click', function(e){
 		window.history.back();
 		return false;
 	});
 	
-	$('.termsbtn').hover(function(){
+	$('.termsbtnblk').hover(function(){
 		clearActive();
 		$('.termsconditions a').addClass('hover');
-		curLevel = level.CARD;
-	})
+		curLevel = level.TERMS;
+	});
+	$('.navbtn').hover(function(){
+		clearActive();
+		curLevel = level.MENU;
+		$(this).addClass('hover');
+		MENU_POS = $(this).parent().index();
+	});
+});
+}
+
+angular.module('project', ['ngResource']).
+config(function($routeProvider) {
+$routeProvider.
+  when('/', {controller:CardsController, templateUrl:'/shopsmall/layout.html'}).
+  otherwise({redirectTo:'/'});
 });
 
 function keyDown(event) {

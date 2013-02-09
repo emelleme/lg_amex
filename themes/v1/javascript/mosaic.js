@@ -73,12 +73,6 @@ playclickcount = 0;
 curLevel = level.MOSAIC;
 lastLevel = curLevel;
 $(document).ready(function() {
-	$("#yesno").easyconfirm({locale: { title: 'Exit Application?', button: ['No','Yes']}});
-	$("#yesno").click(function() {
-		window.NetCastExit();
-	});
-	$("#yesno").hide();
-
 	$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 	$('#main-copy').hide().html($('#benefit_'+CUR_ROW+'-'+CUR_COL).html()).show();
 
@@ -613,6 +607,9 @@ function keyDown(event) {
 			  	window.location = 'live.html';
 			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
 			  		var g = $('#image_6-3 a').attr('href');
+					window.location =g;
+			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "4-4") {
+			  		var g = 'harpers.html';
 					window.location =g;
 			  }
 			}	

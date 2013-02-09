@@ -35,10 +35,10 @@ Display.setTime = function(time) {
         
     if (Player.state == Player.PLAYING) {
         //timeHTML = time.toMMSS()+' / '+totalTime.toMMSS();
-        $('#videoPlayStatus').html(Display.toMMSS(time)+' / '+totalTime);
+        $('h3.videoPlayStatus').html(Display.toMMSS(time)+' / '+totalTime);
 
     } else {
-         $('#videoPlayStatus').html('--:--');
+         $('h3.videoPlayStatus').html('--:--');
     }
 }
 

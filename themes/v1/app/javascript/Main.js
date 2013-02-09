@@ -22,11 +22,17 @@ var Main =
 	MENU_POS: 0,
 	MAX_ITEMS:5,
 	CUR_POS: 1,
-	CUR_ROW: 4,
+	CUR_ROW: 2,
 	CUR_COL: 1,
-	PREV_ROW:4,
+	PREV_ROW:2,
 	PREV_COL:1,
+	MAX_ROW: 4,
 	NEWS_POS: 1,
+	VIDEO_POS: 1,
+	MAX_VIDEO: 3,
+	CDN: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/',
+	INTROVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/AMEX0006_fashion_intro_app_2mbps.mp4',
+	HARPERSVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_ch5_2mbps.mp4',
 	GALLERYITEMACTIVE:0,
 	GOBACK: 0,
 	curLevel: 1,
@@ -110,6 +116,9 @@ Main.showHandler = function()
 
 Main.onLoad = function()
 {
+	$('body').css('background-color','#000000');
+	$('.videoDetails').css('height','0px');
+	$.preloadCssImages();
 	window.onShow = Main.showHandler;
 	if ( Player.init() && Audio.init() && Server.init() )
     {
@@ -155,10 +164,6 @@ Main.onLoad = function()
 Main.firstLoad = function(){
 	$('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
 	$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
-	$('.uguu').css('border-left','100px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
-	$('.ugum').css('border-top','76px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
-	$('.ugum').css('border-left','100px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
-	$('.uguv').css('border-top','130px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
 	alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]);
 /* Set initial keydown function */
 	document.getElementById('anchor').onkeydown = Main.travelKeys;
@@ -191,9 +196,9 @@ var app = angular.module('amex', [])
   			widgetAPI.sendReadyEvent(); 
   		},
   		travelUrl: "http://s.amxp.cc/travel/layout.html",
-  		recipesUrl: "http://s.amxp.cc/recipes/layout.html",
+  		recipesUrl: "http://s.amxp.cc/designerspotlight/layout.html",
   		videosUrl:"http://s.amxp.cc/videos/layout.html",
-  		cardsUrl:"http://s.amxp.cc/cards/layout.html",
+  		cardsUrl:"http://s.amxp.cc/shopsmall/layout.html",
   		termsUrl:"http://s.amxp.cc/terms/layout.html",
   		viewCount: 0,
   		views:[{
@@ -213,7 +218,7 @@ var app = angular.module('amex', [])
   			keyFunction: 'recipesKeys'},{
   				id: 'cardsView',
   				hideDiv: 'true',
-  				layout:'http://s.amxp.cc/cards/layout.html', 
+  				layout:'http://s.amxp.cc/shopsmall/layout.html', 
   				keyFunction:'cardsKeys'}]
   
   

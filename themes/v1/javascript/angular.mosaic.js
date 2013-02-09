@@ -1,3 +1,4 @@
+
 var fCnt = 0;
 
 //Define Levels
@@ -11,6 +12,9 @@ level.FOOTER = 3;
 level.VIDEO = 4;
 level.INTROVIDEO = 5;
 level.TERMS = 6;
+level.DIAG = 7;
+
+EXIT_ACTIVE = false;
 NAV_HOVER = false;
 logger.page = 'benefits';
 //Define each Image Position within matrix
@@ -53,10 +57,10 @@ IMAGE_MATRIX = {
 	}
 }
 
-CUR_ROW = 4;
+CUR_ROW = 2;
 CUR_COL = 1;
-PREV_ROW = 4;
-PREV_COL = 1;
+PREV_ROW = CUR_ROW;
+PREV_COL = CUR_COL;
 MAX_ROW = 4;
 MAX_COL = 4;
 MENU_POS = 0;
@@ -67,16 +71,18 @@ playclickcount = 0;
 
 //Current Level
 curLevel = level.MOSAIC;
+lastLevel = curLevel;
 function MosaicController($scope,$http,$location){
-$(document).ready(function(){
+$(document).ready(function() {
+	
 	$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 	$('#main-copy').hide().html($('#benefit_'+CUR_ROW+'-'+CUR_COL).html()).show();
 
 	//Wing Color
-	$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+	/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 	$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 	$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-	$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+	$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 
 	//$('body').css('padding-top','0px');
 	$('#livePlayer').hide();
@@ -121,23 +127,19 @@ $(document).ready(function(){
 	},function(){
 		NAV_HOVER = false;
 	});
+
+	$('.termsbtn').hover(function(){
+		clearActive();
+		$('.termsconditions a').addClass('hover');
+		curLevel = level.TERMS;
+	});
 	
 	$('.navbtn').on('click', function(e){
 		e.preventDefault();
 		var link = $(this);
-		$.post('lg/userData',logger,function(logger){
-			window.location = link.attr('href');
-			return false;
-		});
-		nowLoading(this);		
+		window.location = link.attr('href');
 	});
 
-	$('#wrapper').on('click', function(e){
-		if(leftCount == 2 && rightCount == 2 && upCount == 1){
-			window.location = "intro/sbs/";
-			console.log('test');
-		}	
-	});
 	
 	$('.mosaicImage').hover(function(){
 		
@@ -172,10 +174,10 @@ $(document).ready(function(){
 			$('#main-copy').hide().html($('#'+t).html()).show();
 			
 			//Wing Color
-			$('.uguu').css('border-left','100px solid '+$(this).attr('data-wingcolor'));
+			/*$('.uguu').css('border-left','100px solid '+$(this).attr('data-wingcolor'));
 			$('.ugum').css('border-top','76px solid '+$(this).attr('data-wingcolor'));
 			$('.ugum').css('border-left','100px solid '+$(this).attr('data-wingcolor'));
-			$('.uguv').css('border-top','130px solid '+$(this).attr('data-wingcolor'));
+			$('.uguv').css('border-top','130px solid '+$(this).attr('data-wingcolor'));*/
 			//Set active.
 			clearActive();
 			$(this).addClass('activeImage');
@@ -184,40 +186,34 @@ $(document).ready(function(){
 			var pos = n[1].split("-")
 			CUR_ROW = Number(pos[0]);
 			CUR_COL = Number(pos[1]);
-			//console.log(CUR_COL);
+			//Send tracking event to GA
+
+			_gaq.push(['_trackEvent', 'Image Mosaic', 'Magic Remote', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+			// console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 		}else{
 			//Check if the First item is active
 			var t = $(this).attr('id');
+			if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == "2-1"){
+			  	//Open video modal
+			  	window.location = 'live.html';
+			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
+			  		var g = $('#image_6-3 a').attr('href');
+					window.location =g;
+			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "4-4") {
+			  		var g = 'harpers.html';
+					window.location =g;
+			  }
 		}
 
 	})
 });
 }
 
-angular.module('mongolab', ['ngResource']).
-    factory('Project', function($resource) {
-      var Project = $resource('https://api.mongolab.com/api/1/databases' +
-          '/angularjs/collections/projects/:id',
-          { apiKey: '4f847ad3e4b08a2eed5f3b54' }, {
-            update: { method: 'PUT' }
-          }
-      );
- 
-      Project.prototype.update = function(cb) {
-        return Project.update({id: this._id.$oid},
-            angular.extend({}, this, {_id:undefined}), cb);
-      };
- 
-      Project.prototype.destroy = function(cb) {
-        return Project.remove({id: this._id.$oid}, cb);
-      };
- 
-      return Project;
-    });
-angular.module('project', ['mongolab']).
+
+angular.module('project',['ngResource']).
 config(function($routeProvider) {
 $routeProvider.
-  when('/', {controller:MosaicController, templateUrl:'/travel/layout.html'}).
+  when('/', {controller:MosaicController, templateUrl:'/tipstrends/layout.html'}).
   otherwise({redirectTo:'/'});
 });
 
@@ -248,16 +244,16 @@ function keyDown(event) {
 					$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 					
 					//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
+					// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 				}
 					
 				}else if (CUR_COL == 1) {
 					//First Column
-					console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+					// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 				}else if(IMAGE_MATRIX[CUR_ROW][CUR_COL-1] == IMAGE_MATRIX[CUR_ROW][CUR_COL]){
 					//Same as current. Move 2.
 					clearActive();
@@ -266,14 +262,14 @@ function keyDown(event) {
 					$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 					
 					//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 					var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
-					console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+					// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 				}else{
 					//Move to next Postion
 					clearActive();
@@ -283,19 +279,25 @@ function keyDown(event) {
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 						
 						//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
-						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+						// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 						curIndex--;
 					}
 				}
+				//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Left Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				// console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
+			}else if(curLevel == level.DIAG){
+				$('.ui-dialog-buttonpane button').last().addClass('ui-state-hover');
+				$('.ui-dialog-buttonpane button').first().removeClass('ui-state-hover');
+				EXIT_ACTIVE = false;
 			}
-			logKey(event.keyCode);
 			break;
 		}
 		case VK_RIGHT:
@@ -316,7 +318,7 @@ function keyDown(event) {
 					MENU_POS = MENU_POS+1;
 					clearActive();
 					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-					console.log(MENU_POS);
+					// console.log(MENU_POS);
 				}
 			}
 			if (curLevel == level.MOSAIC) {
@@ -330,21 +332,21 @@ function keyDown(event) {
 					$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 					
 					//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 					var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 					CUR_ROW = Number(spl[0]);
 					CUR_COL = Number(spl[1]);
-					console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+					// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 					curIndex++;
 				}else if (CUR_COL >= 4) {
 					//Do nothing
 				}else if(IMAGE_MATRIX[CUR_ROW][CUR_COL+1] == IMAGE_MATRIX[CUR_ROW][CUR_COL]){
 					//Same as current. move two positions down
 					
-					console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL+2])
+					// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL+2])
 					if(IMAGE_MATRIX[CUR_ROW][CUR_COL+2] != null){
 						clearActive();
 						CUR_COL = CUR_COL + 2;
@@ -352,10 +354,10 @@ function keyDown(event) {
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 						
 						//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
@@ -368,7 +370,7 @@ function keyDown(event) {
 						if(CUR_ROW+1 > MAX_ROW){
 							//End of the line.
 							
-							console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+							// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 						}else{
 							//Move to first position of next row
 							curIndex++;
@@ -380,7 +382,7 @@ function keyDown(event) {
 							var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 							CUR_ROW = Number(spl[0]);
 							CUR_COL = Number(spl[1]);
-							console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+							// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 						}
 					}else{
 						//Move position to right
@@ -389,16 +391,16 @@ function keyDown(event) {
 							if(IMAGE_MATRIX[CUR_ROW][CUR_COL+2] != null){
 								//Move over two positions if its not null
 								clearActive();
-								console.log(IMAGE_MATRIX[4][CUR_COL])
+								// console.log(IMAGE_MATRIX[4][CUR_COL])
 								CUR_COL = CUR_COL + 2;
 								$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 								$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 								
 								//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 								var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 								CUR_ROW = Number(spl[0]);
 								CUR_COL = Number(spl[1]);
@@ -406,117 +408,112 @@ function keyDown(event) {
 						}else if(IMAGE_MATRIX[CUR_ROW][CUR_COL+1] == IMAGE_MATRIX[CUR_ROW][CUR_COL]){
 							//Same as current. Move over 2
 
-							console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL+2])
+							// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL+2])
 							clearActive();
 							CUR_COL = CUR_COL + 2;
 							$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 							$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 							
 							//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
 					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 							var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 							CUR_ROW = Number(spl[0]);
 							CUR_COL = Number(spl[1]);
-							console.log(CUR_COL);
+							// console.log(CUR_COL);
 						}else{
 							//Move into position
-							console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL+1])
+							// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL+1])
 							clearActive();
 							CUR_COL = CUR_COL+1;
 							$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 							$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
 							
 							//Wing Color
-					$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 							var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 							CUR_ROW = Number(spl[0]);
 							CUR_COL = Number(spl[1]);
-							console.log(CUR_COL);
+							// console.log(CUR_COL);
 							
 						}
 					}
 
 				} 
-				
+				//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Right Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+			}else if(curLevel == level.DIAG){
+				$('.ui-dialog-buttonpane button').first().addClass('ui-state-hover');
+				$('.ui-dialog-buttonpane button').last().removeClass('ui-state-hover');
+				EXIT_ACTIVE = true;
 			}
-			logKey(event.keyCode);
 			break;
 		}
 		case VK_DOWN:
 		{
-			if (curLevel == level.MENU) {
-				//chill
+			if (curLevel == level.TERMS) {
+				clearActive();
+				curLevel = level.MENU;
+				$('#travelNav .container ul li:eq('+MENU_POS+') a').addClass('hover');
 			}
 			if (curLevel == level.MOSAIC) {
 			$('.mosaicImage').removeClass('mosaicImagehover');
-				if(CUR_ROW == 6){
-					clearActive();
-					CUR_ROW = CUR_ROW;
-					curLevel = level.MENU;
-					$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-				}else if (CUR_ROW == 5){
+				if (CUR_ROW >= MAX_ROW){
 					//At the bottom, move to the footer or terms of service
-					if(CUR_COL > 2){
-						clearActive();
-						CUR_ROW = CUR_ROW + 1;
-						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
-					}else{
-						clearActive();
-						CUR_ROW = CUR_ROW;
-						curLevel = level.MENU;
-						$('.termsbtn').removeClass('hover');
-						$('.navbar .container ul li:eq('+MENU_POS+') a').addClass('hover');
-					}
+					clearActive();
+					curLevel = level.TERMS;
+					//$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
+					$('.termsbtn').addClass('hover');
 				}else{
 					//Move to next Postion
-					console.log(CUR_ROW);
+					// console.log(CUR_ROW);
 					if(IMAGE_MATRIX[CUR_ROW+1][CUR_COL] == null){
 						//
 					}else if(IMAGE_MATRIX[CUR_ROW+1][CUR_COL] == IMAGE_MATRIX[CUR_ROW][CUR_COL]){
 						//Same as current. move two positions down
 						clearActive();
-						
 						CUR_ROW = CUR_ROW + 2;
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
-						$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
 						PREV_COL = CUR_COL;
 						PREV_ROW = CUR_ROW;
-						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
-						
+						//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+						// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 					}else{
 						clearActive();
 						CUR_ROW = CUR_ROW + 1;
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
-						$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						CUR_ROW = Number(spl[0]);
 						CUR_COL = Number(spl[1]);
 						PREV_COL = CUR_COL;
 						PREV_ROW = CUR_ROW;
-						//console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
+						// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
+						//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
 						curIndex--;
 					}
 				}
 			}
-			logKey(event.keyCode);
 			break;
 		}
 		case VK_UP:
@@ -528,6 +525,12 @@ function keyDown(event) {
 				rightCount = 0;
 			}
 			if (curLevel == level.MENU) {
+				//return to matrix
+				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
+				curLevel = level.MOSAIC;
+				clearActive();
+				$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
+			}else if(curLevel == level.TERMS){
 				//return to matrix
 				$('.navbar .container ul li:eq('+MENU_POS+') a').removeClass('hover');
 				curLevel = level.MOSAIC;
@@ -552,7 +555,7 @@ function keyDown(event) {
 								if(IMAGE_MATRIX[CUR_ROW-2][CUR_COL] == '6-3'){
 									PREV_COL = CUR_COL;
 									PREV_ROW = CUR_ROW;
-									console.log('PREV_ROW')
+									// console.log('PREV_ROW')
 								}else{
 									CUR_ROW = Number(spl[0]);
 									CUR_COL = Number(spl[1]);
@@ -568,20 +571,21 @@ function keyDown(event) {
 							CUR_COL = 2;
 							$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 							$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
-							$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							/*$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+							$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						}
 					}else{
 						clearActive();
 						CUR_ROW = CUR_ROW - 1;
 						$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 						$('#main-copy').hide().html($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).html()).show();
+						/*
 						$('.uguu').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
-					$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-top','76px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.ugum').css('border-left','100px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));
+						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						
 							CUR_ROW = Number(spl[0]);
@@ -599,7 +603,9 @@ function keyDown(event) {
 					}
 				}
 			}
-			logKey(event.keyCode);
+			//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Up Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 			break;
 		}
 		case VK_ENTER:
@@ -616,53 +622,49 @@ function keyDown(event) {
 				
 			  if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == "2-1"){
 			  	//Open video modal
-			  	$.post('lg/userData',logger,function(logger){
-			  		window.location ="live";
-			  	});
-			  	
+			  	window.location = 'live.html';
 			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "6-3") {
-			  	$.post('lg/userData',logger,function(logger){
-			  		var goto = $('#image_6-3 a').attr('href');
-					window.location =goto;
-			  	});
+			  		var g = $('#image_6-3 a').attr('href');
+					window.location =g;
+			  }else if (IMAGE_MATRIX[CUR_ROW][CUR_COL] == "4-4") {
+			  		var g = 'harpers.html';
+					window.location =g;
 			  }
 			}	
 			else if (curLevel == level.MENU) {
-				$.post('lg/userData',logger,function(logger){
-					var goto = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
-					window.location =goto;
-				});
+
+				window.NetCastSetPageLoadingIcon('enabled');
+					var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
+					window.location =g;
 				
-			} else if (curLevel = level.VIDEO) {
+			} else if (curLevel == level.VIDEO) {
 				//$('body').css('padding-top','48px');
-				$.post('lg/userData',logger,function(logger){
 					window.location = 'benefits';
-				});
 				
-			}else if (curLevel = level.INTROVIDEO) {
-				$.post('lg/userData',logger,function(logger){
+			}else if (curLevel == level.INTROVIDEO) {
 					window.location = 'benefits';
-				});
 				
+			}else if(curLevel == level.DIAG){
+				if(EXIT_ACTIVE == true){
+					console.log('exit');
+					window.NetCastExit();
+				}else{
+					$('.ui-dialog-buttonpane button').last().trigger('click');
+					curLevel = lastLevel;
+				}
 			}
 			
 			break;
 		}
 		case VK_BACK:
 		{
-			$.post('lg/userData',logger,function(logger){
-				window.location = 'lg/';
-			});
+			//Send tracking event to GA
+				_gaq.push(['_trackEvent', 'Image Mosaic', 'Back Button', 'Back Button']);
+			window.NetCastSetPageLoadingIcon('enabled');
+					//window.history.back();
+				window.NetCastBack();
 		break;
 		}
 	}
 	
-}
-
-function logKey(keyCode){
-	if(curLevel == level.MENU){
-		logger.keys.push("footer-"+MENU_POS+":"+VK_CODES[keyCode]);
-	}else{
-		logger.keys.push(IMAGE_MATRIX[CUR_ROW][CUR_COL]+":"+VK_CODES[keyCode]);
-	}
 }

@@ -26,7 +26,7 @@
 			<div class="container">
 			  
 			<ul>
-				<li><a class="navbtn" data-page="tipstrends" href="travel.html">Travel Ideas</a>
+				<li><a class="navbtn" data-page="tipstrends" href="tipstrends">On the Runway</a>
 				<li class="center"><a class="navbtn" data-page="designerspotlight" href="designerspotlight.html">Designer Spotlight</a>
 				<li><a class="navbtn" data-page="shopsmall" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
 			</ul>
