@@ -44,7 +44,7 @@ Main.handleMosaicPlayKey = function()
 
 Main.travelKeys = function(event){
 var keyCode = event.keyCode;
-	alert("Key pressed: " + keyCode);
+	alert("Key pressed: " + Main.curLevel);
 
 	switch(keyCode)
 	{
@@ -257,6 +257,9 @@ var keyCode = event.keyCode;
 				Main.curLevel = Main.level.MOSAIC;
 				Main.clearActive();
 				$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
+			}else if(Main.curLevel == Main.level.VIDEO || Main.curLevel == Main.level.NOSTATE){
+				//Do nothing
+				alert('Video playing');
 			}else {
 				$('.mosaicImage').removeClass('mosaicImagehover');
 				if(Main.CUR_ROW == 1){
@@ -326,6 +329,8 @@ var keyCode = event.keyCode;
 					Main.clearActive();
 					Main.curLevel = Main.level.TERMS
 					$('.termsbtn').addClass('hover');
+				}else if(Main.curLevel == Main.level.VIDEO || Main.curLevel == Main.level.NOSTATE){
+					alery('Video Playing');
 				}else{
 					//Move to next Postion
 					if(Main.IMAGE_MATRIX[Main.CUR_ROW+1][Main.CUR_COL] == null){
