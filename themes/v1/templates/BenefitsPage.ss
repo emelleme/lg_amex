@@ -3,7 +3,7 @@
 <head lang="en">
 <% base_tag %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>On the Runway.</title>
+<title>Joe Zee's Fashion Trends.</title>
 <% require themedCSS(bootstrap) %>
 <% require themedCSS(layout) %>
 <% require themedCSS(countdown-mosaic) %>

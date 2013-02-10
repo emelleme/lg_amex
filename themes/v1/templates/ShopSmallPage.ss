@@ -3,7 +3,7 @@
 <head lang="en">
 <% base_tag %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Shop Small&reg;</title>
+<title>Sync to Buy</title>
 <% require themedCSS(bootstrap) %>
 <% require themedCSS(layout) %>
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>

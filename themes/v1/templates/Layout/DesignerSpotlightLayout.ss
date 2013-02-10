@@ -56,9 +56,9 @@
 			<div class="container">
 			  
 	<ul>
-		<li><a class="navbtn" data-page="tipstrends" href="tipstrends">On the Runway</a>
+		<li><a class="navbtn" data-page="tipstrends" href="tipstrends">Tips &amp; Trends</a>
 		<li class="center"><a data-page="videos" class="navbtn" href="videos.html">Video Gallery</a>
-		<li><a class="navbtn" data-page="shopsmall" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
+		<li><a class="navbtn" data-page="shopsmall" href="shopsmall.html">Sync to Buy</a>
 	</ul>
 				
 			<div style="clear: both;"></div>

@@ -6,9 +6,8 @@
 	<!-- header area (1024 x 80)-->
 	<section  style="padding-left:128px;" id="header-new" class="row">
 		<div id="header-title" class="span10">
-			<h1 class="header-home">On the Runway.</h1>
-			<h3>Explore these looks and vote for your favorite at harpersbazaar.com/AmexFashion</h3>
-			<h3>Return 2/14 to see the favorite look LIVE.</h3>
+			<h1 class="header-home">Joe Zee's Fashion Trends.</h1>
+			<h3>Explore trends and more at venteprivee.com/AmexTV</h3>
 		</div>
 
 		<div id="header-logo" style="margin:0px 0px 0px 0px" class="span2">
@@ -30,12 +29,9 @@
 				<div id="image_disabled" class="disabledmosaicImage" style="">
 				</div>
 
-			<% loop displayItems('voting') %>
-				<div id="image_$Position" class="mosaicImage" data-wingcolor="$WingColor" style="">
-				$Position
-				<% if CurrentMember %>
-				<span><a href="admin/benefits/Benefit/EditForm/field/Benefit/item/$ID" target="_blank" style="background-color:#0063B2;color:#fff">$Position<img src="http://dev.amxp.cc/assets/images/edit.png" /></a></span>
-				<% end_if %>
+			<% loop displayItems($CurrentPhase) %>
+				<div id="image_$Position" <% if $Position != '1-1' %>class="mosaicImage"<% end_if %> data-wingcolor="$WingColor" style="">
+				
 					<div class="inner">
 						<div id="benefit_$Position" class="hidden" data-title="$Title">
 							$BoxText.AbsoluteLinks
@@ -57,7 +53,7 @@
 	<ul>
 		<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
 		<li class="center"><a data-page="designerspotlight" class="navbtn" href="designerspotlight.html">Designer Spotlight</a>
-		<li><a data-page="shopsmall" class="navbtn" href="shopsmall.html">Shop Small<sup>&reg;</sup></a>
+		<li><a data-page="shopsmall" class="navbtn" href="shopsmall.html">Sync to Buy</sup></a>
 	</ul>
 		
 	<div style="clear: both;"></div>

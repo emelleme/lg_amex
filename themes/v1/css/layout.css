@@ -619,7 +619,7 @@ color: #999;
 
 	font-family: BentonSans;
 
-	font-size: 41px;
+	font-size: 36px;
 
 	color: #000000;
 
@@ -2781,12 +2781,17 @@ margin-right: 49px;
 .max-messages {font: 17px/24px TradeGothic; color: #ffffff; text-shadow: 0px 0px 5px #000000; -moz-text-shadow: 0px 0px 5px #000000;}
 
 
-/* - - - - - - - - SHOP SMALL - - - - - - - - */
+/* - - - - - - - - SHOP SMALL / SYNC TO BUY - - - - - - - - */
 
 #shopsmall-agnostic {margin: 135px 0 0 186px; width: 885px; height: 450px; position: relative;}
-.ss-one {margin: 30px 0px 0px 27px; font: 18px/21px BentonSans;}
-.ss-two {color: #127fc3; margin: 36px 0px 0px 27px;  font: 21px/24px BentonSansMedium;}
-.ss-three {margin: 9px 0px 0px 27px; font: 21px/24px BentonSans; color: #a3a4a4;}
+#shopsmall-agnostic .ss-one {margin: 30px 0px 0px 27px; font: 18px/21px BentonSans;}
+#shopsmall-agnostic .ss-two {color: #127fc3; margin: 36px 0px 0px 27px;  font: 21px/24px BentonSansMedium;}
+#shopsmall-agnostic .ss-three {margin: 9px 0px 0px 27px; font: 21px/24px BentonSans; color: #a3a4a4;}
+
+#stb {position: absolute; left: 565px; top: 218px;}
+#stb .stb-one {}
+#stb .stb-two {margin: 12px 0;}
+#stb .stb-three {}
 
 
 /* - - - - - - - - DESIGNER SPOTLIGHT - - - - - - - - */
