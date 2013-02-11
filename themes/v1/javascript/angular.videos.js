@@ -158,6 +158,7 @@ $(document).ready(function() {
 		}
 		$('#panel'+NEWS_POS).hide();
 		$('#panel'+NEWS_POS+'_content').show();
+		_gaq.push(['_trackEvent', 'Video Gallery', 'Magic Mouse Select', $('#panel'+NEWS_POS).attr('data-title')]);
 	}).on('hover',function(){
 		clearActive();
 		if(NEWS_POS == 1){
@@ -178,6 +179,7 @@ $(document).ready(function() {
 	$('.showcaseimage').on('click',function(){
 		//Play Video
 		playCurrentVideo();
+		_gaq.push(['_trackEvent', 'Video Gallery', 'Magic Mouse Play', $('#panel'+NEWS_POS).attr('data-title')]);
 	}).on('hover',function(){
 		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
 		if(curLevel != level.VIDEO){
@@ -254,6 +256,7 @@ function slideRight(keyCode){
 			$('#videos_arrowright').hide();
 		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
+		_gaq.push(['_trackEvent', 'Video Gallery', 'Right Button', $('#panel'+NEWS_POS).attr('data-title')]);
 	}
 }
 
@@ -270,6 +273,7 @@ function slideLeft(keyCode){
 			$('#videos_arrowleft').hide();
 		document._video.setAttribute("data", CDN+$('#panel'+NEWS_POS).attr('data-video'));
 		$('#currentVideoTitle').html($('#panel'+NEWS_POS).attr('data-title'));
+		_gaq.push(['_trackEvent', 'Video Gallery', 'Left Button', $('#panel'+NEWS_POS).attr('data-title')]);
 	}
 }
 
@@ -406,6 +410,7 @@ function keyDown(event) {
 		{
 			if(curLevel == level.VIDEO){
 				stopCurrentVideo();
+				_gaq.push(['_trackEvent', 'Video Gallery', 'Stop Button', $('#panel'+NEWS_POS).attr('data-title')]);
 				break;
 			}
 			break;
@@ -419,6 +424,7 @@ function keyDown(event) {
 			}else{
 				if(curLevel == level.NEWS){
 					playCurrentVideo();
+					_gaq.push(['_trackEvent', 'Video Gallery', 'Play Button', $('#panel'+NEWS_POS).attr('data-title')]);
 				}
 			}
 			break;
@@ -487,6 +493,7 @@ function keyDown(event) {
 				break;
 			}else{
 				stopCurrentVideo();
+				_gaq.push(['_trackEvent', 'Video Gallery', 'Back Button Stop', $('#panel'+NEWS_POS).attr('data-title')]);
 				break;
 			}
 			
