@@ -41,13 +41,13 @@ IMAGE_MATRIX = {
 		1: "4-1",
 		2: "4-1",
 		3: "4-3",
-		4: "4-4"
+		4: "4-3"
 	},
 	5: {
 		1: "4-1",
 		2: "4-1",
 		3: "4-3",
-		4: "4-4"
+		4: "4-3"
 	},
 	6: {
 		1:"6-2",
@@ -87,6 +87,7 @@ $(document).ready(function() {
 	//$('body').css('padding-top','0px');
 	$('#livePlayer').hide();
 	$('#beforeImage').hide();
+	$('#livevideoMenu').hide();
 	
 	$('.backbtn').on('click',function(e){
 		$('#beforeImage').hide();
