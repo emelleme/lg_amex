@@ -1,25 +1,33 @@
 <div id="cardsMain">
 	<!-- header area (1024 x 80)-->
 	<section  style="padding-left:128px;" id="header-new" class="row">
-		<div id="header-title" class="span10">
-			<h1>Introducing Shopping on Twitter with #AmexSync</h1>
-			<h3 class="gray">Tweet to buy an Amex Gift Card and shop the latest fashions.</h3>
+		<div id="header-title" class="span6">
+			<h1>Shop Small<sup>&reg;</sup></h1>
+			<h3 class="gray">Make an impact and support local fashion retailers.</h3>
 		</div>
 
 		<% include Logo %>
 	</section>
 
 	<section id="cards-content-new" class="row">
-
-		<img src="{$BaseHref}themes/v1/images/synctobuy-iphone.jpg" alt="Sync to Buy" style="position: absolute; left: 159px; top: 198px;" />
 		
-		<div id="stb">
-			<img src="{$BaseHref}themes/v1/images/synctobuy-one-sync.png" alt="Sync" class="stb-one" />	
-			<img src="{$BaseHref}themes/v1/images/synctobuy-two-tweet.png" alt="Tweet" class="stb-two" />
-			<img src="{$BaseHref}themes/v1/images/synctobuy-three-purchase.png" alt="Purchase" class="stb-three" />
-		</div>
+		<div id="shopsmall-agnostic">
+			<img src="{$BaseHref}themes/v1/images/shop-small-big-image.jpg" style="position: absolute; left: 0; top: 0; width: 245px; height: 328px;" alt="Shop Small" />
+			<div style="position: absolute; left: 255px; top: 0;">
+				<img src="{$BaseHref}themes/v1/images/shop-small-small-images.jpg" alt="Shop Small" />
+		
+				<p class="ss-one">American Express is working with Clear Channel to help<br>
+				support small businesses. Make an impact by shopping<br>
+				small and supporting local fashion retailers.</p>
+				
+				<p class="ss-two">Find small business near you that are recovering<br>
+				from Hurricane Sandy:</p>
 			
-		<div class="termsconditions" style="position: absolute; top: 593px; right: 75px;"><a class="termsbtnblk" href="terms.html">Terms &amp; Conditions</a></div>
+				<p class="ss-three"><img src="{$BaseHref}themes/v1/images/shop-small-websites.png" alt="Websites" /></p>
+				
+				<p class="termsconditions" style="float: right; margin: 44px -99px 0 0;"><a class="termsbtnblk" href="terms.html">Terms &amp; Conditions</a></p>
+			</div>
+		</div>
 		
 	</section>
 </div>
@@ -29,7 +37,7 @@
 	<div class="menubar-inner">
 		<div class="container">
 		<ul>
-			<li><a class="navbtn" data-page="tipstrends" href="tipstrends">Tips &amp; Trends</a>
+			<li><a class="navbtn" data-page="tipstrends" href="tipstrends">On the Runway</a>
 			<li class="center"><a class="navbtn" data-page="designerspotlight" href="designerspotlight.html">Designer Spotlight</a>
 			<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
 		</ul>

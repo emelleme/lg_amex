@@ -53,7 +53,7 @@
 	<ul>
 		<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
 		<li class="center"><a data-page="designerspotlight" class="navbtn" href="designerspotlight.html">Designer Spotlight</a>
-		<li><a data-page="shopsmall" class="navbtn" href="shopsmall.html">Sync to Buy</sup></a>
+		<li><a class="navbtn" data-page="shopsmall" href="shopsmall">Sync to Buy</a>
 	</ul>
 		
 	<div style="clear: both;"></div>

@@ -23,7 +23,7 @@
 					<div id="image-scroller">
 					<% loop videoPanels %>
 						<div id="video-panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$PlainTitle.RAW">
-							<div class="video-panel-icon"><img src="$PanelIcon.AbsoluteUrl" alt="$PanelIcon.Title"/></div>
+							<div class="video-panel-icon" style="background-image:url({$BaseHref}$PanelIcon.Url);width:75px;height:400px;"></div>
 						</div>
 						<div id="video-panel{$PanelNumber}_content" class="showcaseimage" style="background-color:#000;" data-image="{$BaseHref}$PanelImage.Url" data-bwimage="{$BaseHref}$PanelImageBW.Url">
 							<img src="{$BaseHref}$PanelImage.Url" alt="image" />
@@ -49,7 +49,7 @@
 			<ul>
 				<li><a class="navbtn" data-page="tipstrends" href="travel.html">Tips &amp; Trends</a>
 				<li class="center"><a class="navbtn" data-page="designerspotlight" href="recipes.html">Designer Spotlight</a>
-				<li><a class="navbtn" data-page="shopsmall" href="shopsmall.html">Sync to Buy</a>
+				<li><a class="navbtn" data-page="shopsmall" href="shopsmall">Sync to Buy</a>
 			</ul>
 				
 			<div style="clear: both;"></div>

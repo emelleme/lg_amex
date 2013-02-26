@@ -31,7 +31,7 @@
 						<div id="image-scroller">
 						<% loop galleryPanels %>
 							<div id="panel$ItemNumber" style="height:400px;" class="panelHeader" data-title="$Title.RAW">
-								<div class="video-panel-icon"><img src="{$BaseHref}$GalleryPanelImage.URL" alt="gallery panel" /></div>
+								<div class="video-panel-icon" style="background-image:url({$BaseHref}$GalleryPanelImage.Url);width:75px;height:400px;"></div>
 							</div>
 							<div id="panel{$ItemNumber}-content" class="showcaseimage">
 								$GalleryPanelContent.AbsoluteLinks
@@ -58,7 +58,7 @@
 	<ul>
 		<li><a class="navbtn" data-page="tipstrends" href="tipstrends">Tips &amp; Trends</a>
 		<li class="center"><a data-page="videos" class="navbtn" href="videos.html">Video Gallery</a>
-		<li><a class="navbtn" data-page="shopsmall" href="shopsmall.html">Sync to Buy</a>
+		<li><a class="navbtn" data-page="shopsmall" href="shopsmall">Sync to Buy</a>
 	</ul>
 				
 			<div style="clear: both;"></div>
