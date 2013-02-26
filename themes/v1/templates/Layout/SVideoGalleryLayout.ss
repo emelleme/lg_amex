@@ -1,6 +1,6 @@
-	<div id="videoMenu" class="videoDetails" data-livestream="$LiveStream1" style="z-index:16000;background-color: #000000;color:#fafafa;position:absolute;bottom:0px;left:0px;width:1280px;height:0px;">
+	<div id="videoMenu" class="videoDetails" data-livestream="$LiveStream1" style="z-index:26000;background-color: #000000;color:#fafafa;position:absolute;bottom:0px;left:0px;width:1280px;height:0px;">
 	<h2 class="currentVideoTitle left" style="padding-left:25px;">Experience AMEX <span id="status"></span></h2>
-	<h3 class="videoPlayStatus right" style="padding-right:25px;"> / </h3>
+	<h3 class="videoPlayStatus right" id="videoPlayStatus" style="padding-right:25px;"> / </h3>
 	</div>
 		<div>
 			<!-- header area (1024 x 80)-->
@@ -15,14 +15,13 @@
 		<section id="content-new" class="row">
 			<div id="showcase-container">
 				<div class="gallery-arrow-l arrows" id="videos_arrowleft">
-					<img src="{$BaseHref}assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 				</div>
 
 				<div style="width: 809px; height:400px; margin: 27px 0 0 121px; overflow: hidden;">
 
 					<div id="image-scroller">
 					<% loop videoPanels %>
-						<div id="video-panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$Filename" data-title="$PlainTitle.RAW">
+						<div id="video-panel$PanelNumber" style="height:400px;" class="panelHeader" data-video="$SamsungFilename" data-title="$PlainTitle.RAW">
 							<div class="video-panel-icon" style="background-image:url({$BaseHref}$PanelIcon.Url);width:75px;height:400px;"></div>
 						</div>
 						<div id="video-panel{$PanelNumber}_content" class="showcaseimage" style="background-color:#000;" data-image="{$BaseHref}$PanelImage.Url" data-bwimage="{$BaseHref}$PanelImageBW.Url">
@@ -34,7 +33,6 @@
 				</div>
 
 				<div class="gallery-arrow-r arrows" id="videos_arrowright">
-				<img src="{$BaseHref}assets/images/transplaceholder.png" alt="blank" width="30" height="60" />
 				</div>
 				<p class="termsconditions" style="float: right; margin: 18px 124px 0 0;"><a class="termsbtnblk" href="terms.html">Terms &amp; Conditions</a></p>
 			</div>
@@ -57,5 +55,3 @@
 			</div>
 			</div>
 		</div>
-
-		

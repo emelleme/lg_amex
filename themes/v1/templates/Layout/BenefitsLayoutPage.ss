@@ -22,8 +22,6 @@
 
 		<div id="main-mosaic">
 			<div id="imageMosaic">
-				<div id="image_1-1" class="" style="">
-				</div>
 				<div id="image_2-3" class="disabledmosaicImage" style="">
 				</div>
 				<div id="image_disabled" class="disabledmosaicImage" style="">

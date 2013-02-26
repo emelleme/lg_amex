@@ -97,9 +97,9 @@
 	<div class="container">
 	  
 	<ul>
-		<li><a class="navbtn" data-page="travel" href="travel.html">Travel Ideas</a>
+		<li><a class="navbtn" data-page="travel" href="tipstrends">Tips &amp; Trends</a>
 		<li class="center"><a data-page="videos" class="navbtn" href="videos.html">Video Gallery</a>
-		<li><a class="navbtn" data-page="cards" href="cards.html">See Cards</a>
+		<li><a class="navbtn" data-page="synctobuy" href="synctobuy">Sync to Buy</a>
 	</ul>
 		
 	<div style="clear: both;"></div>

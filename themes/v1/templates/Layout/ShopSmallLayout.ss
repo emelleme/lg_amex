@@ -25,7 +25,7 @@
 			
 				<p class="ss-three"><img src="{$BaseHref}themes/v1/images/shop-small-websites.png" alt="Websites" /></p>
 				
-				<p class="termsconditions" style="float: right; margin: 44px -99px 0 0;"><a class="termsbtnblk" href="terms.html">Terms &amp; Conditions</a></p>
+				<p class="termsconditions" style="float: right; margin: 18px -99px 0 0;"><a class="termsbtnblk" href="terms.html">Terms &amp; Conditions</a></p>
 			</div>
 		</div>
 		

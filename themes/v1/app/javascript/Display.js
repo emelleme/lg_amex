@@ -27,16 +27,10 @@ Display.toMMSS = function(timeToParse){
 };
 
 Display.setTime = function(time) {
-
     var timePercent = (100 * time) / this.totalTime,
-        timeElement = document.getElementById("videoPlayStatus"),
-        timeHTML = "",
         totalTime = Display.toMMSS(this.totalTime);
-        
     if (Player.state == Player.PLAYING) {
-        //timeHTML = time.toMMSS()+' / '+totalTime.toMMSS();
         $('h3.videoPlayStatus').html(Display.toMMSS(time)+' / '+totalTime);
-
     } else {
          $('h3.videoPlayStatus').html('--:--');
     }

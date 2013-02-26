@@ -361,6 +361,7 @@ var keyCode = event.keyCode;
 		case tvKey.KEY_PLAY:
             alert("PLAY");
 			$('#pluginPlayer').css('z-index','13000');
+			$('#pluginPlayer').css('height','660px');
 			Main.prevLevel = Main.curLevel;
 			Player.setVideoURL(Main.INTROVIDEO);
             Main.handleMosaicPlayKey();
@@ -441,15 +442,17 @@ var keyCode = event.keyCode;
 				}else if(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL] == "2-1"){
 					//Play Intro Video
 					$('#pluginPlayer').css('z-index','13000');
+					$('#pluginPlayer').css('height','660px');
 					Main.prevLevel = Main.curLevel;
 					Player.setVideoURL(Main.INTROVIDEO);
 		            Main.handleMosaicPlayKey();
 				}else if(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL] == "4-4"){
-					//Play Intro Video
+/*					//Play Intro Video
 					$('#pluginPlayer').css('z-index','13000');
+					$('#pluginPlayer').css('height','660px');
 					Main.prevLevel = Main.curLevel;
 					Player.setVideoURL(Main.HARPERSVIDEO);
-		            Main.handleMosaicPlayKey();
+		            Main.handleMosaicPlayKey();*/
 				}		
 			}else if (Main.curLevel == Main.level.MENU) {
 				var g = $('#travelNav .container ul li:eq('+Main.MENU_POS+') a').attr('data-page');

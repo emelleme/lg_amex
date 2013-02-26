@@ -31,7 +31,7 @@ var Main =
 	VIDEO_POS: 1,
 	MAX_VIDEO: 3,
 	CDN: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/',
-	INTROVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/AMEX0006_fashion_intro_app_2mbps.mp4',
+	INTROVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_carolinaHerrera_2mbps.mp4',
 	HARPERSVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_ch5_2mbps.mp4',
 	GALLERYITEMACTIVE:0,
 	GOBACK: 0,
@@ -82,13 +82,13 @@ var Main =
 		1: "4-1",
 		2: "4-1",
 		3: "4-3",
-		4: "4-4"
+		4: "4-3"
 	},
 	5: {
 		1: "4-1",
 		2: "4-1",
 		3: "4-3",
-		4: "4-4"
+		4: "4-3"
 	},
 	6: {
 		1:"6-2",
@@ -113,14 +113,46 @@ Main.showHandler = function()
 	pluginObj.unregistKey(tvKey.KEY_MUTE);
 	pluginObj.registKey(tvKey.KEY_EXIT);
 }
+Main.CountDownTimer = function (dt, id)
+{
+    var end = new Date(dt);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            // document.getElementById(id).innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+        $('.num-days').html(days);
+        $('.num-hours').html(hours);
+        $('.num-mins').html(minutes);
+    }
+
+    timer = setInterval(showRemaining, 1000);
+}
 
 Main.onLoad = function()
 {
 	$('body').css('background-color','#000000');
 	$('.videoDetails').css('height','0px');
 	$.preloadCssImages();
+	//Main.CountDownTimer('02/15/2013 12:15 AM GMT', 'countdown');
 	window.onShow = Main.showHandler;
-	if ( Player.init() && Audio.init() && Server.init() )
+	if ( Player.init() && Audio.init() )
     {
 
         
@@ -130,14 +162,6 @@ Main.onLoad = function()
                 (by choice or when it reaches the end) */
             Main.setWindowMode();
         }
-
-        // Start retrieving data from server
-        Server.dataReceivedCallback = function()
-            {
-                /* Use video information when it has arrived */
-                Main.updateCurrentVideo();
-            }
-        Server.fetchVideoList(); /* Request video information from server */
 
         // Enable key event processing
         this.enableKeys();
@@ -181,11 +205,6 @@ Main.enableKeys = function()
 
 var app = angular.module('amex', [])
 .service( 'MainService', [ '$rootScope', function( $rootScope ) {
-//   var widgetAPI = new Common.API.Widget();
-//  var tvKey = new Common.API.TVKeyValue();
-	$rootScope.$watch('title',function(value){
-		alert('rootvalue updated');
-	});
   	return {
   		title: 'AMEX Experience',
   		setTitle: function( newTitle ){
@@ -198,72 +217,32 @@ var app = angular.module('amex', [])
   		travelUrl: "http://s.amxp.cc/travel/layout.html",
   		recipesUrl: "http://s.amxp.cc/designerspotlight/layout.html",
   		videosUrl:"http://s.amxp.cc/videos/layout.html",
-  		cardsUrl:"http://s.amxp.cc/shopsmall/layout.html",
-  		termsUrl:"http://s.amxp.cc/terms/layout.html",
-  		viewCount: 0,
-  		views:[{
-  			id: 'travelView',
-  			hideDiv: 'false',
-  			layout:'http://s.amxp.cc/travel/layout.html',
-  			keyFunction: 'travelKeys'},
-  			{
-  				id: 'videosView',
-  				hideDiv: 'true',
-  				layout:'http://s.amxp.cc/videos/layout.html',
-  			keyFunction: 'videosKeys'},
-  			{
-  				id: 'recipesView',
-  				hideDiv: 'true',
-  				layout: 'http://s.amxp.cc/recipes/layout.html',
-  			keyFunction: 'recipesKeys'},{
-  				id: 'cardsView',
-  				hideDiv: 'true',
-  				layout:'http://s.amxp.cc/shopsmall/layout.html', 
-  				keyFunction:'cardsKeys'}]
-  
-  
-  	};
- }])
+  		cardsUrl:"http://s.amxp.cc/shopsmall/slayout.html",
+  		termsUrl:"http://s.amxp.cc/terms/layout.html"
+  	}
+  }])
  .controller( 'MainController', [ 'MainService', '$scope', function( MainService, $scope ) {
-
-   $scope.countUp = function(){
-   	$scope.viewCount=1;
-   }
    $scope.title = Main.title;
    $scope.viewCount = MainService.viewCount;
    $scope.setTitle = function( newTitle ){
 		$scope.title = newTitle;
 	}
-	$scope.views = MainService.views;
 	$scope.firstLoad = function(){
 		$('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
 		$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
-		$('.uguu').css('border-left','100px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
-		$('.ugum').css('border-top','76px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
-		$('.ugum').css('border-left','100px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
-		$('.uguv').css('border-top','130px solid '+$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).attr('data-wingcolor'));
 		alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL])
 		document.getElementById('anchor').onkeydown = Main.travelKeys;
 	}
-   
-	
-
 	$scope.travelUrl = MainService.travelUrl;
 	$scope.videosUrl = MainService.videosUrl;
 	$scope.recipesUrl = MainService.recipesUrl;
 	$scope.cardsUrl = MainService.cardsUrl;
 	$scope.termsUrl = MainService.termsUrl;
 	$scope.$on( 'MainService.update', function( event, title ) {
-     $scope.title = title;
-   });
-
-	$scope.$watch('viewCount',function(value){
-		alert('View Loaded'+ $scope.viewCount);
+		$scope.title = title;
 	});
 	$(document).ready(function(){
 		document.getElementById("anchor").focus();
-		$scope.doms = document.getElementsByTagName('*').length
-		alert($scope.doms)
 		$('#cardsView').hide();
 		$('#recipesView').hide();
 		$('#videosView').hide();
@@ -271,4 +250,3 @@ var app = angular.module('amex', [])
 	});
 
  }]);
-

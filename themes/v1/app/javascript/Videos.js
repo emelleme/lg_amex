@@ -73,7 +73,8 @@ Main.videosKeys = function()
             break; 
 		case tvKey.KEY_PLAY:
             alert("PLAY");
-			$('#pluginPlayer').css('z-index','13000');
+			$('#pluginPlayer').css('z-index','3000');
+			$('#pluginPlayer').css('height','660px');
 			Main.prevLevel = Main.curLevel;
             Main.handlePlayKey();
             break;
@@ -256,7 +257,8 @@ Main.videosKeys = function()
 				Main.termsLoad();
 			}
 			else{
-				$('#pluginPlayer').css('z-index','13000');
+				$('#pluginPlayer').css('z-index','3000');
+				$('#pluginPlayer').css('height','660px');
 				Main.curLevel = Main.level.NOSTATE;
 				Main.handlePlayKey();
 				break;
@@ -306,6 +308,7 @@ Main.easterEgg = function(){
 	$('.currentVideoTitle').html('Stream Test');
 	
 	$('#pluginPlayer').css('z-index','13000');
+	$('#pluginPlayer').css('height','660px');
 	Main.prevLevel = Main.curLevel;
 	Main.handleLivePlayKey();
 }

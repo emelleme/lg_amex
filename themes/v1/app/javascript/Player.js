@@ -83,15 +83,6 @@ Player.deinit = function()
 {
     var mwPlugin = document.getElementById("pluginObjectTVMW");
     
-    if (mwPlugin && (this.originalSource != null) )
-    {
-        // If you use the srcctl by config.xml, don't need the source change in source code.
-        /**
-        // Restore original TV source before closing the widget 
-        mwPlugin.SetSource(this.originalSource);
-        alert("Restore source to " + this.originalSource);
-        **/
-    }
 }
 
 Player.setWindow = function()
@@ -109,17 +100,6 @@ Player.setFullscreen = function()
             this.state = this.PLAYING;
      }
 }
-
-/*Player.setWindow = function()
-{
-    this.plugin.SetDisplayArea(458, 58, 472, 270);
-}
-
-Player.setFullscreen = function()
-{
-    this.plugin.SetDisplayArea(0, 0, 960, 540);
-}*/
-
 Player.setVideoURL = function(url)
 {
     this.url = url;
@@ -225,7 +205,7 @@ Player.onBufferingStart = function()
 
 Player.onBufferingProgress = function(percent)
 {
-     $('.videoDetails').css('height','60px');
+    $('.videoDetails').css('height','60px');
 	$('h3.videoPlayStatus').html('Buffering...');
     Main.curLevel = Main.level.NOSTATE;
 }
@@ -234,14 +214,7 @@ Player.onBufferingComplete = function()
 {
 	Main.curLevel = Main.level.VIDEO;
     this.CONTROLSACTIVE = 1;
-	
-    playTimeInterval = setInterval(function(){
-        //var c = String(Player.GetLiveDuration());
-        //$("#videoPlayState").html(c.toMMSS());
-        //alert('Playing');
-    },500);
-    $(".videoPlayState").html('Playing');
-    
+    $('h3.videoPlayStatus').html('Playing');
 }
 
 Player.setCurTime = function(time) {
@@ -257,9 +230,7 @@ Player.setCurTime = function(time) {
 }
 
 Player.setTotalTime = function() {
-	
     Display.setTotalTime(Player.plugin.GetDuration());
-    
     alert('Total time set')
 }
 

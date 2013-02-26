@@ -2,19 +2,20 @@ Main.recipesLoad = function(){
 	Main.MENU_POS = 0;
 	document.getElementById('anchor').onkeydown = Main.recipesKeys; 
 	alert(Main.GOBACK);
-	if(!Main.GOBACK){
-		//Refresh page
-		Main.NEWS_POS = 1;
-	}else{
-		//Return Back to previous state
-		Main.GOBACK = 0;
-	}
+
 	$('#cardsView').hide();
 	$('#travelView').hide();
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#recipesView').show();
-	
+	if(!Main.GOBACK){
+		//Refresh page
+		Main.NEWS_POS = 1;
+		Main.GALLERYITEMACTIVE = 0;
+	}else{
+		//Return Back to previous state
+		Main.GOBACK = 0;
+	}
 	//Hide Terms Text
 	$('span.bazaar-footer').css('display','none');
 	if(!Main.GALLERYITEMACTIVE){
