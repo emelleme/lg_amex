@@ -95,11 +95,13 @@ $(document).ready(function() {
 	
 	$('.panelHeader').on('hover', function(e){
 		//console.log($(this).children('h3'));
-		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
 		$(this).children('h3').children('span').toggleClass('panelHover');
 		
 	});
 	$('.backButton').on('click', function(e){
+		analytics.track($('title').html(), {
+		    'Back'  :  'Back Button'
+		});
 		window.history.back();
 	});
 
@@ -114,7 +116,7 @@ $(document).ready(function() {
 	
 	$('.navbtn').hover(function(){
 		clearActive();
-		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0.85)');
+		$('#panel'+NEWS_POS+'_content img').attr('src',$('#panel'+NEWS_POS+'_content').attr('data-bwimage'));
 		NAV_HOVER = true;
 		
 		curLevel = level.MENU;
@@ -158,6 +160,10 @@ $(document).ready(function() {
 		}
 		$('#panel'+NEWS_POS).hide();
 		$('#panel'+NEWS_POS+'_content').show();
+		analytics.track($('title').html(), {
+		    'Magic Remote Select'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
+
 	}).on('hover',function(){
 		clearActive();
 		if(NEWS_POS == 1){
@@ -177,9 +183,12 @@ $(document).ready(function() {
 	
 	$('.showcaseimage').on('click',function(){
 		//Play Video
+		analytics.track($('title').html(), {
+		    'Magic Remote Play Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
 		playCurrentVideo();
 	}).on('hover',function(){
-		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
+		$('#panel'+NEWS_POS+'_content img').attr('src',$('#panel'+NEWS_POS+'_content').attr('data-image'));
 		if(curLevel != level.VIDEO){
 			clearActive();
 			if(NEWS_POS == 1){
@@ -209,7 +218,7 @@ $(document).ready(function() {
 	
 	$('.termsbtnblk').hover(function(){
 		clearActive();
-		$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0.85)');
+		$('#panel'+NEWS_POS+'_content img').attr('src',$('#panel'+NEWS_POS+'_content').attr('data-bwimage'));
 		$('.termsconditions a').addClass('hover');
 		curLevel = level.TERMS;
 	});
@@ -292,9 +301,12 @@ function keyDown(event) {
 				$('#videos_arrowright').removeClass('activeImage');
 				setTimeout(function(){$('#videos_arrowleft').removeClass('activeImage');},200);
 				slideLeft('left');
+				analytics.track($('title').html(), {
+				    'Left Button'  :  $('#panel'+NEWS_POS).attr('data-title')
+				});
 			}else{
 				//
-				$('#videoMenu').show();
+				//$('#videoMenu').show();
 			}
 			break;
 		}
@@ -314,9 +326,12 @@ function keyDown(event) {
 				$('#videos_arrowleft').removeClass('activeImage');
 				setTimeout(function(){$('#videos_arrowright').removeClass('activeImage');},200);
 				slideRight('right');
+				analytics.track($('title').html(), {
+		    'Right Button'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
 			}else if(curLevel == level.VIDEO){
 				//No action
-				$('#videoMenu').show();
+				//$('#videoMenu').show();
 			}
 			break;
 		}
@@ -329,7 +344,8 @@ function keyDown(event) {
 			else if (curLevel == level.NEWS) {
 				clearActive();
 				curLevel = level.TERMS;
-				$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0.85)');
+				$('#panel'+NEWS_POS+'_content img').attr('src',$('#panel'+NEWS_POS+'_content').attr('data-bwimage'));
+					
 				$('.arrows').hide();
 				$('.arrows').removeClass('activeImage');
 				$('.termsbtnblk').addClass('hover');
@@ -346,7 +362,7 @@ function keyDown(event) {
 		{
 			if (curLevel == level.MENU) {
 				clearActive();
-				$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
+				$('#panel'+NEWS_POS+'_content img').attr('src',$('#panel'+NEWS_POS+'_content').attr('data-image'));
 				$('.arrows').show();
 				if(NEWS_POS == 1){
 					//Hide left arrow
@@ -366,7 +382,7 @@ function keyDown(event) {
 				
 			}else if(curLevel == level.TERMS){
 				clearActive();
-				$('#panel'+NEWS_POS+'_content img').css('webkit-filter','grayscale(0)');
+				$('#panel'+NEWS_POS+'_content img').attr('src',$('#panel'+NEWS_POS+'_content').attr('data-image'));
 				$('.arrows').show();
 				if(NEWS_POS == 1){
 					//Hide left arrow
@@ -394,6 +410,9 @@ function keyDown(event) {
 				var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
 				window.location =g;
 			}else if(curLevel == level.NEWS){
+				analytics.track($('title').html(), {
+				    'Select Button Play Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+				});
 				playCurrentVideo();
 				console.log('Playing');
 			}else if(curLevel == level.TERMS){
@@ -405,6 +424,9 @@ function keyDown(event) {
 		case VK_STOP:
 		{
 			if(curLevel == level.VIDEO){
+				analytics.track($('title').html(), {
+		    'Stop Button Stop Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
 				stopCurrentVideo();
 				break;
 			}
@@ -418,6 +440,9 @@ function keyDown(event) {
 				document._video.play(1);
 			}else{
 				if(curLevel == level.NEWS){
+					analytics.track($('title').html(), {
+		    'Play Button Play Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
 					playCurrentVideo();
 				}
 			}
@@ -427,15 +452,9 @@ function keyDown(event) {
 		{
 			if(curLevel == level.VIDEO){
 				document._video.pause();
-			}
-			break;
-		}
-		case VK_RED:
-		{
-			if(curLevel != level.VIDEO){
-				document._video.setAttribute("data", LIVETEST);
-				$('#currentVideoTitle').html('Live Stream Test');
-				playCurrentVideo();
+				analytics.track($('title').html(), {
+		    'Pause Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
 			}
 			break;
 		}
@@ -447,7 +466,9 @@ function keyDown(event) {
 				var ffd = document._video.playPosition + seekFivePercent*1000;
 				
 				//document._video.play(0);
-				
+				analytics.track($('title').html(), {
+		    'Fast Forward Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+		});
 				document._video.seek(ffd);
 			}
 			break;
@@ -476,6 +497,9 @@ function keyDown(event) {
 					window.history.back();
 					break;
 				}else{
+					analytics.track($('title').html(), {
+				    'Back Button Stop Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+				});
 					stopCurrentVideo();
 					break;
 				}
@@ -486,6 +510,9 @@ function keyDown(event) {
 				window.history.back();
 				break;
 			}else{
+				analytics.track($('title').html(), {
+				    'Back Button Stop Video'  :  $('#panel'+NEWS_POS).attr('data-title')
+				});
 				stopCurrentVideo();
 				break;
 			}

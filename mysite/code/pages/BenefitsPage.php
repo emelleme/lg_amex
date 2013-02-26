@@ -38,12 +38,12 @@ class BenefitsPage extends Page
 
 		$pre = new GridField(
 			'PreStreamMosaic',
-			'Pre-Stream Mosiac Items',
+			'Live Stream Mosiac Items',
 			$this->PreStreamMosaic(),
 			GridFieldConfig_RelationEditor::create());
-		$fields->addFieldToTab('Root.PreStreamPhase',$pre);
+		$fields->addFieldToTab('Root.LiveStreamPhase',$pre);
 
-		$live = new GridField(
+		/*$live = new GridField(
 			'LiveStreamMosaic',
 			'Live Stream Mosiac Items',
 			$this->PreStreamMosaic(),
@@ -55,7 +55,7 @@ class BenefitsPage extends Page
 			'Post-Stream Mosiac Items',
 			$this->PostStreamMosaic(),
 			GridFieldConfig_RelationEditor::create());
-		$fields->addFieldToTab('Root.PostStreamPhase',$post);
+		$fields->addFieldToTab('Root.PostStreamPhase',$post);*/
 		return $fields;
 		
 	}
@@ -74,16 +74,15 @@ class BenefitsPage_Controller extends Page_Controller
 	#	Constructor
 	public function init() {
 		parent::init();
+		$d = $this->getUrlParams();
 		//header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 		//header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
 		// Note: you should use SS template require tags inside your templates 
 		// instead of putting Requirements calls here.  However these are 
 		// included so that our older themes still work
-		$phase = 'voting';
+		$phase = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->First()->CurrentPhase;
 		Requirements::set_write_js_to_body(false);
-		$d = $this->getUrlParams();
-		$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']));
 		switch ($phase) {
 			case 'voting':
 				# code...
@@ -108,6 +107,22 @@ CSS
 			case 'pre':
 				# code...
 				$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']))->first()->getManyManyComponents('PreStreamMosaic');
+				foreach ($benefits as $v) {
+					$position=$v->Position;
+					$on =$v->getComponent('MosaicTileOn')->Filename;
+					$off = $v->getComponent('MosaicTileOff')->Filename;
+				if($v->getComponent('MosaicTileOn')->Name){
+					Requirements::customCSS(<<<CSS
+					  #image_$position {
+					    background-image: url($off);
+					  }
+					  #image_$position.activeImage {
+					    background-image: url($on);
+					  }
+CSS
+					);
+				}
+				}
 				break;
 			case 'live':
 				# code...
@@ -146,7 +161,7 @@ CSS
 		return $this->renderWith('BenefitsPage');
 	}
 
-	public function displayItems($phase = 'voting'){
+	public function displayItems($phase){
 		$d = $this->getUrlParams();
 		$benefits = BenefitsPage::get()->filter(array('URLSegment' =>$d['URLSegment']));
 		switch ($phase) {

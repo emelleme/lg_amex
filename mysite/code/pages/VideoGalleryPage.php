@@ -71,6 +71,10 @@ class VideoGalleryPage_Controller extends Page_Controller
 		return $this->renderWith('SVideoGalleryLayout');
 	}
 
+	public function test(){
+		return $this->renderWith(array('SVideoGalleryLayout','VideoGalleryOld'));
+	}
+
 	public function lglayout(){
 		return $this->renderWith('VideoGalleryLayout');
 	}

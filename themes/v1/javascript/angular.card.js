@@ -166,6 +166,9 @@ function keyDown(event) {
 			}else{
 				var g = $('#termsconditions a').attr('href');
 				window.location =g;
+				analytics.track($('title').html(), {
+				    'Select'  :  'Terms Button'
+				});
 			}
 			break;
 		}

@@ -25,9 +25,10 @@ String.prototype.toMMSS = function(){
 };
 function processBuffering(isStarted){
 	if (isStarted) {
-		$('#videoPlayState').html('Buffering...');
+		$('.debugText').html('Buffering...');
 	}else{
-		$('#videoPlayState').html('Playing')
+		$('.debugText').html('Playing')
+		window.NetCastSetPageLoadingIcon('disabled');
 	}
 }
 
@@ -36,6 +37,17 @@ function processPlayStateChange(){
 	if(document._video.playState == 5){
 		//Video Stopped. Close frame
 		stopCurrentVideo();
+	}else if(document._video.playState == 4){
+		$('.debugText').html('Buffering...');
+		window.NetCastSetPageLoadingIcon('enabled');
+	}else if(document._video.playState == 3){
+		$('.debugText').html('Loading...');
+		window.NetCastSetPageLoadingIcon('enabled');
+	}else if(document._video.playState == 1){
+		$('.debugText').html('');
+		window.NetCastSetPageLoadingIcon('disabled');
+	}else if(document._video.playState == 2){
+		$('.debugText').html('Paused')
 	}
 }
 
@@ -43,12 +55,12 @@ function playCurrentVideo(){
 	curLevel = level.VIDEO;
 	
 	document._video.play();
-	playTimeInterval = setInterval(function(){
+	/*playTimeInterval = setInterval(function(){
 		var p = document._video.mediaPlayInfo();
 		var c = String(Math.floor(p.currentPosition/1000));
 		var d = String(Math.ceil(p.duration/1000));
 		$("#videoPlayState").html(c.toMMSS()+" / "+d.toMMSS());
-	},400);
+	},400);*/
 }
 
 function stopCurrentVideo(){
@@ -57,8 +69,9 @@ function stopCurrentVideo(){
 }
 
 $(document).ready(function() {
-if(document.getElementById("fullPlayer")){
-	document._video = document.getElementById("fullPlayer");
+	window.NetCastSetPageLoadingIcon('enabled');
+if(document.getElementById("livePlayer")){
+	document._video = document.getElementById("livePlayer");
 	document._video.onPlayStateChange = processPlayStateChange;
 	document._video.onBuffering = processBuffering;
 	$('body').css('padding-top','0px');

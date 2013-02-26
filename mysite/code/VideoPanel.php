@@ -6,7 +6,8 @@ class VideoPanel extends DataObject {
 		'Title' => 'Varchar',
 		'PlainTitle' => 'Varchar',
 		'CustomStyles' => 'Text',
-		'Filename' => 'Varchar(120)'
+		'Filename' => 'Varchar(120)',
+		'SamsungFilename' => 'Varchar(120)'
 	);
 
 	public static $has_one = array(

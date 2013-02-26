@@ -122,7 +122,6 @@ a, a > *,div, div > img {
 
 img.bg {min-height: 100%; min-width: 720px; width: 100%; height: auto; position: fixed; top: 0; left: 0; z-index: -1; background-color: #000000;}
 
-
 .navbar-fixed-top .container, .navbar-fixed-bottom .container {
 
 width: 1240px;
@@ -1884,7 +1883,7 @@ sup {top: -0.5em !important;}
 
 	width: 1280px;
 
-	height:720px;
+	height:668px;
 
 	z-index: 1020;
 
@@ -2815,7 +2814,7 @@ margin-right: 49px;
 #shopsmall-agnostic .ss-two {color: #127fc3; margin: 36px 0px 0px 27px;  font: 21px/24px BentonSansMedium;}
 #shopsmall-agnostic .ss-three {margin: 9px 0px 0px 27px; font: 21px/24px BentonSans; color: #a3a4a4;}
 
-#stb {position: absolute; left: 516px; top: 176px;}
+#stb {position: absolute; left: 516px; top: 176px; background: #fff;}
 #stb .stb-one {}
 #stb .stb-two {margin: 12px 0;}
 #stb .stb-three {}

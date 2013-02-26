@@ -74,7 +74,7 @@ curLevel = level.MOSAIC;
 lastLevel = curLevel;
 function MosaicController($scope,$http,$location){
 $(document).ready(function() {
-	
+	CountDownTimer('02/15/2013 12:15 AM GMT', 'countdown');
 	$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).addClass('activeImage');
 	$('#main-copy').hide().html($('#benefit_'+CUR_ROW+'-'+CUR_COL).html()).show();
 
@@ -189,7 +189,10 @@ $(document).ready(function() {
 			CUR_COL = Number(pos[1]);
 			//Send tracking event to GA
 
-			_gaq.push(['_trackEvent', 'Image Mosaic', 'Magic Remote', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+			//_gaq.push(['_trackEvent', 'Image Mosaic', 'Magic Remote', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+			analytics.track('Image Mosaic', {
+				    'Magic Remote Select'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 			// console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 		}else{
 			//Check if the First item is active
@@ -292,7 +295,10 @@ function keyDown(event) {
 					}
 				}
 				//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image Mosaic', 'Left Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				//_gaq.push(['_trackEvent', 'Image Mosaic', 'Left Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				analytics.track('Image Mosaic', {
+				    'Left Button'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 				// console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 			}else if(curLevel == level.DIAG){
 				$('.ui-dialog-buttonpane button').last().addClass('ui-state-hover');
@@ -447,7 +453,10 @@ function keyDown(event) {
 
 				} 
 				//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image Mosaic', 'Right Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				//_gaq.push(['_trackEvent', 'Image Mosaic', 'Right Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				analytics.track('Image Mosaic', {
+				    'Right Button'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 			}else if(curLevel == level.DIAG){
 				$('.ui-dialog-buttonpane button').first().addClass('ui-state-hover');
 				$('.ui-dialog-buttonpane button').last().removeClass('ui-state-hover');
@@ -491,7 +500,10 @@ function keyDown(event) {
 						PREV_COL = CUR_COL;
 						PREV_ROW = CUR_ROW;
 						//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				//_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				analytics.track('Image Mosaic', {
+				    'Down Button'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 						// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 					}else{
 						clearActive();
@@ -510,7 +522,10 @@ function keyDown(event) {
 						console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL])
 						// console.log(IMAGE_MATRIX[CUR_ROW][CUR_COL]);
 						//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				//_gaq.push(['_trackEvent', 'Image Mosaic', 'Down Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				analytics.track('Image Mosaic', {
+				    'Down Button'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 						curIndex--;
 					}
 				}
@@ -589,7 +604,7 @@ function keyDown(event) {
 						$('.uguv').css('border-top','130px solid '+$('#image_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-wingcolor'));*/
 						var spl = IMAGE_MATRIX[CUR_ROW][CUR_COL].split("-");
 						
-							CUR_ROW = Number(spl[0]);
+							CUR_ROW = Number(spl[0]);	
 							CUR_COL = Number(spl[1]);
 							if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == '6-3'){
 							PREV_COL = CUR_COL;
@@ -605,7 +620,9 @@ function keyDown(event) {
 				}
 			}
 			//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image Mosaic', 'Up Button', $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')]);
+				analytics.track('Image Mosaic', {
+				    'Up Button'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 				console.log($('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title'));
 			break;
 		}
@@ -620,7 +637,9 @@ function keyDown(event) {
 			}
 			//added as ux change
 			if(curLevel == level.MOSAIC){
-				
+				analytics.track('Image Mosaic', {
+				    'Select Button'  :  $('#benefit_'+IMAGE_MATRIX[CUR_ROW][CUR_COL]).attr('data-title')
+				});
 			  if(IMAGE_MATRIX[CUR_ROW][CUR_COL] == "2-1"){
 			  	//Open video modal
 			  	window.location = 'live.html';
@@ -637,7 +656,6 @@ function keyDown(event) {
 				window.NetCastSetPageLoadingIcon('enabled');
 					var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
 					window.location =g;
-				
 			} else if (curLevel == level.VIDEO) {
 				//$('body').css('padding-top','48px');
 					window.location = 'benefits';
@@ -660,12 +678,50 @@ function keyDown(event) {
 		case VK_BACK:
 		{
 			//Send tracking event to GA
-				_gaq.push(['_trackEvent', 'Image Mosaic', 'Back Button', 'Back Button']);
+				analytics.track('Image Mosaic', {
+				    'Back Button'  :  'exit application'
+				});
 			window.NetCastSetPageLoadingIcon('enabled');
 					//window.history.back();
 				window.NetCastBack();
 		break;
 		}
-	}
-	
+	}	
+}
+
+function CountDownTimer(dt, id)
+{
+    var end = new Date(dt);
+
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+
+    function showRemaining() {
+        var now = new Date();
+        var distance = end - now;
+        if (distance < 0) {
+
+            clearInterval(timer);
+            // document.getElementById(id).innerHTML = 'EXPIRED!';
+
+            return;
+        }
+        var days = Math.floor(distance / _day);
+        var hours = Math.floor((distance % _day) / _hour);
+        var minutes = Math.floor((distance % _hour) / _minute);
+        var seconds = Math.floor((distance % _minute) / _second);
+        $('.num-days').html(days);
+        $('.num-hours').html(hours);
+        $('.num-mins').html(minutes);
+        //console.log(days);
+       /* document.getElementById(id).innerHTML = days + 'days ';
+        document.getElementById(id).innerHTML += hours + 'hrs ';
+        document.getElementById(id).innerHTML += minutes + 'mins ';
+        document.getElementById(id).innerHTML += seconds + 'secs';*/
+    }
+
+    timer = setInterval(showRemaining, 1000);
 }

@@ -50,7 +50,7 @@ $(document).ready(function() {
 angular.module('project', ['ngResource']).
 config(function($routeProvider) {
 $routeProvider.
-  when('/', {controller:CardsController, templateUrl:'/shopsmall/layout.html'}).
+  when('/', {controller:CardsController, templateUrl:'/shopsmall/slayout.html'}).
   otherwise({redirectTo:'/'});
 });
 
@@ -144,8 +144,12 @@ function keyDown(event) {
 				var g = $('.navbar .container ul li:eq('+MENU_POS+') a').attr('href');
 				window.location =g;
 			}else{
+				analytics.track($('title').html(), {
+				    'Select'  :  'Terms Button'
+				});
 				var g = $('.termsconditions a').attr('href');
 				window.location =g;
+
 			}
 			break;
 		}
