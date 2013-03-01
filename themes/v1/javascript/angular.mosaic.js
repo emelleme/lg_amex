@@ -663,6 +663,8 @@ function keyDown(event) {
 			}else if (curLevel == level.INTROVIDEO) {
 					window.location = 'benefits';
 				
+			}else if(curLevel == level.TERMS){
+				window.location = 'terms.html';
 			}else if(curLevel == level.DIAG){
 				if(EXIT_ACTIVE == true){
 					console.log('exit');
