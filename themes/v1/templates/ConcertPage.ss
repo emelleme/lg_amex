@@ -15,6 +15,7 @@
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/mosaic.js) %>
 <% require javascript(themes/v1/javascript/play.js) %>
+<% include Analytics %>
 
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">

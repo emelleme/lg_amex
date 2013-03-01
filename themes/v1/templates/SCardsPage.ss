@@ -12,7 +12,7 @@
 <% require javascript(themes/v1/javascript/keycode.js) %>
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/angular.card.js) %>
-<% require javascript(themes/v1/javascript/analytics.js) %>
+<% include Analytics %>
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 	<!-- App Wrapper: 1280px x 720 (full application size) -->

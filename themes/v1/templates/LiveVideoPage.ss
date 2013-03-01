@@ -9,7 +9,7 @@
 <% require javascript(http://code.jquery.com/jquery-1.7.2.min.js) %>
 <% require javascript(themes/v1/javascript/keycode.js) %>
 <% require javascript(themes/v1/javascript/live.js) %>
-<% require javascript(themes/v1/javascript/analytics.js) %>
+<% include Analytics %>
 </head>
 <body style="margin-top: 10px;background-color:#000;" onkeydown="keyDown(event);">
 	<!-- App Wrapper: 1280px x 720 (full application size) -->

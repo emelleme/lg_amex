@@ -14,7 +14,7 @@
 <% require javascript(themes/v1/javascript/keycode.js) %>
 <% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
 <% require javascript(themes/v1/javascript/angular.videos.js) %>
-<% require javascript(themes/v1/javascript/analytics.js) %>
+<% include Analytics %>
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);" ng-app="project">
 	<div ng-view></div>

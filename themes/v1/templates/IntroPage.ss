@@ -15,7 +15,7 @@
 <% else %>
 <% require javascript(themes/v1/javascript/intro-static.js) %>
 <% end_if %>
-<% require javascript(themes/v1/javascript/analytics.js) %>
+<% include Analytics %>
 </head>
 <body style="margin: 0px;" onkeydown="keyDown(event);">
 <!-- App Wrapper: 1280px x 720 (full application size) -->

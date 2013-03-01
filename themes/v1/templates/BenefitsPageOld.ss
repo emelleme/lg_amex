@@ -14,7 +14,7 @@
 <% require javascript(themes/v1/javascript/preloadCssImages.jQuery_v5.js) %>
 <% require javascript(themes/v1/javascript/common.js) %>
 <% require javascript(themes/v1/javascript/mosaic.js) %>
-<% require javascript(themes/v1/javascript/analytics.js) %>
+<% include Analytics %>
 <script type="text/javascript">
 
 </script>
