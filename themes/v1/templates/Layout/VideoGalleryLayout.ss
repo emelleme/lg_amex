@@ -44,7 +44,7 @@
 			<ul>
 				<li><a class="navbtn" href="tipstrends.html">Tips &amp; Trends</a>
 				<li class="center"><a class="navbtn" href="designerspotlight.html">Designer Spotlight</a>
-				<li><a class="navbtn" data-page="shopsmall" href="shopsmall">Sync to Buy</a>
+				<li><a class="navbtn" data-page="shopsmall" href="shopsmall">Shop Small<sup>&reg;</sup></a>
 			</ul>
 				
 			<div style="clear: both;"></div>

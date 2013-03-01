@@ -37,7 +37,7 @@
 	<div class="menubar-inner">
 		<div class="container">
 		<ul>
-			<li><a class="navbtn" data-page="tipstrends" href="tipstrends">On the Runway</a>
+			<li><a class="navbtn" data-page="tipstrends" href="tipstrends">Tips &amp; Trends</a>
 			<li class="center"><a class="navbtn" data-page="designerspotlight" href="designerspotlight.html">Designer Spotlight</a>
 			<li><a class="navbtn" data-page="videos" href="videos.html">Video Gallery</a>
 		</ul>

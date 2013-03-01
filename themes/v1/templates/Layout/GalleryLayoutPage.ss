@@ -99,7 +99,7 @@
 	<ul>
 		<li><a class="navbtn" data-page="travel" href="tipstrends">Tips &amp; Trends</a>
 		<li class="center"><a data-page="videos" class="navbtn" href="videos.html">Video Gallery</a>
-		<li><a class="navbtn" data-page="synctobuy" href="synctobuy">Sync to Buy</a>
+		<li><a class="navbtn" data-page="synctobuy" href="synctobuy">Shop Small<sup>&reg;</sup></a>
 	</ul>
 		
 	<div style="clear: both;"></div>
