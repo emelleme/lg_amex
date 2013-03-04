@@ -30,7 +30,6 @@ class Page extends SiteTree {
   }
  
  /**
- 
    * Get a list of URLs to cache related to this page
    */
   public function subPagesToCache() {
@@ -41,7 +40,8 @@ class Page extends SiteTree {
      
     return $urls;
   }
-   
+
+
   public function pagesAffectedByChanges() {
     $urls = $this->subPagesToCache();
     if($p = $this->Parent) $urls = array_merge((array)$urls, (array)$p->subPagesToCache());
@@ -78,5 +78,19 @@ class Page_Controller extends ContentController {
 		// included so that our older themes still work
 		Requirements::set_write_js_to_body(false);
 	}
+
+	public function analyticstest(){
+  	$d = SiteConfig::get()->first();
+  	if($d->DevAnalytics){
+  		//Development Analytics
+  		$p = "<h2>Development Analytics Script Active</h2>";
+  		$p .= "<a href='/themes/v1/javascript/dev-analytics.js'>Analytics source file</a>";
+  	}else{
+  		//Development Analytics
+  		$p = "<h2>Production Analytics Script Active</h2>";
+  		$p .= "<a href='/themes/v1/javascript/analytics.js'>Analytics source file</a>";
+  	}
+  	echo $p;
+  }
 	
 }
