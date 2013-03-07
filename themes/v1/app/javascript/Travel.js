@@ -18,6 +18,7 @@ Main.travelLoad = function(){
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#travelView').show();
+	analytics.pageview('tipstrends');
 }
 
 Main.handleMosaicPlayKey = function()
@@ -32,6 +33,7 @@ Main.handleMosaicPlayKey = function()
 			alert(Main.curLevel);
 			$('#livevideoMenu').css('height','60px');
 			Main.setFullScreenMode();
+			analytics.pageview('tipstrends/'+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
             break;
         case Player.PAUSED:
             Player.resumeVideo();

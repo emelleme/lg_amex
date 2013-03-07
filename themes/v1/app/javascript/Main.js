@@ -191,6 +191,7 @@ Main.firstLoad = function(){
 	alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]);
 /* Set initial keydown function */
 	document.getElementById('anchor').onkeydown = Main.travelKeys;
+	analytics.pageview('tipstrends');
 }
 
 Main.onUnload = function()

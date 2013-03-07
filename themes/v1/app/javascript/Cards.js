@@ -18,6 +18,7 @@ Main.cardsLoad = function(){
 		$('.termsconditions a').addClass('hover');
 		curLevel = level.CARD;
 	})*/
+analytics.pageview('shopsmall');
 	
 }
 

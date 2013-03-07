@@ -36,6 +36,7 @@ Main.recipesLoad = function(){
 		$('#gallery-item-'+Main.NEWS_POS).show();
 		$('.backbtn').addClass('hover');
 	}
+	analytics.pageview('designerspotlight');
 }
 
 Main.recipesKeys = function(){
@@ -190,6 +191,7 @@ Main.recipesKeys = function(){
 					$('#gallery-item-'+Main.NEWS_POS).show();
 					$('.backbtn').addClass('hover');
 					Main.GALLERYITEMACTIVE = true;
+					analytics.pageview('designerspotlight/'+$('#panel'+Main.NEWS_POS).attr('data-title'));
 				}
 			}else if(Main.curLevel == Main.level.GALLERYITEM){
 				//return to gallery
@@ -202,6 +204,7 @@ Main.recipesKeys = function(){
 				$('.arrows').show();
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
 				setArrows();
+				analytics.pageview('designerspotlight');
 			}
 			break;
 		default:

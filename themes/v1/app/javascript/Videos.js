@@ -24,6 +24,7 @@ Main.videosLoad = function(){
 	$('#video-panel4,#video-panel2, #video-panel3,#video-panel5, #video-panel1_content').show();
 	$('#video-panel1,#video-panel2_content, #video-panel4_content, #video-panel3_content, #video-panel5_content').hide();
 	$('#videoMenu .currentVideoTitle').html($('#video-panel'+Main.VIDEO_POS).attr('data-title'));
+	analytics.pageview('videos');
 };
 
 Main.videosKeys = function()
@@ -336,6 +337,7 @@ Main.handlePlayKey = function()
 			$('#mainMenu').hide();
 			$('#videoMenu').css('height','60px');
 			Main.setFullScreenMode();
+			analytics.pageview('videos/'+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
             break;
             
         case Player.PAUSED:
