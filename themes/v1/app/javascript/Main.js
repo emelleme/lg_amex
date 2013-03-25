@@ -272,9 +272,15 @@ var app = angular.module('amex', [])
 		
 		var tvPlugin = document.getElementById('pluginObjectTV');
 		var trackingdata = {};
-		trackingdata.timezone = tvPlugin.GetTimeZone();
-		trackingdata.devicetype = tvPlugin.GetProductType();
-		trackingdata.productcode = tvPlugin.GetProductCode(1);
+		if (tvPlugin) {
+			trackingdata.timezone = tvPlugin.GetTimeZone();
+			trackingdata.devicetype = tvPlugin.GetProductType();
+			trackingdata.productcode = tvPlugin.GetProductCode(1);
+		} else{
+			trackingdata.timezone = 'unknown';
+			trackingdata.devicetype = 'unknown';
+			trackingdata.productcode = 'unknown';
+		};
 		trackingdata.title = 'Tips Trends';
 		trackingdata.action = 'Initial Load';
 		Main.tracker(trackingdata);
