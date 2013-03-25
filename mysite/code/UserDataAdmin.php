@@ -3,11 +3,11 @@
 	class UserDataAdmin extends ModelAdmin {
     
     public static $managed_models = array(
-        'UserData'
+        'Visitor'
     );
  
     static $url_segment = 'users';
-    static $menu_title = 'User Data';
+    static $menu_title = 'Visitor Stats';
 }
 
 ?>
