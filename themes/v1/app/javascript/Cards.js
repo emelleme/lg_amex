@@ -18,8 +18,10 @@ Main.cardsLoad = function(){
 		$('.termsconditions a').addClass('hover');
 		curLevel = level.CARD;
 	})*/
-analytics.pageview('shopsmall');
-	
+	var trackingdata = {};
+	trackingdata.action = 'Page Load';
+	Main.tracker(trackingdata);
+	Main.activeTitle = "Shop Small";	
 }
 
 Main.cardsKeys = function(){

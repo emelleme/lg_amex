@@ -19,6 +19,7 @@ var Main =
 		NOSTATE: 9,
 		BUFFERING: 10
 	},
+	activeTitle: 'Tips & Trends',
 	MENU_POS: 0,
 	MAX_ITEMS:5,
 	CUR_POS: 1,
@@ -191,7 +192,7 @@ Main.firstLoad = function(){
 	alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]);
 /* Set initial keydown function */
 	document.getElementById('anchor').onkeydown = Main.travelKeys;
-	analytics.pageview('tipstrends');
+	
 }
 
 Main.onUnload = function()
@@ -203,6 +204,24 @@ Main.enableKeys = function()
 {
 	
 };
+
+Main.tracker = function(trackingdata){
+	//Send XHR to tracking endpoint
+	if (trackingdata.title) {
+		alert(trackingdata.title);
+	} else{
+		trackingdata.title = Main.activeTitle;
+	};
+	var networkPlugin = document.getElementById('pluginObjectNetwork');
+	var nnaviPlugin = document.getElementById('pluginObjectNNavi');
+	var deviceId = nnaviPlugin.GetDUID(networkPlugin.GetHWaddr());
+	trackingdata.deviceid = deviceId;
+	//alert(trackingdata)
+	$.post('http://sdev.amxp.cc/tipstrends/track/', trackingdata)
+	.done(function(d){
+		alert('Tracker: '+d);
+	}).fail(function() { alert("error"); });
+}
 
 var app = angular.module('amex', [])
 .service( 'MainService', [ '$rootScope', function( $rootScope ) {
@@ -248,6 +267,17 @@ var app = angular.module('amex', [])
 		$('#recipesView').hide();
 		$('#videosView').hide();
 		$('#termsView').hide();
+
+		//Get Hardware ID and initialize analytics
+		
+		var tvPlugin = document.getElementById('pluginObjectTV');
+		var trackingdata = {};
+		trackingdata.timezone = tvPlugin.GetTimeZone();
+		trackingdata.devicetype = tvPlugin.GetProductType();
+		trackingdata.productcode = tvPlugin.GetProductCode(1);
+		trackingdata.title = 'Tips Trends';
+		trackingdata.action = 'Initial Load';
+		Main.tracker(trackingdata);
 	});
 
  }]);

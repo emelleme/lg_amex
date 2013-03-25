@@ -1,7 +1,7 @@
 Main.recipesLoad = function(){
 	Main.MENU_POS = 0;
 	document.getElementById('anchor').onkeydown = Main.recipesKeys; 
-	alert(Main.GOBACK);
+	//alert(Main.GOBACK);
 
 	$('#cardsView').hide();
 	$('#travelView').hide();
@@ -36,7 +36,10 @@ Main.recipesLoad = function(){
 		$('#gallery-item-'+Main.NEWS_POS).show();
 		$('.backbtn').addClass('hover');
 	}
-	analytics.pageview('designerspotlight');
+	var trackingdata = {};
+	trackingdata.action = 'Page Load';
+	Main.tracker(trackingdata);
+	Main.activeTitle = "Designer Spotlight";
 }
 
 Main.recipesKeys = function(){
@@ -191,7 +194,12 @@ Main.recipesKeys = function(){
 					$('#gallery-item-'+Main.NEWS_POS).show();
 					$('.backbtn').addClass('hover');
 					Main.GALLERYITEMACTIVE = true;
-					analytics.pageview('designerspotlight/'+$('#panel'+Main.NEWS_POS).attr('data-title'));
+					var trackingdata = {};
+					trackingdata.button = 'select';
+					trackingdata.action = 'Page Load';
+					trackingdata.title = "Designer Spotlight";
+					Main.tracker(trackingdata);
+					
 				}
 			}else if(Main.curLevel == Main.level.GALLERYITEM){
 				//return to gallery
@@ -204,7 +212,11 @@ Main.recipesKeys = function(){
 				$('.arrows').show();
 				$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailactive')+")");
 				setArrows();
-				analytics.pageview('designerspotlight');
+				var trackingdata = {};
+				trackingdata.button = 'select';
+				trackingdata.action = 'Page Load';
+				trackingdata.title = "Designer Spotlight Item: "+$('#panel'+Main.NEWS_POS).attr('data-title');
+				Main.tracker(trackingdata);
 			}
 			break;
 		default:

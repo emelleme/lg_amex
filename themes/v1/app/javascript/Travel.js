@@ -18,23 +18,31 @@ Main.travelLoad = function(){
 	$('#videosView').hide();
 	$('#termsView').hide();
 	$('#travelView').show();
-	analytics.pageview('tipstrends');
+	var trackingdata = {};
+	trackingdata.action = 'Page Load';
+	Main.tracker(trackingdata);
+	Main.activeTitle = "Tips Trends";
+	//Main.tracker('/tipstrends/track',"Tips & Trends");
 }
 
-Main.handleMosaicPlayKey = function()
+Main.handleMosaicPlayKey = function(btn)
 {
     switch ( Player.getState() )
     {
         case Player.STOPPED:
 			//alert(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-			$('.currentVideoTitle').html("On The Runway.");
+			var $title = "On The Runway.";
+			$('.currentVideoTitle').html($title);
             Player.playVideo();
 			Main.curLevel = Main.level.NOSTATE;
 			alert(Main.curLevel);
 			$('#livevideoMenu').css('height','60px');
 			Main.setFullScreenMode();
-			analytics.pageview('tipstrends/'+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-            break;
+			var trackingdata = {};
+			trackingdata.button = btn;
+			trackingdata.action = 'Play';
+			Main.tracker(trackingdata);
+			break;
         case Player.PAUSED:
             Player.resumeVideo();
             break;
@@ -61,6 +69,10 @@ var keyCode = event.keyCode;
 		    	if(Player.CONTROLSACTIVE){
 		        	$('#pluginPlayer').css('z-index','0');
 			        Player.stopVideo();
+			        var trackingdata = {};
+					trackingdata.button = 'return';
+					trackingdata.action = 'stop';
+					Main.tracker(trackingdata);
 			        // Main.curLevel = Main.prevLevel;
 		        }
             }
@@ -69,15 +81,28 @@ var keyCode = event.keyCode;
         case tvKey.KEY_EXIT: 
         	widgetAPI.blockNavigation(event);
             if(Main.curLevel != Main.level.VIDEO && Main.curLevel != Main.level.NOSTATE){
+            		var trackingdata = {};
+					trackingdata.button = 'exit';
+					trackingdata.action = 'exit';
+					Main.tracker(trackingdata);
 		        	widgetAPI.sendExitEvent(); 
             }else{
 		    	if(Player.CONTROLSACTIVE){
 		        	$('#pluginPlayer').css('z-index','0');
 			        Player.stopVideo();
+			        var trackingdata = {};
+					trackingdata.button = 'exit';
+					trackingdata.action = 'exit';
+					Main.tracker(trackingdata);
 			        widgetAPI.sendExitEvent(); 
 		        }else{
 		        	$('#pluginPlayer').css('z-index','0');
+		        	
 		            Player.stopVideo();
+		            var trackingdata = {};
+					trackingdata.button = 'exit';
+					trackingdata.action = 'stop';
+					Main.tracker(trackingdata);
 		            Main.curLevel = Main.level.prevLevel;
 		        }
             }
@@ -366,7 +391,7 @@ var keyCode = event.keyCode;
 			$('#pluginPlayer').css('height','660px');
 			Main.prevLevel = Main.curLevel;
 			Player.setVideoURL(Main.INTROVIDEO);
-            Main.handleMosaicPlayKey();
+            Main.handleMosaicPlayKey('play');
             break;
             
         case tvKey.KEY_STOP:
@@ -376,6 +401,10 @@ var keyCode = event.keyCode;
 			$('#livevideoMenu').css('height','0px');
             Player.stopVideo();
             Main.curLevel = Main.prevLevel;
+            var trackingdata = {};
+			trackingdata.button = 'stop';
+			trackingdata.action = 'stop';
+			Main.tracker(trackingdata);
             }else{
             	alert('Nothing to Stop');
             }
@@ -389,6 +418,10 @@ var keyCode = event.keyCode;
 				setTimeout(function(){
 					$('#videoMenu').css('height','0px');
 				}, 15000);
+				var trackingdata = {};
+				trackingdata.button = 'pause';
+				trackingdata.action = 'pause';
+				Main.tracker(trackingdata);
 			}else{
             	alert('Nothing to Pause');
             }
@@ -447,7 +480,7 @@ var keyCode = event.keyCode;
 					$('#pluginPlayer').css('height','660px');
 					Main.prevLevel = Main.curLevel;
 					Player.setVideoURL(Main.INTROVIDEO);
-		            Main.handleMosaicPlayKey();
+		            Main.handleMosaicPlayKey('select');
 				}else if(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL] == "4-4"){
 /*					//Play Intro Video
 					$('#pluginPlayer').css('z-index','13000');

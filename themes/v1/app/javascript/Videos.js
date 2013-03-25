@@ -4,7 +4,7 @@ Main.videosLoad = function(){
 	Main.selectedVideo = 0;
 	Main.eggCount = 0;
 	Player.setVideoURL(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-	alert(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
+	//alert(Main.CDN+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
 	Main.clearActive();
 
 	Main.curLevel = Main.level.NEWS;
@@ -24,7 +24,10 @@ Main.videosLoad = function(){
 	$('#video-panel4,#video-panel2, #video-panel3,#video-panel5, #video-panel1_content').show();
 	$('#video-panel1,#video-panel2_content, #video-panel4_content, #video-panel3_content, #video-panel5_content').hide();
 	$('#videoMenu .currentVideoTitle').html($('#video-panel'+Main.VIDEO_POS).attr('data-title'));
-	analytics.pageview('videos');
+	var trackingdata = {};
+	trackingdata.action = 'Page Load';
+	Main.tracker(trackingdata);
+	Main.activeTitle = "Videos";
 };
 
 Main.videosKeys = function()
@@ -51,6 +54,10 @@ Main.videosKeys = function()
 		        	$('#pluginPlayer').css('z-index','0');
 			        Player.stopVideo();
 			        Main.curLevel = Main.NEWS;
+			        var trackingdata = {};
+					trackingdata.button = 'return';
+					trackingdata.action = 'stop';
+					trackingdata.title = $('#video-panel'+Main.VIDEO_POS).attr('data-title');
 		        }
             }
             //widgetAPI.sendReturnEvent(); 
@@ -63,11 +70,19 @@ Main.videosKeys = function()
 		    	if(Player.CONTROLSACTIVE){
 		        	$('#pluginPlayer').css('z-index','0');
 			        Player.stopVideo();
+			        var trackingdata = {};
+					trackingdata.button = 'return';
+					trackingdata.action = 'stop';
+					trackingdata.title = $('#video-panel'+Main.VIDEO_POS).attr('data-title');
 			        widgetAPI.sendExitEvent(); 
 		        }else{
 		        	$('#pluginPlayer').css('z-index','0');
 		            Player.stopVideo();
 		            Main.curLevel = Main.level.NEWS;
+		            var trackingdata = {};
+					trackingdata.button = 'return';
+					trackingdata.action = 'stop';
+					trackingdata.title = $('#video-panel'+Main.VIDEO_POS).attr('data-title');
 		        }
             }
             //widgetAPI.sendReturnEvent(); 
@@ -77,7 +92,7 @@ Main.videosKeys = function()
 			$('#pluginPlayer').css('z-index','3000');
 			$('#pluginPlayer').css('height','660px');
 			Main.prevLevel = Main.curLevel;
-            Main.handlePlayKey();
+            Main.handlePlayKey('play');
             break;
         case tvKey.KEY_STOP:
             alert("STOP");
@@ -85,6 +100,11 @@ Main.videosKeys = function()
 			$('#pluginPlayer').css('z-index','0');
             Player.stopVideo();
             Main.curLevel = Main.level.NEWS;
+            var trackingdata = {};
+			trackingdata.button = 'stop';
+			trackingdata.action = 'stop';
+			trackingdata.title = $('#video-panel'+Main.VIDEO_POS).attr('data-title');
+			Main.tracker(trackingdata);
             }else{
             	alert('Nothing to Stop');
             }
@@ -261,7 +281,7 @@ Main.videosKeys = function()
 				$('#pluginPlayer').css('z-index','3000');
 				$('#pluginPlayer').css('height','660px');
 				Main.curLevel = Main.level.NOSTATE;
-				Main.handlePlayKey();
+				Main.handlePlayKey('select');
 				break;
 			}
 			break;
@@ -323,7 +343,7 @@ Main.OnBufferingProgress = function(percent) {
     $('#videoPlayState').html('Buffering '+percent+"%");
 }
 
-Main.handlePlayKey = function()
+Main.handlePlayKey = function(btn)
 {
     switch ( Player.getState() )
     {
@@ -337,8 +357,12 @@ Main.handlePlayKey = function()
 			$('#mainMenu').hide();
 			$('#videoMenu').css('height','60px');
 			Main.setFullScreenMode();
-			analytics.pageview('videos/'+$('#video-panel'+Main.VIDEO_POS).attr('data-video'));
-            break;
+			var trackingdata = {};
+			trackingdata.button = btn;
+			trackingdata.action = 'play';
+			trackingdata.title = $('#video-panel'+Main.VIDEO_POS).attr('data-title');
+			Main.tracker(trackingdata);
+			break;
             
         case Player.PAUSED:
             Player.resumeVideo();

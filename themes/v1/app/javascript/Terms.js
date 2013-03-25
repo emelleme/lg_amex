@@ -9,7 +9,10 @@ Main.termsLoad = function(){
 	$('#recipesView').hide();
 	$('#termsView').show();
 	$('.backbtn').addClass('hover');
-	analytics.pageview('termsconditions');
+	var trackingdata = {};
+	trackingdata.action = 'Page Load';
+	Main.tracker(trackingdata);
+	Main.activeTitle = "Terms";	
 }
 
 Main.termsKeys = function(event) {
