@@ -11,8 +11,8 @@ Main.termsLoad = function(){
 	$('.backbtn').addClass('hover');
 	var trackingdata = {};
 	trackingdata.action = 'Page Load';
-	Main.tracker(trackingdata);
 	Main.activeTitle = "Terms";	
+	Main.tracker(trackingdata);
 }
 
 Main.termsKeys = function(event) {
