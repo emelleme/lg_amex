@@ -20,8 +20,8 @@ Main.travelLoad = function(){
 	$('#travelView').show();
 	var trackingdata = {};
 	trackingdata.action = 'Page Load';
-	Main.tracker(trackingdata);
 	Main.activeTitle = "Tips Trends";
+	Main.tracker(trackingdata);
 	//Main.tracker('/tipstrends/track',"Tips & Trends");
 }
 

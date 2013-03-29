@@ -20,8 +20,8 @@ Main.cardsLoad = function(){
 	})*/
 	var trackingdata = {};
 	trackingdata.action = 'Page Load';
-	Main.tracker(trackingdata);
 	Main.activeTitle = "Shop Small";	
+	Main.tracker(trackingdata);
 }
 
 Main.cardsKeys = function(){

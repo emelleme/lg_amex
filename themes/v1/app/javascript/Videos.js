@@ -26,8 +26,8 @@ Main.videosLoad = function(){
 	$('#videoMenu .currentVideoTitle').html($('#video-panel'+Main.VIDEO_POS).attr('data-title'));
 	var trackingdata = {};
 	trackingdata.action = 'Page Load';
-	Main.tracker(trackingdata);
 	Main.activeTitle = "Videos";
+  Main.tracker(trackingdata);
 };
 
 Main.videosKeys = function()

@@ -38,8 +38,8 @@ Main.recipesLoad = function(){
 	}
 	var trackingdata = {};
 	trackingdata.action = 'Page Load';
-	Main.tracker(trackingdata);
 	Main.activeTitle = "Designer Spotlight";
+	Main.tracker(trackingdata);
 }
 
 Main.recipesKeys = function(){
