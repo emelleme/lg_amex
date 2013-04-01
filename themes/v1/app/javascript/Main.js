@@ -7,112 +7,112 @@ var upCount = 0;
 curIndex = 0;
 var Main =
 {
-	level:{
-		MOSAIC: 1,
-		NEWS: 2,
-		GALLERY: 3,
-		VIDEO: 4,
-		CARDS: 5,
-		TERMS: 6,
-		TERMSPAGE:7,
-		MENU: 8,
-		NOSTATE: 9,
-		BUFFERING: 10
-	},
-	activeTitle: 'Tips & Trends',
-	MENU_POS: 0,
-	MAX_ITEMS:5,
-	CUR_POS: 1,
-	CUR_ROW: 2,
-	CUR_COL: 1,
-	PREV_ROW:2,
-	PREV_COL:1,
-	MAX_ROW: 4,
-	NEWS_POS: 1,
-	VIDEO_POS: 1,
-	MAX_VIDEO: 3,
-	CDN: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/',
-	INTROVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_carolinaHerrera_2mbps.mp4',
-	HARPERSVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_ch5_2mbps.mp4',
-	GALLERYITEMACTIVE:0,
-	GOBACK: 0,
-	curLevel: 1,
-	prevLevel: 1,
-	prevPage: ["travel"],
-	pageDepth: 0,
-	selectedVideo : 0,
+  level:{
+    MOSAIC: 1,
+    NEWS: 2,
+    GALLERY: 3,
+    VIDEO: 4,
+    CARDS: 5,
+    TERMS: 6,
+    TERMSPAGE:7,
+    MENU: 8,
+    NOSTATE: 9,
+    BUFFERING: 10
+  },
+  activeTitle: 'Tips & Trends',
+  MENU_POS: 0,
+  MAX_ITEMS:5,
+  CUR_POS: 1,
+  CUR_ROW: 2,
+  CUR_COL: 1,
+  PREV_ROW:2,
+  PREV_COL:1,
+  MAX_ROW: 4,
+  NEWS_POS: 1,
+  VIDEO_POS: 1,
+  MAX_VIDEO: 3,
+  CDN: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/',
+  INTROVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_carolinaHerrera_2mbps.mp4',
+  HARPERSVIDEO: 'http://3b8ffb0b6ca1c4312d7a-f6478897881b831aa0d618e78a4be408.r12.cf1.rackcdn.com/amex_fashion_app_ch5_2mbps.mp4',
+  GALLERYITEMACTIVE:0,
+  GOBACK: 0,
+  curLevel: 1,
+  prevLevel: 1,
+  prevPage: ["travel"],
+  pageDepth: 0,
+  selectedVideo : 0,
     mode : 0,
     mute : 0,
-    
+
     UP : 0,
     DOWN : 1,
 
     WINDOW : 0,
     FULLSCREEN : 1,
-    
+
     NMUTE : 0,
     YMUTE : 1,
-	clearActive: function(){
-		$('.activeImage').removeClass('activeImage');
-		$('.arrows').hide();
-		$('.hover, .backbtn').removeClass('hover');
-		$('#termsconditions a').removeClass('hover');
-		$('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
-		$('.navbar .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
-	},
-	IMAGE_MATRIX: {
-	1: {
-		1: "2-1",
-		2: "1-2",
-		3: "3-4",
-		4: null
-	},
-	2: {
-		1: "2-1",
-		2: "1-2",
-		3: "1-2",
-		4: "1-2"
-	},
-	3: {
-		1: "2-1",
-		2: "3-2",
-		3: "3-4",
-		4: "3-4"
-	},
-	4: {
-		1: "4-1",
-		2: "4-1",
-		3: "4-3",
-		4: "4-3"
-	},
-	5: {
-		1: "4-1",
-		2: "4-1",
-		3: "4-3",
-		4: "4-3"
-	},
-	6: {
-		1:"6-2",
-		2: "6-2",
-		3:"6-3",
-		4:"6-3"
-	}
+  clearActive: function(){
+    $('.activeImage').removeClass('activeImage');
+    $('.arrows').hide();
+    $('.hover, .backbtn').removeClass('hover');
+    $('#termsconditions a').removeClass('hover');
+    $('#icon-'+Main.NEWS_POS).css('background-image',"url("+$('#icon-'+Main.NEWS_POS).attr('data-thumbnailinactive')+")");
+    $('.navbar .container ul li:eq('+Main.MENU_POS+') a').removeClass('hover');
+  },
+  IMAGE_MATRIX: {
+  1: {
+    1: "2-1",
+    2: "1-2",
+    3: "3-4",
+    4: null
+  },
+  2: {
+    1: "2-1",
+    2: "1-2",
+    3: "1-2",
+    4: "1-2"
+  },
+  3: {
+    1: "2-1",
+    2: "3-2",
+    3: "3-4",
+    4: "3-4"
+  },
+  4: {
+    1: "4-1",
+    2: "4-1",
+    3: "4-3",
+    4: "4-3"
+  },
+  5: {
+    1: "4-1",
+    2: "4-1",
+    3: "4-3",
+    4: "4-3"
+  },
+  6: {
+    1:"6-2",
+    2: "6-2",
+    3:"6-3",
+    4:"6-3"
+  }
 }
 };
 
 
 var hideDiv = function(){
-	this.hide();
+  this.hide();
 }
 Main.showHandler = function()
 {
-	var NNaviPlugin = document.getElementById("pluginObjectNNavi");
-	alert("[APPS] : setBannerstate : 2")
-	NNaviPlugin.SetBannerState(2);
-	pluginObj.unregistKey(tvKey.KEY_VOL_UP);
-	pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
-	pluginObj.unregistKey(tvKey.KEY_MUTE);
-	pluginObj.registKey(tvKey.KEY_EXIT);
+  var NNaviPlugin = document.getElementById("pluginObjectNNavi");
+  alert("[APPS] : setBannerstate : 2")
+  NNaviPlugin.SetBannerState(2);
+  pluginObj.unregistKey(tvKey.KEY_VOL_UP);
+  pluginObj.unregistKey(tvKey.KEY_VOL_DOWN);
+  pluginObj.unregistKey(tvKey.KEY_MUTE);
+  pluginObj.registKey(tvKey.KEY_EXIT);
 }
 Main.CountDownTimer = function (dt, id)
 {
@@ -148,15 +148,15 @@ Main.CountDownTimer = function (dt, id)
 
 Main.onLoad = function()
 {
-	$('body').css('background-color','#000000');
-	$('.videoDetails').css('height','0px');
-	$.preloadCssImages();
-	//Main.CountDownTimer('02/15/2013 12:15 AM GMT', 'countdown');
-	window.onShow = Main.showHandler;
-	if ( Player.init() && Audio.init() )
+  $('body').css('background-color','#000000');
+  $('.videoDetails').css('height','0px');
+  $.preloadCssImages();
+  //Main.CountDownTimer('02/15/2013 12:15 AM GMT', 'countdown');
+  window.onShow = Main.showHandler;
+  if ( Player.init() && Audio.init() )
     {
 
-        
+
         Player.stopCallback = function()
         {
             /* Return to windowed mode when video is stopped
@@ -167,123 +167,142 @@ Main.onLoad = function()
         // Enable key event processing
         this.enableKeys();
 
-        widgetAPI.sendReadyEvent();    
+        widgetAPI.sendReadyEvent();
     }
     else
     {
         alert("Failed to initialise");
     }
     var WIDGET_ID = curWidget.id;
+    alert("TESTING GOOGLE ANALYTICS");
     alert("#################################################################################");
     alert("############################################################################WIDGET_ID =" + WIDGET_ID);
     alert("#################################################################################");
     alert("#################################################################################");
-	$('#inactive').hide();
+  $('#inactive').hide();
 
-	// Enable key event processing
-	widgetAPI.sendReadyEvent();
+  // Enable key event processing
+  widgetAPI.sendReadyEvent();
 
 
 };
 
 Main.firstLoad = function(){
-	$('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
-	$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
-	alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]);
+  $('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
+  $('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
+  alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]);
 /* Set initial keydown function */
-	document.getElementById('anchor').onkeydown = Main.travelKeys;
-	
+  document.getElementById('anchor').onkeydown = Main.travelKeys;
+
 }
 
 Main.onUnload = function()
 {
-	Player.deinit();
+  Player.deinit();
 };
 
 Main.enableKeys = function()
 {
-	
+
 };
 
 Main.tracker = function(trackingdata){
-	//Send XHR to tracking endpoint
-	if (trackingdata.title) {
-		alert(trackingdata.title);
-	} else{
-		trackingdata.title = Main.activeTitle;
-	};
-	var networkPlugin = document.getElementById('pluginObjectNetwork');
-	var nnaviPlugin = document.getElementById('pluginObjectNNavi');
-	var deviceId = nnaviPlugin.GetDUID(networkPlugin.GetHWaddr());
-	trackingdata.deviceid = deviceId;
-	//alert(trackingdata)
-	$.post('http://sdev.amxp.cc/tipstrends/track/', trackingdata)
-	.done(function(d){
-		alert('Tracker: '+d);
-	}).fail(function() { alert("error"); });
+  //Send XHR to tracking endpoint
+  if (trackingdata.title) {
+    alert(trackingdata.title);
+  } else{
+    trackingdata.title = Main.activeTitle;
+  }
+  var networkPlugin = document.getElementById('pluginObjectNetwork');
+  var nnaviPlugin = document.getElementById('pluginObjectNNavi');
+  var deviceId = nnaviPlugin.GetDUID(networkPlugin.GetHWaddr());
+  trackingdata.deviceid = deviceId;
+
+  if (trackingdata.action === 'Page Load' || trackingdata.action === 'Initial Load') {
+    if (trackingdata.action === 'Initial Load') {
+      trackingdata.title += ' (Initial Load)';
+      window._gaq.push(['_setCustomVar', 1, 'deviceid', trackingdata.deviceid, 1]);
+    }
+    window._gaq.push(['_trackPageview', trackingdata.title]);
+  } else {
+    window._gaq.push(['_trackEvent', 'Videos', trackingdata.action, trackingdata.title]);
+  }
+
+  $.post('http://sdev.amxp.cc/tipstrends/track/', trackingdata)
+    .done(function(d){
+      alert('Tracker: '+d);
+    }).fail(function() { alert("error"); });
 }
 
 var app = angular.module('amex', [])
 .service( 'MainService', [ '$rootScope', function( $rootScope ) {
-  	return {
-  		title: 'AMEX Experience',
-  		setTitle: function( newTitle ){
-  			this.title = newTitle;
-  		},
-  		loadApp: function() { 
-  			document.getElementById("anchor").focus();
-  			widgetAPI.sendReadyEvent(); 
-  		},
-  		travelUrl: "http://s.amxp.cc/travel/layout.html",
-  		recipesUrl: "http://s.amxp.cc/designerspotlight/layout.html",
-  		videosUrl:"http://s.amxp.cc/videos/layout.html",
-  		cardsUrl:"http://s.amxp.cc/shopsmall/slayout.html",
-  		termsUrl:"http://s.amxp.cc/terms/layout.html"
-  	}
+    return {
+      title: 'AMEX Experience',
+      setTitle: function( newTitle ){
+        this.title = newTitle;
+      },
+      loadApp: function() {
+        document.getElementById("anchor").focus();
+        widgetAPI.sendReadyEvent();
+      },
+      travelUrl: "http://s.amxp.cc/travel/layout.html",
+      recipesUrl: "http://s.amxp.cc/designerspotlight/layout.html",
+      videosUrl:"http://s.amxp.cc/videos/layout.html",
+      cardsUrl:"http://s.amxp.cc/shopsmall/slayout.html",
+      termsUrl:"http://s.amxp.cc/terms/layout.html"
+    }
   }])
  .controller( 'MainController', [ 'MainService', '$scope', function( MainService, $scope ) {
    $scope.title = Main.title;
    $scope.viewCount = MainService.viewCount;
    $scope.setTitle = function( newTitle ){
-		$scope.title = newTitle;
-	}
-	$scope.firstLoad = function(){
-		$('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
-		$('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
-		alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL])
-		document.getElementById('anchor').onkeydown = Main.travelKeys;
-	}
-	$scope.travelUrl = MainService.travelUrl;
-	$scope.videosUrl = MainService.videosUrl;
-	$scope.recipesUrl = MainService.recipesUrl;
-	$scope.cardsUrl = MainService.cardsUrl;
-	$scope.termsUrl = MainService.termsUrl;
-	$scope.$on( 'MainService.update', function( event, title ) {
-		$scope.title = title;
-	});
-	$(document).ready(function(){
-		document.getElementById("anchor").focus();
-		$('#cardsView').hide();
-		$('#recipesView').hide();
-		$('#videosView').hide();
-		$('#termsView').hide();
+    $scope.title = newTitle;
+  }
+  $scope.firstLoad = function(){
+    $('#main-copy').hide().html($('#benefit_'+Main.CUR_ROW+'-'+Main.CUR_COL).html()).show();//Wing Color
+    $('#image_'+Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL]).addClass('activeImage');
+    alert(Main.IMAGE_MATRIX[Main.CUR_ROW][Main.CUR_COL])
+    document.getElementById('anchor').onkeydown = Main.travelKeys;
+  }
+  $scope.travelUrl = MainService.travelUrl;
+  $scope.videosUrl = MainService.videosUrl;
+  $scope.recipesUrl = MainService.recipesUrl;
+  $scope.cardsUrl = MainService.cardsUrl;
+  $scope.termsUrl = MainService.termsUrl;
+  $scope.$on( 'MainService.update', function( event, title ) {
+    $scope.title = title;
+  });
+  $(document).ready(function(){
+    document.getElementById("anchor").focus();
+    $('#cardsView').hide();
+    $('#recipesView').hide();
+    $('#videosView').hide();
+    $('#termsView').hide();
 
-		//Get Hardware ID and initialize analytics
-		
-		var tvPlugin = document.getElementById('pluginObjectTV');
-		var trackingdata = {};
-		if (tvPlugin) {
-			trackingdata.timezone = tvPlugin.GetTimeZone();
-			trackingdata.devicetype = tvPlugin.GetProductType();
-			trackingdata.productcode = tvPlugin.GetProductCode(1);
-		} else{
-			trackingdata.timezone = 'unknown';
-			trackingdata.devicetype = 'unknown';
-			trackingdata.productcode = 'unknown';
-		};
-		trackingdata.title = 'Tips Trends';
-		trackingdata.action = 'Initial Load';
-		Main.tracker(trackingdata);
-	});
+    //Get Hardware ID and initialize analytics
+
+    var tvPlugin = document.getElementById('pluginObjectTV');
+    var trackingdata = {};
+    if (tvPlugin) {
+      trackingdata.timezone = tvPlugin.GetTimeZone();
+      trackingdata.devicetype = tvPlugin.GetProductType();
+      trackingdata.productcode = tvPlugin.GetProductCode(1);
+    } else{
+      trackingdata.timezone = 'unknown';
+      trackingdata.devicetype = 'unknown';
+      trackingdata.productcode = 'unknown';
+    }
+    trackingdata.title = 'Tips Trends';
+    trackingdata.action = 'Initial Load';
+
+    // SET UP GOOGLE ANALYTICS
+    window._gaq = window._gaq || [];
+    // PROD: UA-34841906-3
+    // DEV: UA-34841906-4
+    window._gaq.push(['_setAccount', 'UA-34841906-3']);
+    window._gaq.push(['_setDomainName', 'amxp.cc']);
+
+    Main.tracker(trackingdata);
+  });
 
  }]);
